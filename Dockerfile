@@ -1,4 +1,4 @@
-FROM node:latest
+FROM node:alpine
 LABEL creator="Tareq Mohammad Yousuf"
 LABEL email="tareq.y@gmail.com"
 
