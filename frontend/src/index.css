@@ -1,4 +1,15 @@
 body {
-  font: 15px "Monaco", Futura, sans-serif;
+  font: 15px "Monaco", "Menlo", sans-serif;
   margin: 20px;
+}
+
+header {
+  color: tomato;
+  border: thick;
+  border-color: teal;
+}
+
+ol,
+ul {
+  padding-left: 30px;
 }

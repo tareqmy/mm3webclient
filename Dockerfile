@@ -12,6 +12,8 @@ COPY ./frontend ./
 
 RUN npm install
 
+EXPOSE 3000
+
 CMD if [ ${APP_ENV} = production ]; \
 	then \
 	npm install -g http-server && \
@@ -21,5 +23,3 @@ CMD if [ ${APP_ENV} = production ]; \
 	else \
 	npm run start; \
 	fi
-
-EXPOSE 3000
