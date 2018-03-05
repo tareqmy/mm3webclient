@@ -4,7 +4,7 @@ import './index.css';
 
 function Body(props) {
     return (
-        <h1>Hello World!</h1>
+        <h1>Munajat E Maqbool!</h1>
     );
 }
 
