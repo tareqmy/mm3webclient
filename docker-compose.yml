@@ -1,0 +1,17 @@
+version: '3.2'
+
+services:
+  memappclient:
+    image: ${CLIENT_APP}:latest
+    container_name: ${CLIENT_APP}
+    hostname: ${CLIENT_APP}
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+    # environment:
+    #   - APP_ENV=${APP_ENV}
+    volumes:
+      - ./frontend/public:/frontend/public
+      - ./frontend/src:/frontend/src
+    ports:
+      - "3000:3000"
