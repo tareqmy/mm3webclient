@@ -8,18 +8,13 @@ ENV APP_ENV $app_env
 
 RUN mkdir -p /frontend
 WORKDIR /frontend
-COPY ./frontend ./
+COPY ./frontend/package.json ./
 
 RUN npm install
 
+COPY ./frontend ./
+RUN chmod +x /frontend/entrypoint.sh
+
 EXPOSE 3000
 
-CMD if [ ${APP_ENV} = production ]; \
-	then \
-	npm install -g http-server && \
-	npm run build && \
-	cd build && \
-	hs -p 3000; \
-	else \
-	npm run start; \
-	fi
+CMD ["/frontend/entrypoint.sh"]
