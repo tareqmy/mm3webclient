@@ -1,15 +1,37 @@
 body {
-  font: 15px "Monaco", "Menlo", sans-serif;
-  margin: 20px;
+  font: 10px sans-serif;
+  margin: auto;
 }
 
-header {
-  color: tomato;
-  border: thick;
-  border-color: teal;
+.mem {
+  font: 15px "Monaco", "Menlo", sans-serif;
+  width: 97%;
+  padding: 20px;
+  align-content: center;
+}
+
+.title {
+  color: darkgreen;
+  text-align: center;
+}
+
+.content {
+  color: darkblue;
+  text-align: center;
+  flex-direction: row;
+}
+
+.navigate {
+  color: darkslategrey;
+  width: 10em;
+  font-size: 15px;
+  margin: 15px;
+  border: 1px solid olivedrab;
+  text-align: center;
 }
 
 ol,
 ul {
-  padding-left: 30px;
+  list-style-type: circle;
+  padding-left: 40px;
 }
