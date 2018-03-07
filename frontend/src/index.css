@@ -5,9 +5,7 @@ body {
 
 .mem {
   font: 15px "Monaco", "Menlo", sans-serif;
-  width: 97%;
   padding: 20px;
-  align-content: center;
 }
 
 .title {
@@ -17,21 +15,23 @@ body {
 
 .content {
   color: darkblue;
+  width: 100%;
   text-align: center;
-  flex-direction: row;
 }
 
 .navigate {
-  color: darkslategrey;
+  margin: auto;
+  padding: 5px;
+  border: none;
+  text-align: center;
   width: 10em;
   font-size: 15px;
-  margin: 15px;
-  border: 1px solid olivedrab;
-  text-align: center;
+  color: darkslategrey;
 }
 
-ol,
-ul {
-  list-style-type: circle;
-  padding-left: 40px;
+.prayer {
+  color: darkslategrey;
+  font-size: 15px;
+  margin: 10px;
+  text-align: center;
 }

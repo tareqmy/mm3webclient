@@ -22,21 +22,6 @@ function Prayer(props) {
     );
 }
 
-// tag::content[]
-class Content extends React.Component {
-    
-    render() {
-        return (
-            <div className="content">
-                <Navigate value="previous"></Navigate>
-                <Prayer value="O our Sustainer! Give us the good of this world and the good of the hereafter, and save us from the punishment of the fire."></Prayer>
-                <Navigate value="next"></Navigate>
-            </div>
-        );
-    }
-}
-// end::content[]
-
 // tag::app[]
 function MunjateMaqbool(props) {
     return (
@@ -44,9 +29,17 @@ function MunjateMaqbool(props) {
             <div className="title">
                 <h1>Munajat E Maqbool!</h1>
             </div>
-            <div>
-                <Content></Content>
-            </div>
+
+            <table className="content">
+                <tr>
+                    <td><Navigate value="<<" class="previous"></Navigate></td>
+                    <td>
+                        <Prayer value="O our Sustainer! Open the gates of patience upon us and cause us to die as Muslims."></Prayer>
+                    </td>
+                    <td><Navigate value=">>"></Navigate></td>
+                </tr>
+            </table>
+
         </div>
     );
 }
