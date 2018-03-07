@@ -12,9 +12,10 @@ class MunjateMaqbool extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: 0,
+            value: 1,
             first: true,
             last: false,
+            pagesize: 10,
         };
     }
 
@@ -22,8 +23,8 @@ class MunjateMaqbool extends React.Component {
         var next = this.state.value + 1;
         this.setState({
             value: next,
-            first: next === 0,
-            last: next === 10,
+            first: next === 1,
+            last: next === this.state.pagesize,
         });
     }
 
@@ -31,8 +32,8 @@ class MunjateMaqbool extends React.Component {
         var previous = this.state.value - 1;
         this.setState({
             value: previous,
-            first: previous === 0,
-            last: previous === 10,
+            first: previous === 1,
+            last: previous === this.state.pagesize,
         });
     }
 
@@ -48,7 +49,7 @@ class MunjateMaqbool extends React.Component {
                         <td>
                             <button className="navigate" disabled={this.state.first}
                                 onClick={() => this.previous()}>
-                                previous
+                                <i class="fas fa-angle-left fa-2x"></i>
                             </button>
                         </td>
                         <td>
@@ -59,7 +60,7 @@ class MunjateMaqbool extends React.Component {
                         <td>
                             <button className="navigate" disabled={this.state.last}
                                 onClick={() => this.next()}>
-                                next
+                                <i class="fas fa-angle-right fa-2x"></i>
                             </button>
                         </td>
                     </tr>
