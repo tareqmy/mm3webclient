@@ -1,5 +1,3 @@
-'use strict';
-
 // tag::vars[]
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -45,11 +43,12 @@ class MunjateMaqbool extends React.Component {
                 </div>
 
                 <table className="content">
+                    <tbody>
                     <tr>
                         <td>
                             <button className="navigate" disabled={this.state.first}
                                 onClick={() => this.previous()}>
-                                <i class="fas fa-angle-left fa-2x"></i>
+                                <i className="fas fa-angle-left fa-2x"></i>
                             </button>
                         </td>
                         <td>
@@ -60,10 +59,11 @@ class MunjateMaqbool extends React.Component {
                         <td>
                             <button className="navigate" disabled={this.state.last}
                                 onClick={() => this.next()}>
-                                <i class="fas fa-angle-right fa-2x"></i>
+                                <i className="fas fa-angle-right fa-2x"></i>
                             </button>
                         </td>
                     </tr>
+                    </tbody>
                 </table>
 
             </div>
