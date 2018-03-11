@@ -9,30 +9,33 @@ class MunjateMaqbool extends React.Component {
 
     constructor(props) {
         super(props);
+
+        var value = localStorage.getItem('value');
+        if (value === null) {
+            value = 1;
+        } 
         this.state = {
-            value: 1,
-            first: true,
-            last: false,
-            pagesize: 10,
+            value: Number(value),
+            first: Boolean(value <= 1),
+            last: Boolean(value >= 10),
         };
     }
 
-    next() {
-        var next = this.state.value + 1;
+    update(value) {
+        localStorage.setItem('value', value);
         this.setState({
-            value: next,
-            first: next === 1,
-            last: next === this.state.pagesize,
+            value: value,
+            first: Boolean(value <= 1),
+            last: Boolean(value >= 10),
         });
     }
 
+    next() {
+        this.update(this.state.value + 1);
+    }
+
     previous() {
-        var previous = this.state.value - 1;
-        this.setState({
-            value: previous,
-            first: previous === 1,
-            last: previous === this.state.pagesize,
-        });
+        this.update(this.state.value - 1);
     }
 
     render() {
@@ -44,25 +47,25 @@ class MunjateMaqbool extends React.Component {
 
                 <table className="content">
                     <tbody>
-                    <tr>
-                        <td>
-                            <button className="navigate" disabled={this.state.first}
-                                onClick={() => this.previous()}>
-                                <i className="fas fa-angle-left fa-2x"></i>
-                            </button>
-                        </td>
-                        <td>
-                            <div className="prayer">
-                                {this.state.value}
-                            </div>
-                        </td>
-                        <td>
-                            <button className="navigate" disabled={this.state.last}
-                                onClick={() => this.next()}>
-                                <i className="fas fa-angle-right fa-2x"></i>
-                            </button>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td>
+                                <button className="navigate" disabled={this.state.first}
+                                    onClick={() => this.previous()}>
+                                    <i className="fas fa-angle-left fa-2x"></i>
+                                </button>
+                            </td>
+                            <td>
+                                <div className="prayer">
+                                    {this.state.value}
+                                </div>
+                            </td>
+                            <td>
+                                <button className="navigate" disabled={this.state.last}
+                                    onClick={() => this.next()}>
+                                    <i className="fas fa-angle-right fa-2x"></i>
+                                </button>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
 

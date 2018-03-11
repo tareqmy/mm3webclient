@@ -24,7 +24,8 @@ body {
   padding: 5px;
   border: none;
   text-align: center;
-  width: 10em;
+  width: 5em;
+  height: 5em;
   font-size: 15px;
   color: darkslategrey;
 }
