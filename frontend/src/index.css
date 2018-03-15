@@ -31,8 +31,8 @@ body {
 }
 
 .prayer {
+  font: 50px "Monaco", "Menlo", sans-serif;
   color: darkslategrey;
-  font-size: 15px;
   margin: 10px;
   text-align: center;
 }

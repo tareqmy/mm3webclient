@@ -9,15 +9,18 @@ class MunjateMaqbool extends React.Component {
 
     constructor(props) {
         super(props);
-
+        var first = 1;
+        var last = 200;
         var value = localStorage.getItem('value');
         if (value === null) {
-            value = 1;
+            value = first;
         } 
         this.state = {
             value: Number(value),
-            first: Boolean(value <= 1),
-            last: Boolean(value >= 10),
+            isfirst: Boolean(value <= first),
+            islast: Boolean(value >= last),
+            first: first,
+            last: last,
         };
     }
 
@@ -25,8 +28,8 @@ class MunjateMaqbool extends React.Component {
         localStorage.setItem('value', value);
         this.setState({
             value: value,
-            first: Boolean(value <= 1),
-            last: Boolean(value >= 10),
+            isfirst: Boolean(value <= this.state.first),
+            islast: Boolean(value >= this.state.last),
         });
     }
 
@@ -49,7 +52,7 @@ class MunjateMaqbool extends React.Component {
                     <tbody>
                         <tr>
                             <td>
-                                <button className="navigate" disabled={this.state.first}
+                                <button className="navigate" disabled={this.state.isfirst}
                                     onClick={() => this.previous()}>
                                     <i className="fas fa-angle-left fa-2x"></i>
                                 </button>
@@ -60,7 +63,7 @@ class MunjateMaqbool extends React.Component {
                                 </div>
                             </td>
                             <td>
-                                <button className="navigate" disabled={this.state.last}
+                                <button className="navigate" disabled={this.state.islast}
                                     onClick={() => this.next()}>
                                     <i className="fas fa-angle-right fa-2x"></i>
                                 </button>
