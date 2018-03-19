@@ -12,48 +12,55 @@ class MunjateMaqbool extends React.Component {
         super(props);
         var first = 1;
         var last = 196;
-        var value = localStorage.getItem('value');
-        if (value === null) {
-            value = first;
+        var page = localStorage.getItem('page');
+        if (page === null) {
+            page = first;
         }
-        value = Number(value);
+        page = Number(page);
         this.state = {
-            value: value,
-            prayer: "",
-            isfirst: Boolean(value <= first),
-            islast: Boolean(value >= last),
+            page: page,
+            size: 1,
+            prayer: {
+                tags: "",
+                arabic: "",
+                english: "",
+                bengali: "",
+                number: 1,
+            },
+            isfirst: Boolean(page <= first),
+            islast: Boolean(page >= last),
             first: first,
             last: last,
         };
-        this.fetch(value);
+        this.fetch(page);
     }
 
-    update(value, dua) {
-        localStorage.setItem('value', value);
+    update(page, prayer) {
+        localStorage.setItem('page', page);
         this.setState({
-            value: value,
-            prayer: dua,
-            isfirst: Boolean(value <= this.state.first),
-            islast: Boolean(value >= this.state.last),
+            page: page,
+            prayer: prayer,
+            isfirst: Boolean(page <= this.state.first),
+            islast: Boolean(page >= this.state.last),
         });
     }
 
-    fetch(value) {
+    fetch(page) {
         var self = this;
         const api = new RestClient("http://localhost/api");
-        api.GET("/dua/" + value)
+        api.GET("/dua?page=" + page + "&size=" + this.state.size)
             .then(function (response) {
-                var dua = response.arabic;
-                self.update(value, dua);
+                var prayer = response.items[0];
+                self.update(page, prayer);
             });
     }
 
     next() {
-        this.fetch(this.state.value + 1);
+        this.fetch(this.state.page + 1);
     }
 
     previous() {
-        this.fetch(this.state.value - 1);
+        this.fetch(this.state.page - 1);
     }
 
     render() {
@@ -66,19 +73,33 @@ class MunjateMaqbool extends React.Component {
                 <table className="content">
                     <tbody>
                         <tr>
-                            <td>
-                                <button className="navigate" disabled={this.state.isfirst}
+                            <td className="navigate">
+                                <button className="navigatebutton" disabled={this.state.isfirst}
                                     onClick={() => this.previous()}>
                                     <i className="fas fa-angle-left fa-2x"></i>
                                 </button>
                             </td>
                             <td>
                                 <div className="prayer">
-                                    {this.state.prayer}
+                                    <div className="tags">
+                                        {this.state.prayer.tags}
+                                    </div>
+                                    <div className="arabic">
+                                        {this.state.prayer.arabic}
+                                    </div>
+                                    <div className="english">
+                                        {this.state.prayer.english}
+                                    </div>
+                                    <div className="bengali">
+                                        {this.state.prayer.bengali}
+                                    </div>
+                                    <div className="number">
+                                        {this.state.prayer.number}
+                                    </div>
                                 </div>
                             </td>
-                            <td>
-                                <button className="navigate" disabled={this.state.islast}
+                            <td className="navigate">
+                                <button className="navigatebutton" disabled={this.state.islast}
                                     onClick={() => this.next()}>
                                     <i className="fas fa-angle-right fa-2x"></i>
                                 </button>

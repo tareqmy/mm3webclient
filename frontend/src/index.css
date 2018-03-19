@@ -21,18 +21,42 @@ body {
 
 .navigate {
   margin: auto;
-  padding: 5px;
+  vertical-align: top;
+}
+
+.navigatebutton {
+  margin: auto;
   border: none;
-  text-align: center;
   width: 5em;
   height: 5em;
-  font-size: 15px;
+  font-size: 20px;
   color: darkslategrey;
 }
 
 .prayer {
-  font: 50px "Monaco", "Menlo", sans-serif;
   color: darkslategrey;
+  min-width: 800px;
   margin: 10px;
   text-align: center;
+}
+
+.english {
+  font: 16px "Monaco", "Menlo", sans-serif;
+  text-align: left;
+  padding: 10px;
+}
+
+.bengali {
+  font: 16px "Monaco", "Menlo", sans-serif;
+  text-align: left;
+  padding: 10px;
+}
+
+.arabic {
+  /* font: 32px "KFGQPC Uthmanic Script HAFS", "Monaco", "Menlo", sans-serif; */
+  font: 32px "Monaco", "Menlo", sans-serif;
+  color: darkslategrey;
+  min-width: 800px;
+  padding: 10px;
+  text-align: right;
 }
