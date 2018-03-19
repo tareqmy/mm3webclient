@@ -1,12 +1,17 @@
 {
   "name": "memappclient",
   "version": "0.1.0",
+  "description": "a futile effort to make munajat e maqbool",
   "private": true,
+  "main": "index.js",
+  "repository": {
+    "url": "https://bitbucket.org/tareqmy/memappclient"
+  },
   "dependencies": {
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-scripts": "^1.1.1",
-    "rest": "^2.0.0"
+    "react-native-rest-client": "0.1.1"
   },
   "scripts": {
     "start": "react-scripts start",
