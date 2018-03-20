@@ -13,15 +13,19 @@ class MunjateMaqbool extends React.Component {
         var first = 1;
         var last = 196;
         var page = localStorage.getItem('page');
+        var tags = localStorage.getItem('prayer.tags');
         if (page === null) {
             page = first;
         }
         page = Number(page);
+        if (tags === null) {
+            tags = 'saturday';
+        }
         this.state = {
             page: page,
             size: 1,
             prayer: {
-                tags: "",
+                tags: tags,
                 arabic: "",
                 english: "",
                 bengali: "",
@@ -37,6 +41,7 @@ class MunjateMaqbool extends React.Component {
 
     update(page, prayer) {
         localStorage.setItem('page', page);
+        localStorage.setItem('prayer.tags', prayer.tags);
         this.setState({
             page: page,
             prayer: prayer,
@@ -64,27 +69,44 @@ class MunjateMaqbool extends React.Component {
         this.fetch(this.state.page - 1);
     }
 
+    first() {
+        this.fetch(this.state.first);
+    }
+
+    last() {
+        this.fetch(this.state.last);
+    }
+
     render() {
         return (
             <div className="mem">
-                <div className="title">
+                <div className="title" onClick={() => this.first()}>
                     <h1>Munajat E Maqbool!</h1>
                 </div>
 
                 <table className="content">
                     <tbody>
                         <tr>
+                            <td></td>
+                            <td>
+                                <div className="tags">
+                                    {this.state.prayer.tags}
+                                </div>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
                             <td className="navigate">
+                                <button className="navigatebutton" onClick={() => this.first()}>
+                                    <i className="fas fa-angle-double-left fa-2x"></i>
+                                </button>
                                 <button className="navigatebutton" disabled={this.state.isfirst}
                                     onClick={() => this.previous()}>
                                     <i className="fas fa-angle-left fa-2x"></i>
                                 </button>
                             </td>
-                            <td>
+                            <td className="prayerholder">
                                 <div className="prayer">
-                                    <div className="tags">
-                                        {this.state.prayer.tags}
-                                    </div>
                                     <div className="arabic">
                                         {this.state.prayer.arabic}
                                     </div>
@@ -94,9 +116,6 @@ class MunjateMaqbool extends React.Component {
                                     <div className="bengali">
                                         {this.state.prayer.bengali}
                                     </div>
-                                    <div className="number">
-                                        {this.state.prayer.number}
-                                    </div>
                                 </div>
                             </td>
                             <td className="navigate">
@@ -104,7 +123,19 @@ class MunjateMaqbool extends React.Component {
                                     onClick={() => this.next()}>
                                     <i className="fas fa-angle-right fa-2x"></i>
                                 </button>
+                                <button className="navigatebutton" onClick={() => this.last()}>
+                                    <i className="fas fa-angle-double-right fa-2x"></i>
+                                </button>
                             </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <div className="number">
+                                    {this.state.prayer.number}
+                                </div>
+                            </td>
+                            <td></td>
                         </tr>
                     </tbody>
                 </table>
