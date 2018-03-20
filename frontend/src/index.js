@@ -47,7 +47,8 @@ class MunjateMaqbool extends React.Component {
 
     fetch(page) {
         var self = this;
-        const api = new RestClient("http://localhost/api");
+        var serverLocation = window.location.protocol + "//" + window.location.hostname + "/api"
+        const api = new RestClient(serverLocation);
         api.GET("/dua?page=" + page + "&size=" + this.state.size)
             .then(function (response) {
                 var prayer = response.items[0];
