@@ -1,0 +1,103 @@
+
+/* english fonts */
+@font-face {
+    font-family: 'Georgia';
+    src: url('fonts/Georgia.eot');
+    src: url('fonts/Georgia.eot?#iefix') format('embedded-opentype'),
+        url('fonts/Georgia.woff2') format('woff2'),
+        url('fonts/Georgia.woff') format('woff'),
+        url('fonts/Georgia.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+  
+@font-face {
+    font-family: 'Monaco';
+    src: url('fonts/Monaco.eot');
+    src: url('fonts/Monaco.eot?#iefix') format('embedded-opentype'),
+        url('fonts/Monaco.woff2') format('woff2'),
+        url('fonts/Monaco.woff') format('woff'),
+        url('fonts/Monaco.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+  
+@font-face {
+    font-family: 'Bilbo';
+    src: url('fonts/Bilbo-Regular.eot');
+    src: url('fonts/Bilbo-Regular.eot?#iefix') format('embedded-opentype'),
+        url('fonts/Bilbo-Regular.woff2') format('woff2'),
+        url('fonts/Bilbo-Regular.woff') format('woff'),
+        url('fonts/Bilbo-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'XXII ARABIAN-ONENIGHTSTAND';
+    src: url('fonts/XXIIARABIAN-ONENIGHTSTAND-Bold.eot');
+    src: url('fonts/XXIIARABIAN-ONENIGHTSTAND-Bold.eot?#iefix') format('embedded-opentype'),
+        url('fonts/XXIIARABIAN-ONENIGHTSTAND-Bold.woff2') format('woff2'),
+        url('fonts/XXIIARABIAN-ONENIGHTSTAND-Bold.woff') format('woff'),
+        url('fonts/XXIIARABIAN-ONENIGHTSTAND-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+  
+/* arabic fonts */
+@font-face {
+    font-family: 'Scheherazade';
+    src: url('fonts/Scheherazade.eot');
+    src: url('fonts/Scheherazade.eot?#iefix') format('embedded-opentype'),
+        url('fonts/Scheherazade.woff2') format('woff2'),
+        url('fonts/Scheherazade.woff') format('woff'),
+        url('fonts/Scheherazade.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'Diwani Letter';
+    src: url('fonts/DiwaniLetter.eot');
+    src: url('fonts/DiwaniLetter.eot?#iefix') format('embedded-opentype'),
+        url('fonts/DiwaniLetter.woff2') format('woff2'),
+        url('fonts/DiwaniLetter.woff') format('woff'),
+        url('fonts/DiwaniLetter.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+  
+/* bangla fonts */
+@font-face {
+    font-family: 'AponaLohit';
+    src: url('fonts/AponaLohit.eot');
+    src: url('fonts/AponaLohit.eot?#iefix') format('embedded-opentype'),
+        url('fonts/AponaLohit.woff2') format('woff2'),
+        url('fonts/AponaLohit.woff') format('woff'),
+        url('fonts/AponaLohit.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+  
+@font-face {
+    font-family: 'BongshaiMJ';
+    src: url('fonts/BongshaiMJ.eot');
+    src: url('fonts/BongshaiMJ.eot?#iefix') format('embedded-opentype'),
+        url('fonts/BongshaiMJ.woff2') format('woff2'),
+        url('fonts/BongshaiMJ.woff') format('woff'),
+        url('fonts/BongshaiMJ.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+  
+@font-face {
+    font-family: 'Prothoma';
+    src: url('fonts/Prothoma.eot');
+    src: url('fonts/Prothoma.eot?#iefix') format('embedded-opentype'),
+        url('fonts/Prothoma.woff2') format('woff2'),
+        url('fonts/Prothoma.woff') format('woff'),
+        url('fonts/Prothoma.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}  

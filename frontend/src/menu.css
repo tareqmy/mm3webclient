@@ -1,0 +1,51 @@
+@import url("fonts.css");
+
+.menu {
+    font: 18px "Optima", "Georgia", "Times New Roman";
+    padding: 3px;
+    margin: auto;
+    border: 1px solid gray;
+    background-color: gainsboro;
+    overflow: auto;
+}
+
+.menu .left {
+    padding-left: 10px;
+    float: left;
+}
+
+.menu .right {
+    float: right;
+    padding-right: 10px;
+}
+
+.menu label {
+    font: 18px "Optima", "Georgia", "Times New Roman";
+    color: darkslategrey;
+}
+
+.menu button {
+    font: 15px "Optima", "Georgia", "Times New Roman";
+    color: darkslategrey;
+    border: 0;
+    background: transparent;
+    outline: none;
+    opacity: 1;
+}
+
+.menu button:hover {
+    opacity: 0.75;
+    /* cursor: pointer; */
+}
+
+.menu button:active {
+    color: darkgray;
+}
+
+.menu .active {
+    color: darkgray;
+}
+
+.menu .inactive {
+    color: darkslategrey;
+}

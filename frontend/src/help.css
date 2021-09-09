@@ -1,0 +1,42 @@
+@import url("fonts.css");
+
+.help {
+    margin: auto;
+    color: darkslategrey;
+    vertical-align: top;
+    text-align: center;
+    padding: 20px;
+}
+
+.mobile .help {
+    padding: 10px;
+}
+
+.help button {
+    margin: auto;
+    width: 100px;
+}
+
+.help .english {
+    font: 18px "Optima", "Georgia", "Times New Roman";
+    text-align: justify;
+    padding: 5px;
+}
+
+.help .header {
+    display: block;
+    font-size: 1.17em;
+    -webkit-margin-before: 5px;
+    -webkit-margin-after: 0px;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    font-weight: bold;
+}
+
+.help .para {
+    display: block;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+}

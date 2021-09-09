@@ -1,0 +1,46 @@
+@import url("fonts.css");
+
+.intro {
+    margin: auto;
+    color: darkslategrey;
+    vertical-align: top;
+    text-align: center;
+    padding: 20px;
+}
+
+.mobile .intro {
+    padding: 10px;
+}
+
+.intro button {
+    margin: auto;
+    width: 100px;
+}
+
+.intro .header {
+    display: block;
+    font-size: 1.17em;
+    -webkit-margin-before: 5px;
+    -webkit-margin-after: 0px;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    font-weight: bold;
+}
+
+.intro .english {
+    font: 18px "Optima", "Georgia", "Times New Roman";
+    text-align: justify;
+    padding: 5px;
+}
+
+.intro .bengali {
+    font: 18px "AponaLohit", "Monaco", "Times New Roman";
+    text-align: justify;
+    padding: 5px;
+}
+
+.intro .arabic {
+    font: 40px "Scheherazade", "Times New Roman";
+    text-align: right;
+    padding: 5px;
+}

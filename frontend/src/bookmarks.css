@@ -1,0 +1,94 @@
+@import url("fonts.css");
+
+.bookmarks {
+    margin: auto;
+    color: darkslategrey;
+    vertical-align: top;
+    text-align: center;
+    padding: 20px;
+}
+
+.mobile .bookmarks {
+    padding: 10px;
+}
+
+.bookmarks button {
+    margin: auto;
+    width: 100px;
+}
+
+.bookmarks .english {
+    font: 18px "Optima", "Georgia", "Times New Roman";
+    text-align: justify;
+    padding: 5px;
+}
+
+.bookmarks .header {
+    display: block;
+    font-size: 1.17em;
+    -webkit-margin-before: 5px;
+    -webkit-margin-after: 0px;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    font-weight: bold;
+}
+
+.bookmarks .para {
+    display: block;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+}
+
+.bookmark {
+    border: 1px solid gray;
+    background-color: whitesmoke;
+    margin: 5px;
+    padding: 5px;
+    overflow: auto;
+}
+
+.bookmark .left {
+    float: left;
+    width: 95%;
+}
+
+.mobile .bookmark .left {
+    width: 90%;
+}
+
+.bookmark .right {
+    float: right;
+}
+
+.bookmark p {
+    display: block;
+    -webkit-margin-before: 0px;
+    -webkit-margin-after: 0px;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.bookmark:hover {
+    border: 1px solid darkslategrey;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.bookmark button {
+    font: 16px "Optima", "Georgia", "Times New Roman";
+    color: darkslategrey;
+    width: auto;
+    border: 0;
+    background: transparent;
+    outline: none;
+    opacity: 0.5;
+}
+
+.bookmark button:hover {
+    opacity: 1;
+}

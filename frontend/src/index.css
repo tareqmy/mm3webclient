@@ -1,64 +1,47 @@
+@import url("fonts.css");
+
 body {
   font: 10px sans-serif;
   margin: auto;
 }
 
-.mem {
-  font: 15px "Monaco", "Menlo", sans-serif;
-  padding: 20px;
+select, button, input {
+  font-family: "Optima", "Georgia", "Times New Roman";
+  font-size: 12px;
+  vertical-align: middle;
+  background-color: white;
 }
 
-.title {
-  color: darkgreen;
-  text-align: center;
+hr {
+  display: block;
+  unicode-bidi: isolate;
+  -webkit-margin-before: 0.5em;
+  -webkit-margin-after: 0.5em;
+  -webkit-margin-start: auto;
+  -webkit-margin-end: auto;
+  width: 200px;
+  overflow: hidden;
+  border-style: inset;
+  border-width: 1px;
 }
 
-.content {
+.container {
+  font: 18px "Optima", "Georgia", "Times New Roman";
+  padding: 0px;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
   color: darkred;
-  width: 100%;
+  width: 800px;
   text-align: center;
+  border: 1px ridge white;
+  -webkit-box-shadow: 0 0 10px;
+  box-shadow: 0 0 10px gray;
 }
 
-.navigate {
-  margin: auto;
-  vertical-align: top;
-  width: 10%;
-}
-
-.navigatebutton {
-  margin: auto;
-  border: none;
-  font-size: 20px;
-  color: darkslategrey;
-}
-
-.prayerholder {
-  width: 80%;
-}
-
-.prayer {
-  color: darkslategrey;
-  margin: 10px;
-  text-align: center;
-}
-
-.english {
-  font: 15px "Monaco", "Menlo", sans-serif;
-  text-align: justify;
-  padding: 10px;
-}
-
-.bengali {
-  font: 15px "Monaco", "Menlo", sans-serif;
-  text-align: justify;
-  padding: 10px;
-}
-
-.arabic {
-  /* font: 32px "KFGQPC Uthmanic Script HAFS", "Monaco", "Menlo", sans-serif; */
-  font: 32px "Monaco", "Menlo", sans-serif;
-  color: darkslategrey;
-  min-width: 800px;
-  padding: 10px;
-  text-align: right;
+.container.mobile {
+  width: 480px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  box-shadow: 0 0 5px gray;
 }

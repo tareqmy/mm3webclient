@@ -1,0 +1,45 @@
+@import url("fonts.css");
+
+.title {
+    background-color: transparent;
+    color: darkgreen;
+    width: 100%;
+    padding: 0px;
+    margin: auto;
+}
+  
+.titleenglish {
+    font: 40px "XXII ARABIAN-ONENIGHTSTAND", "Monaco", sans-serif;
+    color: darkgreen;
+    text-align: justify;
+    padding-left: 30px;
+    width: 50%;
+}
+
+.mobile .titleenglish {
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+}
+
+.titlebengali {
+    font: 40px "BongshaiMJ", "Monaco", sans-serif;
+    color: darkgreen;
+    text-align: justify;
+    padding-left: 30px;
+    width: 50%;
+}
+
+.mobile .titlebengali {
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+}
+
+.titlearabic {
+    font: 60px "Diwani Letter", "Monaco", sans-serif;
+    color: darkgreen;
+    text-align: right;
+    padding-right: 30px;
+    width: 50%;
+}

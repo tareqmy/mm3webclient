@@ -1,0 +1,123 @@
+@import url("fonts.css");
+
+.content {
+    margin: auto;
+    min-height: 330px;
+}
+
+.mobile .content {
+    min-height: 0px;
+}
+
+.content .prayerholder {
+    color: darkslategrey;
+    vertical-align: top;
+    text-align: center;
+    padding: 20px;
+}
+
+.mobile .content .prayerholder {
+    padding: 10px;
+}
+
+.content .english {
+    font: 18px "Optima", "Georgia", "Times New Roman";
+    text-align: justify;
+    padding: 5px;
+}
+
+.content .bengali {
+    font: 18px "AponaLohit", "Monaco", "Times New Roman";
+    text-align: justify;
+    padding: 5px;
+}
+
+.content .arabic {
+    font: 40px "Scheherazade", "Times New Roman";
+    text-align: right;
+    padding: 5px;
+}
+  
+.bookit {
+    display: inline;
+}
+
+.bookit button {
+    font: 20px "Optima", "Georgia", "Times New Roman";
+    color: darkslategrey;
+    width: auto;
+    border: 0;
+    background: transparent;
+    outline: none;
+    opacity: 0.5;
+}
+
+.bookit button:hover {
+    opacity: 1;
+}
+
+.navigation {
+    font: 18px "Optima", "Georgia", "Times New Roman";
+    padding: 3px;
+    margin: auto;
+    overflow: auto;
+    border-bottom: 1px solid #ccc;
+}
+
+.navigation .left {
+    padding-left: 10px;
+    float: left;
+}
+
+.navigation .right {
+    float: right;
+    padding-right: 10px;
+}
+
+.navigation button {
+    font: 15px "Optima", "Georgia", "Times New Roman";
+    color: darkslategrey;
+    border: 0;
+    background: transparent;
+    outline: none;
+    opacity: 1;
+}
+
+.navigation button:hover {
+    opacity: 0.75;
+    /* cursor: pointer; */
+}
+
+.navigation button:active {
+    color: darkgray;
+}
+
+.navigation label {
+    font: 15px "Optima", "Georgia", "Times New Roman";
+    color: darkslategrey;
+}
+
+.navigation select {
+    font: 15px "Optima", "Georgia", "Times New Roman";
+    color: darkslategrey;
+    background: white;
+    overflow: hidden;
+    /* -webkit-appearance: none;
+    -moz-appearance: none; */
+    padding: 5px;
+    vertical-align: middle;
+    border: none;
+}
+  
+.navigation select:focus {
+    outline: none;
+}
+
+.meta {
+    font: 15px "Optima", "Georgia", "Times New Roman";
+    color: black;
+    padding: 2px;
+    margin: auto;
+    border: 1px solid gray;
+    background-color: gainsboro;
+}

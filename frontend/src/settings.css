@@ -1,0 +1,49 @@
+@import url("fonts.css");
+
+.settings {
+    margin: auto;
+    color: darkslategrey;
+    vertical-align: top;
+    text-align: center;
+    padding: 20px;
+}
+
+.mobile .settings {
+    padding: 10px;
+}
+
+.settings button {
+    margin: auto;
+    width: 100px;
+}
+
+.settings .english {
+    font: 18px "Optima", "Georgia", "Times New Roman";
+    text-align: justify;
+    padding: 5px;
+}
+
+.settings .header {
+    display: block;
+    font-size: 1.17em;
+    -webkit-margin-before: 5px;
+    -webkit-margin-after: 0px;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    font-weight: bold;
+}
+
+.settings .para {
+    display: block;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+}
+
+.settings select {
+    font: 15px "Optima", "Georgia", "Times New Roman";
+    width: 100px;
+    vertical-align: middle;
+    background-color: white;
+}
