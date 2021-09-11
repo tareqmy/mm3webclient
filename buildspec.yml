@@ -9,16 +9,14 @@ phases:
       - cd frontend && npm install
   build:
     commands:
-      - echo Building static site...
-      - cd frontend && npm run build
+      - echo Building production build...
+      - npm run build
   post_build:
     commands:
       - echo Build completed on `date`
 
 artifacts:
-  type: zip
-  paths:
-    - './frontend/build/**/*'
+  base-directory: './frontend/build'
 
 cache:
   paths:
