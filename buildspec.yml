@@ -1,0 +1,25 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 14
+    commands:
+      - echo Installing app dependencies...
+      - cd frontend && npm install
+  build:
+    commands:
+      - echo Building static site...
+      - cd frontend && npm run build
+  post_build:
+    commands:
+      - echo Build completed on `date`
+
+artifacts:
+  type: zip
+  paths:
+    - './frontend/build/**/*'
+
+cache:
+  paths:
+    - './frontend/node_modules/**/*'
