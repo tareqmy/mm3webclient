@@ -5,19 +5,30 @@ phases:
     runtime-versions:
       nodejs: 14
     commands:
+      - echo $CODEBUILD_SRC_DIR
+      - pwd
       - echo Installing app dependencies...
       - cd frontend && npm install
+      - echo $CODEBUILD_SRC_DIR
+      - pwd
   build:
     commands:
+      - pwd
+      - echo $CODEBUILD_SRC_DIR
       - echo Building production build...
       - npm run build
+      - echo $CODEBUILD_SRC_DIR
+      - pwd
   post_build:
     commands:
+      - pwd
       - echo Build completed on `date`
+      - pwd
 
 artifacts:
-  base-directory: './frontend/build'
+  files:
+    - 'frontend/build/**/*'
 
 cache:
   paths:
-    - './frontend/node_modules/**/*'
+    - 'frontend/node_modules/**/*'
