@@ -16,7 +16,7 @@ class Help extends React.Component {
                     <hr></hr>
                     <div className="header">About this application</div>
                     <div className="para">
-                        I wanted to create an application on this book for a long time. I have benefitted from it tremendously. 
+                        I wanted to create an application on this book for a long time. I have benefitted from it tremendously.
                         I spent months trying to make it useful and organized.
                         Even only one person gets benefitted, I will consider my effort worth it.<br/><br/>
                         O my Sustainer! I am in need of the good that You bestow upon me.<br/>
@@ -34,6 +34,12 @@ class Help extends React.Component {
                         Press 'ctrl + b' to go to bookmarks.<br />
                         Press 'n' to go to next bookmarked prayer.<br />
                         Press 'v' to go to previous bookmarked prayer.
+                    </div>
+                    <hr></hr>
+                    <div className="para">
+                        Created with love <a href="https://tareqmy.com/">https://tareqmy.com/</a> <br/>
+                        For any complaint and suggestion please send email to
+                        <a href="mailto:tareq.y+mm3@gmail.com?Subject=Hello%20again" target="_top">tareq.y+mm3@gmail.com</a>
                     </div>
                 </div>
                 <button onClick={() => this.props.showComponent("content")}>OK</button>
