@@ -37,9 +37,8 @@ class Help extends React.Component {
                     </div>
                     <hr></hr>
                     <div className="para">
-                        Created with love <a href="https://tareqmy.com/">https://tareqmy.com/</a> <br/>
-                        For any complaint and suggestion please send email to
-                        <a href="mailto:tareq.y+mm3@gmail.com?Subject=Hello%20again" target="_top">tareq.y+mm3@gmail.com</a>
+                        Created with love by <a href="https://tareqmy.com/">https://tareqmy.com/</a> <br/>
+                        For any complaint and suggestion please send email to <a href="mailto:tareq.y+mm3@gmail.com?Subject=Hello%20again" target="_top">tareq.y+mm3@gmail.com</a>
                     </div>
                 </div>
                 <button onClick={() => this.props.showComponent("content")}>OK</button>
