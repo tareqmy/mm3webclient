@@ -18,7 +18,8 @@ class Help extends React.Component {
                     <div className="para">
                         I wanted to create an application on this book for a long time. I have benefitted from it tremendously.
                         I spent months trying to make it useful and organized.
-                        Even only one person gets benefitted, I will consider my effort worth it.<br/><br/>
+                        Even only one person gets benefitted, I will consider my effort worth it. 
+                        May Allah accept this small effort from me.<br/><br/>
                         O my Sustainer! I am in need of the good that You bestow upon me.<br/>
                         Our Lord! Accept (this service) from us. Indeed! You are the All-Hearer, the All-Knower.
                     </div>
