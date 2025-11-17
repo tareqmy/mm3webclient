@@ -18,7 +18,7 @@
 }
 
 .help .english {
-    font: 18px "Optima", "Georgia", "Times New Roman";
+    font: 18px "Georgia", sans-serif;
     text-align: justify;
     padding: 5px;
 }

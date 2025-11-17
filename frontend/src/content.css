@@ -21,7 +21,7 @@
 }
 
 .content .english {
-    font: 18px "Optima", "Georgia", "Times New Roman";
+    font: 18px "Georgia", sans-serif;
     text-align: justify;
     padding: 5px;
 }
@@ -43,7 +43,7 @@
 }
 
 .bookit button {
-    font: 20px "Optima", "Georgia", "Times New Roman";
+    font: 20px "Georgia", sans-serif;
     color: darkslategrey;
     width: auto;
     border: 0;
@@ -57,7 +57,7 @@
 }
 
 .navigation {
-    font: 18px "Optima", "Georgia", "Times New Roman";
+    font: 18px "Georgia", sans-serif;
     padding: 3px;
     margin: auto;
     overflow: auto;
@@ -75,7 +75,7 @@
 }
 
 .navigation button {
-    font: 15px "Optima", "Georgia", "Times New Roman";
+    font: 15px "Georgia", sans-serif;
     color: darkslategrey;
     border: 0;
     background: transparent;
@@ -93,12 +93,12 @@
 }
 
 .navigation label {
-    font: 15px "Optima", "Georgia", "Times New Roman";
+    font: 15px "Georgia", sans-serif;
     color: darkslategrey;
 }
 
 .navigation select {
-    font: 15px "Optima", "Georgia", "Times New Roman";
+    font: 15px "Georgia", sans-serif;
     color: darkslategrey;
     background: white;
     overflow: hidden;
@@ -114,7 +114,7 @@
 }
 
 .meta {
-    font: 15px "Optima", "Georgia", "Times New Roman";
+    font: 15px "Georgia", sans-serif;
     color: black;
     padding: 2px;
     margin: auto;

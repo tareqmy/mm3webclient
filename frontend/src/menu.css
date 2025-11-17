@@ -1,7 +1,7 @@
 @import url("fonts.css");
 
 .menu {
-    font: 18px "Optima", "Georgia", "Times New Roman";
+    font: 18px "Georgia", sans-serif;
     padding: 3px;
     margin: auto;
     border: 1px solid gray;
@@ -20,12 +20,12 @@
 }
 
 .menu label {
-    font: 18px "Optima", "Georgia", "Times New Roman";
+    font: 18px "Georgia", sans-serif;
     color: darkslategrey;
 }
 
 .menu button {
-    font: 15px "Optima", "Georgia", "Times New Roman";
+    font: 15px "Georgia", sans-serif;
     color: darkslategrey;
     border: 0;
     background: transparent;

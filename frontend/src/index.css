@@ -6,7 +6,7 @@ body {
 }
 
 select, button, input {
-    font-family: "Optima", "Georgia", "Times New Roman", sans-serif;
+  font-family: "Georgia", sans-serif;
   font-size: 12px;
   vertical-align: middle;
   background-color: white;
@@ -26,12 +26,10 @@ hr {
 }
 
 .container {
-  font: 18px "Optima", "Georgia", "Times New Roman";
-  padding: 0px;
-  margin: auto;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  color: darkred;
+  font: 18px "Georgia", sans-serif;
+  padding: 0;
+    margin: 20px auto;
+    color: darkred;
   width: 800px;
   text-align: center;
   border: 1px ridge white;

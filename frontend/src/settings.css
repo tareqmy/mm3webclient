@@ -18,7 +18,7 @@
 }
 
 .settings .english {
-    font: 18px "Optima", "Georgia", "Times New Roman";
+    font: 18px "Georgia", sans-serif;
     text-align: justify;
     padding: 5px;
 }
@@ -27,9 +27,9 @@
     display: block;
     font-size: 1.17em;
     -webkit-margin-before: 5px;
-    -webkit-margin-after: 0px;
-    -webkit-margin-start: 0px;
-    -webkit-margin-end: 0px;
+    -webkit-margin-after: 0;
+    -webkit-margin-start: 0;
+    -webkit-margin-end: 0;
     font-weight: bold;
 }
 
@@ -37,12 +37,12 @@
     display: block;
     -webkit-margin-before: 1em;
     -webkit-margin-after: 1em;
-    -webkit-margin-start: 0px;
-    -webkit-margin-end: 0px;
+    -webkit-margin-start: 0;
+    -webkit-margin-end: 0;
 }
 
 .settings select {
-    font: 15px "Optima", "Georgia", "Times New Roman";
+    font: 15px "Georgia", sans-serif;
     width: 100px;
     vertical-align: middle;
     background-color: white;

@@ -21,26 +21,26 @@
     display: block;
     font-size: 1.17em;
     -webkit-margin-before: 5px;
-    -webkit-margin-after: 0px;
-    -webkit-margin-start: 0px;
-    -webkit-margin-end: 0px;
+    -webkit-margin-after: 0;
+    -webkit-margin-start: 0;
+    -webkit-margin-end: 0;
     font-weight: bold;
 }
 
 .intro .english {
-    font: 18px "Optima", "Georgia", "Times New Roman";
+    font: 18px "Georgia", sans-serif;
     text-align: justify;
     padding: 5px;
 }
 
 .intro .bengali {
-    font: 18px "AponaLohit", "Times New Roman";
+    font: 18px "AponaLohit", sans-serif;
     text-align: justify;
     padding: 5px;
 }
 
 .intro .arabic {
-    font: 40px "Scheherazade", "Times New Roman";
+    font: 40px "Scheherazade", sans-serif;
     text-align: right;
     padding: 5px;
 }
