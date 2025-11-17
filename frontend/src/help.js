@@ -9,16 +9,17 @@ class Help extends React.Component {
                 <div className="english">
                     <div className="header">About</div>
                     <div className="para">
-                        Compiled by Hakimul Ummmah Maulana Ashraf Ali Thanwi (R)<br />
-                        Bengali Translation - Allama Shamsul Haque Faridpuri (R) and Allama Azizul Haque (R)<br />
+                        Compiled by Hakimul Ummmah Maulana Ashraf Ali Thanwi (R)<br/>
+                        Bengali Translation - Allama Shamsul Haque Faridpuri (R) and Allama Azizul Haque (R)<br/>
                         English Translation - Maulana Muhammed Mahomedy
                     </div>
                     <hr></hr>
                     <div className="header">About this application</div>
                     <div className="para">
-                        I wanted to create an application on this book for a long time. I have benefitted from it tremendously.
+                        I wanted to create an application on this book for a long time. I have benefitted from it
+                        tremendously.
                         I spent months trying to make it useful and organized.
-                        Even only one person gets benefitted, I will consider my effort worth it. 
+                        Even only one person gets benefitted, I will consider my effort worth it.
                         May Allah accept this small effort from me.<br/><br/>
                         O my Sustainer! I am in need of the good that You bestow upon me.<br/>
                         Our Lord! Accept (this service) from us. Indeed! You are the All-Hearer, the All-Knower.
@@ -26,20 +27,22 @@ class Help extends React.Component {
                     <hr></hr>
                     <div className="header">Help</div>
                     <div className="para">
-                        Press 'k' to go to next prayer.<br />
-                        Press 'j' to go to previous prayer.<br />
-                        Press 'l' to go to next day.<br />
-                        Press 'h' to go to previous day.<br />
-                        <br />
-                        Press 'b' to toggle bookmark this prayer.<br />
-                        Press 'ctrl + b' to go to bookmarks.<br />
-                        Press 'n' to go to next bookmarked prayer.<br />
+                        Press 'k' to go to next prayer.<br/>
+                        Press 'j' to go to previous prayer.<br/>
+                        Press 'l' to go to next day.<br/>
+                        Press 'h' to go to previous day.<br/>
+                        <br/>
+                        Press 'b' to toggle bookmark this prayer.<br/>
+                        Press 'ctrl + b' to go to bookmarks.<br/>
+                        Press 'n' to go to next bookmarked prayer.<br/>
                         Press 'v' to go to previous bookmarked prayer.
                     </div>
                     <hr></hr>
                     <div className="para">
                         Created with love by <a href="https://tareqmy.com/">https://tareqmy.com/</a> <br/>
-                        For any complaint and suggestion please send email to <a href="mailto:tareq.y+mm3@gmail.com?Subject=Hello%20again" target="_top">tareq.y+mm3@gmail.com</a>
+                        For any complaint and suggestion please send email to <a
+                        href="mailto:tareq.y+mm3@gmail.com?Subject=Hello%20again"
+                        target="_top">tareq.y+mm3@gmail.com</a>
                     </div>
                 </div>
                 <button onClick={() => this.props.showComponent("content")}>OK</button>

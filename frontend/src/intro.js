@@ -1,7 +1,7 @@
 import React from 'react';
 import './intro.css';
 import swal from 'sweetalert';
-import { get } from "superagent";
+import {get} from "superagent";
 
 class Intro extends React.Component {
 
@@ -34,6 +34,7 @@ class Intro extends React.Component {
         this.fetchIntroTitle();
         this.fetchIntroStart();
     }
+
     fetchIntroTitle() {
         var self = this;
         var serverLocation = "https://api.munajatemaqbool.com/misc/1";
@@ -120,7 +121,7 @@ class Intro extends React.Component {
                         {this.state.intro.bengali}
                     </div>
                 }
-                <br />
+                <br/>
                 <button onClick={this.done}>OK</button>
             </div>
         );

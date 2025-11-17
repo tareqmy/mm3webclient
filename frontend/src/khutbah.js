@@ -1,7 +1,7 @@
 import React from 'react';
 import './khutbah.css';
 import swal from 'sweetalert';
-import { get } from "superagent";
+import {get} from "superagent";
 
 class Khutbah extends React.Component {
 
@@ -120,7 +120,7 @@ class Khutbah extends React.Component {
                         {this.state.khutbah.bengali}
                     </div>
                 }
-                <br />
+                <br/>
                 <button onClick={this.done}>OK</button>
             </div>
         );

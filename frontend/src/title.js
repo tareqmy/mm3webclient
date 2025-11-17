@@ -1,7 +1,7 @@
 import React from 'react';
 import './title.css';
 import swal from 'sweetalert';
-import { get } from "superagent";
+import {get} from "superagent";
 
 class Title extends React.Component {
 
@@ -48,26 +48,26 @@ class Title extends React.Component {
         return (
             <table className="title">
                 <tbody>
-                    <tr>
-                        {
-                            this.english() &&
-                            <td className="titleenglish">
-                                {this.state.title.english}
-                            </td>
-                        }
-                        {
-                            this.bengali() &&
-                            <td className="titlebengali">
-                                {this.state.title.bengali}
-                            </td>
-                        }
-                        {
-                            !this.props.isMobile &&
-                            <td className="titlearabic">
-                                {this.state.title.arabic}
-                            </td>
-                        }
-                    </tr>
+                <tr>
+                    {
+                        this.english() &&
+                        <td className="titleenglish">
+                            {this.state.title.english}
+                        </td>
+                    }
+                    {
+                        this.bengali() &&
+                        <td className="titlebengali">
+                            {this.state.title.bengali}
+                        </td>
+                    }
+                    {
+                        !this.props.isMobile &&
+                        <td className="titlearabic">
+                            {this.state.title.arabic}
+                        </td>
+                    }
+                </tr>
                 </tbody>
             </table>
         );

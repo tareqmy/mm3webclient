@@ -33,7 +33,7 @@ class Bookmarks extends React.Component {
 
         const options = Object.entries(this.props.bookmarks).map(([key, value]) => {
             return <Bookmark key={key} value={value} lang={this.props.lang}
-                onGoto={() => this.goAndFetch(key)} unBookmark={() => this.props.unBookmark(key)}/>
+                             onGoto={() => this.goAndFetch(key)} unBookmark={() => this.props.unBookmark(key)}/>
         })
         return options;
     }

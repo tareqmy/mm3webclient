@@ -63,12 +63,14 @@ class Content extends React.Component {
     render() {
         return (
             <div>
-                <ReactTooltip />
+                <ReactTooltip/>
                 <div className="navigation">
                     <div className="right">
-                        <button data-tip="Previous" onClick={this.props.previous}><i className="fas fa-arrow-left"></i></button>
+                        <button data-tip="Previous" onClick={this.props.previous}><i className="fas fa-arrow-left"></i>
+                        </button>
                         <label> | </label>
-                        <button data-tip="Next" onClick={this.props.next}><i className="fas fa-arrow-right"></i></button>
+                        <button data-tip="Next" onClick={this.props.next}><i className="fas fa-arrow-right"></i>
+                        </button>
                         <label> | </label>
                         <select data-tip="Day" onChange={this.daySelected} value={this.props.prayer.tags}>
                             {this.getDaysOptions()}
@@ -78,11 +80,14 @@ class Content extends React.Component {
                             {this.getPrayerNumberOptions()}
                         </select>
                         <label> | </label>
-                        <button data-tip="Previous Bookmark" onClick={this.props.previousBookmark}><i className="fas fa-angle-double-left"></i></button>
+                        <button data-tip="Previous Bookmark" onClick={this.props.previousBookmark}><i
+                            className="fas fa-angle-double-left"></i></button>
                         <label> | </label>
-                        <Bookit booked={this.props.bookmarks[this.props.prayer.id]} toggleBookmark={this.props.toggleBookmark} />
+                        <Bookit booked={this.props.bookmarks[this.props.prayer.id]}
+                                toggleBookmark={this.props.toggleBookmark}/>
                         <label> | </label>
-                        <button data-tip="Next Bookmark" onClick={this.props.nextBookmark}><i className="fas fa-angle-double-right"></i></button>
+                        <button data-tip="Next Bookmark" onClick={this.props.nextBookmark}><i
+                            className="fas fa-angle-double-right"></i></button>
                     </div>
                 </div>
                 <div className="content">

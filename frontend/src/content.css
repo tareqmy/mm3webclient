@@ -37,7 +37,7 @@
     text-align: right;
     padding: 5px;
 }
-  
+
 .bookit {
     display: inline;
 }
@@ -108,7 +108,7 @@
     vertical-align: middle;
     border: none;
 }
-  
+
 .navigation select:focus {
     outline: none;
 }

@@ -12,7 +12,7 @@ import Settings from './settings';
 import Help from './help';
 import days from './datum/days';
 import swal from 'sweetalert';
-import { get } from "superagent";
+import {get} from "superagent";
 // end::vars[]
 
 // tag::app[]
@@ -298,45 +298,47 @@ class MunjateMaqbool extends React.Component {
 
     render() {
         return (
-            <div className={"container " + this.getMobileClass()} >
+            <div className={"container " + this.getMobileClass()}>
                 <Title lang={this.state.lang} isMobile={this.state.isMobile}/>
-                <Menu prayer={this.state.prayer} component={this.state.showComponent} showComponent={this.showComponent} />
+                <Menu prayer={this.state.prayer} component={this.state.showComponent}
+                      showComponent={this.showComponent}/>
                 {
                     this.state.showComponent === "intro" &&
-                    <Intro showComponent={this.showComponent} lang={this.state.lang} />
+                    <Intro showComponent={this.showComponent} lang={this.state.lang}/>
                 }
                 {
                     this.state.showComponent === "khutbah" &&
-                    <Khutbah showComponent={this.showComponent} lang={this.state.lang} />
+                    <Khutbah showComponent={this.showComponent} lang={this.state.lang}/>
                 }
                 {
                     this.state.showComponent === "content" &&
                     <Content lang={this.state.lang} prayer={this.state.prayer} days={days}
-                        onDayChange={this.daySelected} onFetch={this.fetch}
-                        next={this.next} previous={this.previous}
-                        nextBookmark={this.nextBookmark} previousBookmark={this.previousBookmark}
-                        bookmarks={this.state.bookmarks} toggleBookmark={this.toggleBookmark} />
+                             onDayChange={this.daySelected} onFetch={this.fetch}
+                             next={this.next} previous={this.previous}
+                             nextBookmark={this.nextBookmark} previousBookmark={this.previousBookmark}
+                             bookmarks={this.state.bookmarks} toggleBookmark={this.toggleBookmark}/>
                 }
                 {
                     this.state.showComponent === "bookmarks" &&
                     <Bookmarks showComponent={this.showComponent} lang={this.state.lang}
-                        unBookmark={this.unBookmark} bookmarks={this.state.bookmarks} onFetch={this.fetch} />
+                               unBookmark={this.unBookmark} bookmarks={this.state.bookmarks} onFetch={this.fetch}/>
                 }
                 {
                     this.state.showComponent === "settings" &&
                     <Settings showComponent={this.showComponent} lang={this.state.lang}
-                        onLangChange={this.langSelected} />
+                              onLangChange={this.langSelected}/>
                 }
                 {
                     this.state.showComponent === "help" &&
-                    <Help showComponent={this.showComponent} />
+                    <Help showComponent={this.showComponent}/>
                 }
             </div>
         );
     }
 }
+
 // end::app[]
 
 // tag::render[]
-ReactDOM.render(<MunjateMaqbool />, document.getElementById('react'));
+ReactDOM.render(<MunjateMaqbool/>, document.getElementById('react'));
 // end::render[]
