@@ -21,14 +21,14 @@
 }
 
 .content .english {
-    font: 18px "Georgia", sans-serif;
+    font: 16px Metamorphous, "Georgia", sans-serif;
     text-align: justify;
     padding: 5px;
     line-height: 1.6;
 }
 
 .content .bengali {
-    font: 20px "Saboj Charulota", sans-serif;
+    font: 18px "Saboj Charulota", sans-serif;
     text-align: justify;
     padding: 5px;
     line-height: 1.6;
