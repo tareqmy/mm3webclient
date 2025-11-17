@@ -6,7 +6,7 @@ body {
 }
 
 select, button, input {
-  font-family: "Optima", "Georgia", "Times New Roman";
+    font-family: "Optima", "Georgia", "Times New Roman", sans-serif;
   font-size: 12px;
   vertical-align: middle;
   background-color: white;

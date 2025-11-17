@@ -9,7 +9,7 @@
 }
   
 .titleenglish {
-    font: 40px "XXII ARABIAN-ONENIGHTSTAND", "Monaco", sans-serif;
+    font: 40px "XXII ARABIAN-ONENIGHTSTAND", sans-serif;
     color: darkgreen;
     text-align: justify;
     padding-left: 30px;
@@ -23,7 +23,7 @@
 }
 
 .titlebengali {
-    font: 40px "BongshaiMJ", "Monaco", sans-serif;
+    font: 40px "BongshaiMJ", sans-serif;
     color: darkgreen;
     text-align: justify;
     padding-left: 30px;
@@ -37,7 +37,7 @@
 }
 
 .titlearabic {
-    font: 60px "Diwani Letter", "Monaco", sans-serif;
+    font: 60px "Diwani Letter", sans-serif;
     color: darkgreen;
     text-align: right;
     padding-right: 30px;

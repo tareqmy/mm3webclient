@@ -9,15 +9,6 @@
 }
 
 @font-face {
-    font-family: 'Monaco';
-    src: url('fonts/Monaco.woff2') format('woff2'),
-    url('fonts/Monaco.woff') format('woff');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
     font-family: 'Bilbo';
     src: url('fonts/Bilbo-Regular.woff2') format('woff2'),
     url('fonts/Bilbo-Regular.woff') format('woff');
@@ -68,15 +59,6 @@
     font-family: 'BongshaiMJ';
     src: url('fonts/BongshaiMJ.woff2') format('woff2'),
     url('fonts/BongshaiMJ.woff') format('woff');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Prothoma';
-    src: url('fonts/Prothoma.woff2') format('woff2'),
-    url('fonts/Prothoma.woff') format('woff');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
