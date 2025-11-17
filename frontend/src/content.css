@@ -6,7 +6,7 @@
 }
 
 .mobile .content {
-    min-height: 0px;
+    min-height: 0;
 }
 
 .content .prayerholder {
@@ -27,13 +27,13 @@
 }
 
 .content .bengali {
-    font: 18px "AponaLohit", "Times New Roman";
+    font: 18px "Saboj Charulota", sans-serif;
     text-align: justify;
     padding: 5px;
 }
 
 .content .arabic {
-    font: 40px "Scheherazade", "Times New Roman";
+    font: 40px "Scheherazade", sans-serif;
     text-align: right;
     padding: 5px;
 }

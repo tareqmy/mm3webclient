@@ -38,18 +38,18 @@
 
 /* bangla fonts */
 @font-face {
-    font-family: 'AponaLohit';
-    src: url('fonts/AponaLohit.woff2') format('woff2'),
-    url('fonts/AponaLohit.woff') format('woff');
+    font-family: 'Shadhin Bangla';
+    src: url("fonts/Li Shadhin Bangla Unicode.woff2") format('woff2'),
+    url('fonts/Li Shadhin Bangla Unicode.woff') format('woff');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
 }
 
 @font-face {
-    font-family: 'BongshaiMJ';
-    src: url('fonts/BongshaiMJ.woff2') format('woff2'),
-    url('fonts/BongshaiMJ.woff') format('woff');
+    font-family: 'Saboj Charulota';
+    src: url("fonts/Li-Saboj Charulota Unicode.woff2") format('woff2'),
+    url('fonts/Li-Saboj Charulota Unicode.woff') format('woff');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
