@@ -24,18 +24,21 @@
     font: 18px "Georgia", sans-serif;
     text-align: justify;
     padding: 5px;
+    line-height: 1.6;
 }
 
 .content .bengali {
-    font: 18px "Saboj Charulota", sans-serif;
+    font: 20px "Saboj Charulota", sans-serif;
     text-align: justify;
     padding: 5px;
+    line-height: 1.6;
 }
 
 .content .arabic {
-    font: 40px "Scheherazade", sans-serif;
+    font: 25px "Noto", "Scheherazade", sans-serif;
     text-align: right;
     padding: 5px;
+    line-height: 1.8;
 }
 
 .bookit {

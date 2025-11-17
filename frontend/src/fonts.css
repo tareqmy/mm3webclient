@@ -36,6 +36,15 @@
     font-display: swap;
 }
 
+@font-face {
+    font-family: 'Noto';
+    src: url('fonts/NotoSansArabicUI-Regular.woff2') format('woff2'),
+    url('fonts/NotoSansArabicUI-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
 /* bangla fonts */
 @font-face {
     font-family: 'Shadhin Bangla';
