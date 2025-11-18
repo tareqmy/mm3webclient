@@ -28,7 +28,7 @@
 }
 
 .khutbah .english {
-    font: 18px "Georgia", sans-serif;
+    font: 16px Metamorphous, "Georgia", sans-serif;
     text-align: justify;
     padding: 5px;
 }
@@ -40,7 +40,7 @@
 }
 
 .khutbah .arabic {
-    font: 40px "Noto", sans-serif;
+    font: 25px "Noto", "Scheherazade", sans-serif;
     text-align: right;
     padding: 5px;
 }
