@@ -13,6 +13,7 @@ import Help from './help';
 import days from './datum/days';
 import swal from 'sweetalert';
 import {get} from "superagent";
+import {API_BASE} from "./config";
 // end::vars[]
 
 // tag::app[]
@@ -93,8 +94,7 @@ class MunjateMaqbool extends React.Component {
 
     fetch = (page) => {
         var self = this;
-        var serverLocation = "https://api.munajatemaqbool.com"
-            + "/dua/" + page;
+        var serverLocation = API_BASE + "/dua/" + page;
 
         get(serverLocation)
             .then(function (response) {

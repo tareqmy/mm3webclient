@@ -1,7 +1,7 @@
 import React from 'react';
 import './khutbah.css';
-import swal from 'sweetalert';
 import {get} from "superagent";
+import {API_BASE} from "./config";
 
 class Khutbah extends React.Component {
 
@@ -37,7 +37,7 @@ class Khutbah extends React.Component {
 
     fetchKhutbahTitle() {
         var self = this;
-        var serverLocation = "https://api.munajatemaqbool.com/misc/4";
+        var serverLocation = API_BASE + "/misc/4";
 
         get(serverLocation)
             .then(function (response) {
@@ -54,7 +54,7 @@ class Khutbah extends React.Component {
 
     fetchKhutbahStart() {
         var self = this;
-        var serverLocation = "https://api.munajatemaqbool.com/misc/5";
+        var serverLocation = API_BASE + "/misc/5";
 
         get(serverLocation)
             .then(function (response) {
@@ -71,7 +71,7 @@ class Khutbah extends React.Component {
 
     fetchKhutbah() {
         var self = this;
-        var serverLocation = "https://api.munajatemaqbool.com/misc/6";
+        var serverLocation = API_BASE + "/misc/6";
 
         get(serverLocation)
             .then(function (response) {

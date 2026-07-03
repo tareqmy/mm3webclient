@@ -1,7 +1,7 @@
 import React from 'react';
 import './intro.css';
-import swal from 'sweetalert';
 import {get} from "superagent";
+import {API_BASE} from "./config";
 
 class Intro extends React.Component {
 
@@ -37,7 +37,7 @@ class Intro extends React.Component {
 
     fetchIntroTitle() {
         var self = this;
-        var serverLocation = "https://api.munajatemaqbool.com/misc/1";
+        var serverLocation = API_BASE + "/misc/1";
 
         get(serverLocation)
             .then(function (response) {
@@ -54,7 +54,7 @@ class Intro extends React.Component {
 
     fetchIntroStart() {
         var self = this;
-        var serverLocation = "https://api.munajatemaqbool.com/misc/2";
+        var serverLocation = API_BASE + "/misc/2";
 
         get(serverLocation)
             .then(function (response) {
@@ -72,7 +72,7 @@ class Intro extends React.Component {
 
     fetchIntro() {
         var self = this;
-        var serverLocation = "https://api.munajatemaqbool.com/misc/3";
+        var serverLocation = API_BASE + "/misc/3";
 
         get(serverLocation)
             .then(function (response) {

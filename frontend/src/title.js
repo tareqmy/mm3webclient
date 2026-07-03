@@ -1,7 +1,7 @@
 import React from 'react';
 import './title.css';
-import swal from 'sweetalert';
 import {get} from "superagent";
+import {API_BASE} from "./config";
 
 class Title extends React.Component {
 
@@ -21,7 +21,7 @@ class Title extends React.Component {
 
     fetchTitle() {
         var self = this;
-        var serverLocation = "https://api.munajatemaqbool.com/misc/1";
+        var serverLocation = API_BASE + "/misc/1";
 
         get(serverLocation)
             .then(function (response) {
