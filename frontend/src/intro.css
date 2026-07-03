@@ -2,45 +2,84 @@
 
 .intro {
     margin: auto;
-    color: darkslategrey;
-    vertical-align: top;
+    color: #2d3748;
     text-align: center;
-    padding: 20px;
+    padding: 40px 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    background: linear-gradient(180deg, #ffffff 0%, #fdfcf9 100%);
 }
 
 .mobile .intro {
-    padding: 10px;
+    padding: 25px 20px;
 }
 
 .intro button {
-    margin: auto;
-    width: 100px;
+    display: inline-block;
+    font-family: "Georgia", serif;
+    font-size: 14px;
+    font-weight: bold;
+    color: #ffffff;
+    background: linear-gradient(135deg, #0f4c3a 0%, #1c6d54 100%);
+    border: none;
+    border-radius: 20px;
+    padding: 10px 24px;
+    margin: 20px auto;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(15, 76, 58, 0.15);
+    transition: all 0.3s ease;
+    outline: none;
+    width: 120px;
+}
+
+.intro button:hover {
+    background: linear-gradient(135deg, #175e49 0%, #238567 100%);
+    box-shadow: 0 6px 16px rgba(15, 76, 58, 0.25);
+    transform: translateY(-2px);
+}
+
+.intro button:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 8px rgba(15, 76, 58, 0.15);
 }
 
 .intro .header {
     display: block;
-    font-size: 1.17em;
-    -webkit-margin-before: 5px;
-    -webkit-margin-after: 0;
-    -webkit-margin-start: 0;
-    -webkit-margin-end: 0;
-    font-weight: bold;
+    font-size: 24px;
+    font-family: "Metamorphous", "Georgia", serif;
+    color: #0f4c3a;
+    margin-bottom: 10px;
+}
+
+.intro .start {
+    font-size: 18px;
+    font-style: italic;
+    color: #718096;
+    margin-bottom: 15px;
 }
 
 .intro .english {
     font: 16px Metamorphous, "Georgia", sans-serif;
     text-align: justify;
+    line-height: 1.8;
+    color: #4a5568;
     padding: 5px;
 }
 
 .intro .bengali {
     font: 18px "Saboj Charulota", sans-serif;
     text-align: justify;
+    line-height: 1.8;
+    color: #2c5282;
     padding: 5px;
 }
 
 .intro .arabic {
-    font: 25px "Noto", "Scheherazade", sans-serif;
-    text-align: right;
+    font: 26px "Noto", "Scheherazade", sans-serif;
+    text-align: center;
+    line-height: 2.0;
+    color: #0f4c3a;
+    direction: rtl;
     padding: 5px;
 }

@@ -11,6 +11,7 @@
 The application supports:
 - 196 duas organized across 7 days of the week
 - Trilingual display: Arabic, English, Bengali
+- **Modern Premium Design**: Sleek Emerald & Gold spiritual theme with a warm paper/parchment background and smooth transitions
 - Bookmarking duas with localStorage persistence
 - Keyboard navigation for power users
 - Intro (book introduction) and Khutbah sections
