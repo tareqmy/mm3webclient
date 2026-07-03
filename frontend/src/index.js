@@ -114,14 +114,14 @@ class MunjateMaqbool extends React.Component {
     }
 
     next = () => {
-        var currentpage = this.state.prayer.id;
-        var nextpage = currentpage === this.state.last ? this.state.first : +currentpage + 1;
+        var currentpage = Number(this.state.prayer.id);
+        var nextpage = currentpage === this.state.last ? this.state.first : currentpage + 1;
         this.fetch(nextpage);
     }
 
     previous = () => {
-        var currentpage = this.state.prayer.id;
-        var previouspage = currentpage === this.state.first ? this.state.last : +currentpage - 1;
+        var currentpage = Number(this.state.prayer.id);
+        var previouspage = currentpage === this.state.first ? this.state.last : currentpage - 1;
         this.fetch(previouspage);
     }
 
