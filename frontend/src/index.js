@@ -270,15 +270,13 @@ class MunjateMaqbool extends React.Component {
 
     componentDidMount() {
         document.addEventListener("keydown", this.handleKeyPress);
-    }
-
-    componentWillMount() {
         window.addEventListener('resize', this.handleWindowSizeChange);
     }
 
-    // make sure to remove the listener
+    // make sure to remove the listeners
     // when the component is not mounted anymore
     componentWillUnmount() {
+        document.removeEventListener("keydown", this.handleKeyPress);
         window.removeEventListener('resize', this.handleWindowSizeChange);
     }
 

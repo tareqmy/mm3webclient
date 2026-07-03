@@ -168,7 +168,6 @@ sh shell.sh
 
 ## Known Technical Debt
 
-- **`componentWillMount` is deprecated** (used in `index.js` line 276). Should be replaced with `componentDidMount` or a functional component with `useEffect`.
 - **Duplicate API call for `/misc/1`**: Both `Title` and `Intro` independently fetch the book title (`/misc/1`) on mount. This is a redundant request.
 - **Hardcoded API URLs**: The base URL `https://api.munajatemaqbool.com` appears in 4 separate files. Should be extracted to a config module.
 - **Class components throughout**: All components are class-based React 16. Functional components with hooks would be cleaner — but do not refactor unless instructed.
