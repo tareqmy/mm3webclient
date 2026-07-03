@@ -18,6 +18,7 @@
 }
 
 .mobile .titleenglish {
+    font-size: 24px;
     width: 100%;
     padding: 15px;
     text-align: center;
@@ -33,6 +34,7 @@
 }
 
 .mobile .titlebengali {
+    font-size: 28px;
     width: 100%;
     padding: 15px;
     text-align: center;

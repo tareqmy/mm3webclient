@@ -83,3 +83,26 @@
     direction: rtl;
     padding: 5px;
 }
+
+.mobile .khutbah .arabic {
+    font-size: 22px;
+    line-height: 1.8;
+}
+
+.mobile .khutbah .english {
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.mobile .khutbah .bengali {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.mobile .khutbah .header {
+    font-size: 20px;
+}
+
+.mobile .khutbah .start {
+    font-size: 15px;
+}

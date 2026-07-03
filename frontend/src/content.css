@@ -176,3 +176,40 @@
     border-left: none;
     border-right: none;
 }
+
+.mobile .content .arabic {
+    font-size: 24px;
+    line-height: 1.8;
+    padding: 5px 0;
+}
+
+.mobile .content .english {
+    font-size: 15px;
+    line-height: 1.6;
+    padding: 5px 0;
+}
+
+.mobile .content .bengali {
+    font-size: 18px;
+    line-height: 1.6;
+    padding: 5px 0;
+}
+
+.mobile .navigation {
+    padding: 10px 8px;
+}
+
+.mobile .navigation .right {
+    gap: 6px;
+}
+
+.mobile .navigation button {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+}
+
+.mobile .navigation select {
+    font-size: 12px;
+    padding: 4px 8px;
+}
