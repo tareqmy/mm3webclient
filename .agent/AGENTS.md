@@ -169,7 +169,6 @@ sh shell.sh
 ## Known Technical Debt
 
 - **Class components throughout**: All components are class-based React 16. Functional components with hooks would be cleaner — but do not refactor unless instructed.
-- **No tests**: `react-scripts test` is configured but no test files exist.
 
 ---
 
