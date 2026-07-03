@@ -18,9 +18,9 @@ This is **mm3webclient** — the React frontend for the *Munajat-e-Maqbool* Isla
 
 ## Core Constraints — Read Before Changing Anything
 
-1. **Node 22 is targeted.** `package.json`, `Dockerfile`, and `buildspec.yml` all target Node 22. Any upgrade must be synchronized across all three files and tested with `react-scripts@1.1.1` and `NODE_OPTIONS=--openssl-legacy-provider`.
+1. **Node 22 is targeted.** `package.json`, `Dockerfile`, and `buildspec.yml` all target Node 22. Any upgrade must be synchronized across all three files and tested with `react-scripts@5.0.1`.
 
-2. **`react-scripts@1.1.1` is intentionally old.** Do not upgrade it without explicit instruction. CRA 1.x has specific build behavior that the S3/CloudFront deployment depends on.
+2. **`react-scripts@5.0.1` is targeted.** Do not modify or upgrade the build tooling version without explicit instruction. The S3/CloudFront build artifact routing depends on this configuration.
 
 3. **No backend code lives here.** The backend (API Gateway, Lambda, DynamoDB) is a separate AWS project. If you need to modify API behavior, that is out of scope for this repo.
 
@@ -172,7 +172,6 @@ sh shell.sh
 - **Hardcoded API URLs**: The base URL `https://api.munajatemaqbool.com` appears in 4 separate files. Should be extracted to a config module.
 - **Class components throughout**: All components are class-based React 16. Functional components with hooks would be cleaner — but do not refactor unless instructed.
 - **No tests**: `react-scripts test` is configured but no test files exist.
-- **`react-scripts@1.1.1`** is extremely outdated (2018). Upgrading would require careful dependency resolution.
 
 ---
 
@@ -180,7 +179,7 @@ sh shell.sh
 
 - Do not introduce TypeScript without explicit instruction
 - Do not add a routing library (react-router, etc.) without instruction
-- Do not change the Node 22 / react-scripts 1.x versions without instruction
+- Do not change the Node 22 / react-scripts 5.x versions without instruction
 - Do not add CSS-in-JS (styled-components, Emotion, etc.) — vanilla CSS files are used per component
 - Do not move font files out of `frontend/src/fonts/` — they are imported via relative paths in CSS
 - Do not modify `buildspec.yml` artifact paths without updating the S3/CodePipeline configuration

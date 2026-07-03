@@ -212,7 +212,7 @@ Each component has a paired `.css` file imported in the component's `.js`:
 |---------|---------|---------|
 | `react` | ^16.14.0 | UI framework |
 | `react-dom` | ^16.14.0 | DOM rendering |
-| `react-scripts` | ^1.1.1 | CRA build tooling |
+| `react-scripts` | 5.0.1 | CRA build tooling |
 | `superagent` | ^6.1.0 | HTTP client for API calls |
 | `sweetalert` | ^2.1.2 | Error/info modal dialogs |
 | `react-tooltip` | ^4.2.21 | Hover tooltips on buttons |

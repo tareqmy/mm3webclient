@@ -1,9 +1,5 @@
 version: 0.2
 
-env:
-  variables:
-    NODE_OPTIONS: "--openssl-legacy-provider"
-
 phases:
   install:
     runtime-versions:
