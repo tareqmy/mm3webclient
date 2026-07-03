@@ -102,8 +102,8 @@ Duas are indexed 1–196 split across days:
 
 ### Prerequisites
 
-- Node 14.x
-- npm >= 6.0.0
+- Node 22.x
+- npm >= 10.0.0
 - Docker + Docker Compose (optional, for containerized dev)
 
 ### Run locally (bare Node)
@@ -139,7 +139,7 @@ Helper scripts at project root:
 
 AWS CodeBuild uses `buildspec.yml`:
 
-1. Installs Node 14 + npm dependencies
+1. Installs Node 22 + npm dependencies
 2. Runs `npm run build` → output in `frontend/build/`
 3. Artifacts (`frontend/build/**/*`) are uploaded to S3
 4. CloudFront serves the static files from S3
@@ -175,7 +175,7 @@ mm3webclient/
 │   ├── entrypoint.sh           # Docker entrypoint (dev or prod mode)
 │   ├── package.json
 │   └── package-lock.json
-├── Dockerfile                  # Node 14 Alpine image
+├── Dockerfile                  # Node 22 Alpine image
 ├── docker-compose.yml          # Local dev compose config
 ├── buildspec.yml               # AWS CodeBuild spec
 ├── image.sh                    # Build & clean Docker image

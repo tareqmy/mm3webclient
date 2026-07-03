@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ ${APP_ENV} = production ]; then
+if [ "${APP_ENV}" = "production" ]; then
 	npm install -g http-server
 	npm run build
 	cd build

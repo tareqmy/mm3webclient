@@ -1,10 +1,11 @@
-FROM node:14-alpine
+FROM node:22-alpine
 LABEL creator="Tareq Mohammad Yousuf"
 LABEL email="tareq.y@gmail.com"
 
-ENV NPM_CONFIG_LOGLEVEL warn
+ENV NPM_CONFIG_LOGLEVEL=warn
+ENV NODE_OPTIONS="--openssl-legacy-provider"
 ARG app_env
-ENV APP_ENV $app_env
+ENV APP_ENV=$app_env
 
 RUN mkdir -p /frontend
 WORKDIR /frontend

@@ -1,9 +1,13 @@
 version: 0.2
 
+env:
+  variables:
+    NODE_OPTIONS: "--openssl-legacy-provider"
+
 phases:
   install:
     runtime-versions:
-      nodejs: 14
+      nodejs: 22
     commands:
       - echo Installing app dependencies...
       - cd frontend && npm install

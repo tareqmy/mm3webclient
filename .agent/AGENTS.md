@@ -11,14 +11,14 @@ This is **mm3webclient** — the React frontend for the *Munajat-e-Maqbool* Isla
 - **Live URL**: served via AWS CloudFront + S3
 - **API**: `https://api.munajatemaqbool.com` (serverless: CloudFront → API Gateway → Lambda → DynamoDB)
 - **Framework**: React 16, Create React App (CRA)
-- **Node version**: 14.x (pinned — do not upgrade without testing CRA compatibility)
+- **Node version**: 22.x (LTS — upgraded from 14.x)
 - **Language**: JavaScript (no TypeScript)
 
 ---
 
 ## Core Constraints — Read Before Changing Anything
 
-1. **Node 14 is pinned.** `package.json`, `Dockerfile`, and `buildspec.yml` all target Node 14. Any upgrade must be synchronized across all three files and tested with `react-scripts@1.1.1`.
+1. **Node 22 is targeted.** `package.json`, `Dockerfile`, and `buildspec.yml` all target Node 22. Any upgrade must be synchronized across all three files and tested with `react-scripts@1.1.1` and `NODE_OPTIONS=--openssl-legacy-provider`.
 
 2. **`react-scripts@1.1.1` is intentionally old.** Do not upgrade it without explicit instruction. CRA 1.x has specific build behavior that the S3/CloudFront deployment depends on.
 
@@ -181,7 +181,7 @@ sh shell.sh
 
 - Do not introduce TypeScript without explicit instruction
 - Do not add a routing library (react-router, etc.) without instruction
-- Do not change the Node 14 / react-scripts 1.x pinned versions without instruction
+- Do not change the Node 22 / react-scripts 1.x versions without instruction
 - Do not add CSS-in-JS (styled-components, Emotion, etc.) — vanilla CSS files are used per component
 - Do not move font files out of `frontend/src/fonts/` — they are imported via relative paths in CSS
 - Do not modify `buildspec.yml` artifact paths without updating the S3/CodePipeline configuration

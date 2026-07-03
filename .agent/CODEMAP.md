@@ -195,7 +195,7 @@ Each component has a paired `.css` file imported in the component's `.js`:
 
 | File | Description |
 |------|-------------|
-| `Dockerfile` | Node 14 Alpine; installs deps, copies source, runs `entrypoint.sh` |
+| `Dockerfile` | Node 22 Alpine; installs deps, copies source, runs `entrypoint.sh` |
 | `docker-compose.yml` | Maps port 3000, volume-mounts `src/` and `public/` for hot reload |
 | `buildspec.yml` | AWS CodeBuild: install → build → artifact `frontend/build/**/*` |
 | `entrypoint.sh` | If `APP_ENV=production`: build + serve with `http-server`; else: `npm start` |
