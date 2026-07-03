@@ -8,13 +8,6 @@ class Intro extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            title: {
-                type: "intro",
-                arabic: "",
-                english: "",
-                bengali: "",
-                id: 2,
-            },
             start: {
                 type: "intro",
                 arabic: "",
@@ -31,26 +24,10 @@ class Intro extends React.Component {
             },
         };
         this.fetchIntro();
-        this.fetchIntroTitle();
         this.fetchIntroStart();
     }
 
-    fetchIntroTitle() {
-        var self = this;
-        var serverLocation = API_BASE + "/misc/1";
 
-        get(serverLocation)
-            .then(function (response) {
-                var json_result = JSON.parse(response.text);
-                var title = json_result;
-                self.setState({
-                    title: title,
-                });
-            })
-            .catch(function (err) {
-                swal("Oops!", "Something went wrong!", "error");
-            });
-    }
 
     fetchIntroStart() {
         var self = this;
@@ -100,7 +77,7 @@ class Intro extends React.Component {
         return (
             <div className="intro">
                 <div className="arabic">
-                    <div className="header">{this.state.title.arabic}</div>
+                    <div className="header">{this.props.title.arabic}</div>
                     <div className="start">{this.state.start.arabic}</div>
                     {this.state.intro.arabic}
                 </div>
@@ -108,7 +85,7 @@ class Intro extends React.Component {
                 {
                     this.props.lang === "english" &&
                     <div className="english">
-                        <div className="header">{this.state.title.english}</div>
+                        <div className="header">{this.props.title.english}</div>
                         <div className="start">{this.state.start.english}</div>
                         {this.state.intro.english}
                     </div>
@@ -116,7 +93,7 @@ class Intro extends React.Component {
                 {
                     this.props.lang === "bengali" &&
                     <div className="bengali">
-                        <div className="header">{this.state.title.bengali}</div>
+                        <div className="header">{this.props.title.bengali}</div>
                         <div className="start">{this.state.start.bengali}</div>
                         {this.state.intro.bengali}
                     </div>

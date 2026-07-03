@@ -1,40 +1,7 @@
 import React from 'react';
 import './title.css';
-import {get} from "superagent";
-import {API_BASE} from "./config";
 
 class Title extends React.Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            title: {
-                type: "intro",
-                arabic: "",
-                english: "",
-                bengali: "",
-                id: 2,
-            },
-        };
-        this.fetchTitle();
-    }
-
-    fetchTitle() {
-        var self = this;
-        var serverLocation = API_BASE + "/misc/1";
-
-        get(serverLocation)
-            .then(function (response) {
-                var json_result = JSON.parse(response.text);
-                var title = json_result;
-                self.setState({
-                    title: title,
-                });
-            })
-            .catch(function (err) {
-                swal("Oops!", "Something went wrong!", "error");
-            });
-    }
 
     english() {
         return this.props.lang === "english";
@@ -52,19 +19,19 @@ class Title extends React.Component {
                     {
                         this.english() &&
                         <td className="titleenglish">
-                            {this.state.title.english}
+                            {this.props.title.english}
                         </td>
                     }
                     {
                         this.bengali() &&
                         <td className="titlebengali">
-                            {this.state.title.bengali}
+                            {this.props.title.bengali}
                         </td>
                     }
                     {
                         !this.props.isMobile &&
                         <td className="titlearabic">
-                            {this.state.title.arabic}
+                            {this.props.title.arabic}
                         </td>
                     }
                 </tr>

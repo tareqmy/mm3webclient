@@ -37,6 +37,13 @@ class MunjateMaqbool extends React.Component {
             bookmarks: this.getBookmarks(),
             showComponent: this.initComponent(),
             prayer: this.initPrayer(first, defaultDay),
+            title: {
+                type: "intro",
+                arabic: "",
+                english: "",
+                bengali: "",
+                id: 2,
+            }
         };
         this.fetch(this.state.prayer.id);
     }
@@ -271,6 +278,23 @@ class MunjateMaqbool extends React.Component {
     componentDidMount() {
         document.addEventListener("keydown", this.handleKeyPress);
         window.addEventListener('resize', this.handleWindowSizeChange);
+        this.fetchTitle();
+    }
+
+    fetchTitle() {
+        var self = this;
+        var serverLocation = API_BASE + "/misc/1";
+
+        get(serverLocation)
+            .then(function (response) {
+                var json_result = JSON.parse(response.text);
+                self.setState({
+                    title: json_result,
+                });
+            })
+            .catch(function (err) {
+                swal("Oops!", "Something went wrong!", "error");
+            });
     }
 
     // make sure to remove the listeners
@@ -297,12 +321,12 @@ class MunjateMaqbool extends React.Component {
     render() {
         return (
             <div className={"container " + this.getMobileClass()}>
-                <Title lang={this.state.lang} isMobile={this.state.isMobile}/>
+                <Title lang={this.state.lang} isMobile={this.state.isMobile} title={this.state.title}/>
                 <Menu prayer={this.state.prayer} component={this.state.showComponent}
                       showComponent={this.showComponent}/>
                 {
                     this.state.showComponent === "intro" &&
-                    <Intro showComponent={this.showComponent} lang={this.state.lang}/>
+                    <Intro showComponent={this.showComponent} lang={this.state.lang} title={this.state.title}/>
                 }
                 {
                     this.state.showComponent === "khutbah" &&
