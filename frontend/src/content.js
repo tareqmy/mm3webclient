@@ -113,6 +113,17 @@ class Content extends React.Component {
                 <div className="meta">
                     <label> ( {this.props.prayer.id} ) </label>
                 </div>
+                {
+                    this.props.isMobile &&
+                    <div className="mobile-nav-overlays">
+                        <button className="mobile-nav-btn prev" onClick={this.props.previous}>
+                            <i className="fas fa-chevron-left"></i>
+                        </button>
+                        <button className="mobile-nav-btn next" onClick={this.props.next}>
+                            <i className="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                }
             </div>
         );
     }

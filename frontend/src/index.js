@@ -338,7 +338,8 @@ class MunjateMaqbool extends React.Component {
                              onDayChange={this.daySelected} onFetch={this.fetch}
                              next={this.next} previous={this.previous}
                              nextBookmark={this.nextBookmark} previousBookmark={this.previousBookmark}
-                             bookmarks={this.state.bookmarks} toggleBookmark={this.toggleBookmark}/>
+                             bookmarks={this.state.bookmarks} toggleBookmark={this.toggleBookmark}
+                             isMobile={this.state.isMobile}/>
                 }
                 {
                     this.state.showComponent === "bookmarks" &&

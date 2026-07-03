@@ -213,3 +213,39 @@
     font-size: 12px;
     padding: 4px 8px;
 }
+
+.mobile-nav-overlays {
+    position: fixed;
+    bottom: 25px;
+    left: 0;
+    right: 0;
+    pointer-events: none;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    z-index: 1000;
+}
+
+.mobile-nav-btn {
+    pointer-events: auto;
+    background: rgba(15, 76, 58, 0.85);
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    color: #ffffff;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.2s ease;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.mobile-nav-btn:active {
+    transform: scale(0.85);
+    background: rgba(15, 76, 58, 1);
+}
