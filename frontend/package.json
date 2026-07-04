@@ -3,6 +3,8 @@
   "version": "3.0.0",
   "description": "a futile effort to make munajat e maqbool",
   "private": true,
+  "author": "Tareq Mohammad Yousuf <tareq.y@gmail.com>",
+  "license": "Apache-2.0",
   "main": "index.js",
   "repository": {
     "url": "https://bitbucket.org/tareqmy/memappclient"
