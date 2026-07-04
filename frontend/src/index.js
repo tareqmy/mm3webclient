@@ -19,6 +19,36 @@ import {API_BASE} from "./config";
 // tag::app[]
 class MunjateMaqbool extends React.Component {
 
+    parsePath() {
+        const path = window.location.pathname;
+        const matchDua = path.match(/\/dua\/(\d+)/);
+        if (matchDua) {
+            const id = Number(matchDua[1]);
+            if (id >= 1 && id <= 196) {
+                return { showComponent: "content", prayerId: id };
+            }
+        }
+        const validComponents = ["khutbah", "bookmarks", "settings", "help", "intro"];
+        for (const comp of validComponents) {
+            if (path.includes(`/${comp}`)) {
+                return { showComponent: comp, prayerId: null };
+            }
+        }
+        return null;
+    }
+
+    updateUrlPath(component, prayerId = null) {
+        let path = "/";
+        if (component === "content" && prayerId) {
+            path = `/dua/${prayerId}/`;
+        } else if (component && component !== "intro") {
+            path = `/${component}/`;
+        }
+        if (window.location.pathname !== path) {
+            window.history.pushState(null, "", path);
+        }
+    }
+
     constructor(props) {
         super(props);
 
@@ -28,6 +58,12 @@ class MunjateMaqbool extends React.Component {
         var defaultLang = "english";
         var defaultDay = "saturday";
 
+        const route = this.parsePath();
+        let initComponent = this.initComponent();
+        if (route) {
+            initComponent = route.showComponent;
+        }
+
         this.state = {
             isMobile: this.isMobile(),
             size: size,
@@ -35,8 +71,8 @@ class MunjateMaqbool extends React.Component {
             last: last,
             lang: this.getLang(defaultLang),
             bookmarks: this.getBookmarks(),
-            showComponent: this.initComponent(),
-            prayer: this.initPrayer(first, defaultDay),
+            showComponent: initComponent,
+            prayer: this.initPrayer(first, defaultDay, route ? route.prayerId : null),
             title: {
                 type: "intro",
                 arabic: "",
@@ -48,7 +84,25 @@ class MunjateMaqbool extends React.Component {
         this.fetch(this.state.prayer.id);
     }
 
-    initPrayer(first, defaultDay) {
+    initPrayer(first, defaultDay, routePrayerId = null) {
+        if (routePrayerId !== null) {
+            var stored = localStorage.getItem('prayer');
+            if (stored !== null) {
+                var parsed = JSON.parse(stored);
+                if (Number(parsed.id) === Number(routePrayerId)) {
+                    return parsed;
+                }
+            }
+            return {
+                tags: this.getTags(defaultDay),
+                arabic: "",
+                english: "",
+                bengali: "",
+                number: routePrayerId,
+                id: routePrayerId,
+            };
+        }
+
         var prayer = localStorage.getItem('prayer');
         if (prayer === null) {
             prayer = {
@@ -118,6 +172,10 @@ class MunjateMaqbool extends React.Component {
         this.setState({
             prayer: prayer,
         });
+        if (this.state.showComponent === "content") {
+            this.updateUrlPath("content", prayer.id);
+            document.title = `Dua ${prayer.id} (${prayer.tags}) - Munajat E Maqbool`;
+        }
     }
 
     next = () => {
@@ -245,6 +303,16 @@ class MunjateMaqbool extends React.Component {
         this.setState({
             showComponent: component
         });
+        if (component !== "content") {
+            this.updateUrlPath(component);
+            const capitalized = component.charAt(0).toUpperCase() + component.slice(1);
+            document.title = `${capitalized} - Munajat E Maqbool`;
+        } else {
+            this.updateUrlPath("content", this.state.prayer.id);
+            const prayer = this.state.prayer;
+            const dayTag = prayer.tags || "";
+            document.title = `Dua ${prayer.id} (${dayTag}) - Munajat E Maqbool`;
+        }
     }
 
     handleKeyPress = (event) => {
@@ -275,10 +343,38 @@ class MunjateMaqbool extends React.Component {
         }
     }
 
+    handlePopState = () => {
+        const route = this.parsePath();
+        const showComponent = route ? route.showComponent : "intro";
+        const prayerId = route ? route.prayerId : null;
+
+        this.setState({
+            showComponent: showComponent
+        });
+
+        if (showComponent === "content") {
+            if (prayerId && Number(this.state.prayer.id) !== prayerId) {
+                this.fetch(prayerId);
+            } else {
+                const prayer = this.state.prayer;
+                document.title = `Dua ${prayer.id} (${prayer.tags}) - Munajat E Maqbool`;
+            }
+        } else {
+            const capitalized = showComponent.charAt(0).toUpperCase() + showComponent.slice(1);
+            document.title = `${capitalized} - Munajat E Maqbool`;
+        }
+    }
+
     componentDidMount() {
         document.addEventListener("keydown", this.handleKeyPress);
         window.addEventListener('resize', this.handleWindowSizeChange);
+        window.addEventListener('popstate', this.handlePopState);
         this.fetchTitle();
+
+        if (this.state.showComponent !== "content") {
+            const capitalized = this.state.showComponent.charAt(0).toUpperCase() + this.state.showComponent.slice(1);
+            document.title = `${capitalized} - Munajat E Maqbool`;
+        }
     }
 
     fetchTitle() {
@@ -302,6 +398,7 @@ class MunjateMaqbool extends React.Component {
     componentWillUnmount() {
         document.removeEventListener("keydown", this.handleKeyPress);
         window.removeEventListener('resize', this.handleWindowSizeChange);
+        window.removeEventListener('popstate', this.handlePopState);
     }
 
     handleWindowSizeChange = () => {
