@@ -2,6 +2,7 @@ import React from 'react';
 import './intro.css';
 import {get} from "superagent";
 import {API_BASE} from "./config";
+import TranslatedText from './TranslatedText';
 
 class Intro extends React.Component {
 
@@ -83,11 +84,20 @@ class Intro extends React.Component {
                 </div>
                 <hr></hr>
                 {
-                    this.props.lang === "english" &&
+                    this.props.lang !== "bengali" &&
                     <div className="english">
-                        <div className="header">{this.props.title.english}</div>
-                        <div className="start">{this.state.start.english}</div>
-                        {this.state.intro.english}
+                        <div className="header">
+                            <TranslatedText text={this.props.title.english} toLang={this.props.lang} />
+                        </div>
+                        <div className="start">
+                            <TranslatedText text={this.state.start.english} toLang={this.props.lang} />
+                        </div>
+                        <TranslatedText text={this.state.intro.english} toLang={this.props.lang} />
+                        {this.props.lang !== "english" && (
+                            <div className="translation-notice">
+                                This translation was automatically generated from English using Google Translate.
+                            </div>
+                        )}
                     </div>
                 }
                 {

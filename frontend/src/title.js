@@ -1,5 +1,6 @@
 import React from 'react';
 import './title.css';
+import TranslatedText from './TranslatedText';
 
 class Title extends React.Component {
 
@@ -17,9 +18,9 @@ class Title extends React.Component {
                 <tbody>
                 <tr>
                     {
-                        this.english() &&
+                        this.props.lang !== "bengali" &&
                         <td className="titleenglish">
-                            {this.props.title.english}
+                            <TranslatedText text={this.props.title.english} toLang={this.props.lang} />
                         </td>
                     }
                     {

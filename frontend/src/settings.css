@@ -90,3 +90,81 @@
     border-color: #d4af37;
     background-color: #fffdf9;
 }
+
+.settings-section {
+    border-top: 1px solid rgba(212, 175, 55, 0.2);
+    margin-top: 25px;
+    padding-top: 20px;
+    text-align: center;
+}
+
+.section-title {
+    font-family: "Georgia", serif;
+    font-size: 16px;
+    font-weight: bold;
+    color: #0f4c3a;
+    margin-bottom: 15px;
+}
+
+.add-lang-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+.settings .add-btn {
+    width: 80px;
+    margin: 0;
+    padding: 8px 16px;
+    font-size: 13px;
+    border-radius: 20px;
+}
+
+.custom-langs-list {
+    max-width: 320px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    text-align: left;
+}
+
+.custom-lang-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(245, 240, 230, 0.4);
+    padding: 6px 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(212, 175, 55, 0.15);
+}
+
+.custom-lang-item .lang-name {
+    font-size: 14px;
+    color: #2d3748;
+    font-weight: 500;
+}
+
+.settings .remove-btn {
+    width: auto;
+    margin: 0;
+    padding: 4px 10px;
+    font-size: 11px;
+    background: linear-gradient(135deg, #c53030 0%, #e53e3e 100%);
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(197, 48, 48, 0.15);
+}
+
+.settings .remove-btn:hover {
+    background: linear-gradient(135deg, #9b2c2c 0%, #c53030 100%);
+    box-shadow: 0 4px 10px rgba(197, 48, 48, 0.25);
+}
+
+.info-text {
+    font-size: 13px;
+    color: #718096;
+    font-style: italic;
+}
+

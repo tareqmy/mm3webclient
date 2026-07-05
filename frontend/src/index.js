@@ -71,6 +71,7 @@ class MunjateMaqbool extends React.Component {
             first: first,
             last: last,
             lang: initialLang,
+            customLanguages: this.getCustomLanguages(),
             bookmarks: this.getBookmarks(),
             showComponent: initComponent,
             prayer: this.initPrayer(first, defaultDay, route ? route.prayerId : null),
@@ -146,6 +147,59 @@ class MunjateMaqbool extends React.Component {
             lang = defaultLang;
         }
         return lang;
+    }
+
+    getCustomLanguages() {
+        var langs = localStorage.getItem('customLanguages');
+        if (langs === null) {
+            langs = [];
+        } else {
+            try {
+                langs = JSON.parse(langs);
+            } catch(e) {
+                langs = [];
+            }
+        }
+        return langs;
+    }
+
+    addLanguage = (code, name) => {
+        const customLanguages = [...this.state.customLanguages];
+        if (!customLanguages.some(l => l.code === code)) {
+            customLanguages.push({ code, name });
+            localStorage.setItem('customLanguages', JSON.stringify(customLanguages));
+            this.setState({ customLanguages });
+        }
+    }
+
+    removeLanguage = (code) => {
+        const customLanguages = this.state.customLanguages.filter(l => l.code !== code);
+        localStorage.setItem('customLanguages', JSON.stringify(customLanguages));
+        
+        let nextLang = this.state.lang;
+        if (this.state.lang === code) {
+            nextLang = "english";
+            localStorage.setItem('lang', nextLang);
+        }
+        
+        this.setState({
+            customLanguages,
+            lang: nextLang
+        });
+    }
+
+    getCachedTranslation(text, toLang) {
+        if (!text || !toLang || toLang === 'english' || toLang === 'bengali') {
+            return '';
+        }
+        let hash = 0;
+        for (let i = 0; i < text.length; i++) {
+            const chr = text.charCodeAt(i);
+            hash = ((hash << 5) - hash) + chr;
+            hash |= 0;
+        }
+        const cacheKey = `trans_${toLang}_${hash}`;
+        return localStorage.getItem(cacheKey) || '';
     }
 
     getBookmarks = () => {
@@ -456,6 +510,10 @@ class MunjateMaqbool extends React.Component {
         if (audioTarget === 'arabic' || lang === 'bengali') {
             return prayer.arabic;
         } else {
+            if (lang !== 'english') {
+                const cached = this.getCachedTranslation(prayer.english, lang);
+                if (cached) return cached;
+            }
             return prayer.english;
         }
     }
@@ -497,6 +555,20 @@ class MunjateMaqbool extends React.Component {
                    arabicVoices.find(v => v.lang === "ar-AE") || 
                    arabicVoices[0] || null;
         } else {
+            // Check if it's a custom language (i.e. not english)
+            if (lang !== 'english') {
+                const customVoices = targetVoices.filter(v => 
+                    v.lang.toLowerCase().startsWith(lang.toLowerCase())
+                );
+                if (customVoices.length > 0) {
+                    const preferredNames = ["google", "premium", "neural", "natural"];
+                    for (const pref of preferredNames) {
+                        const found = customVoices.find(v => v.name.toLowerCase().includes(pref));
+                        if (found) return found;
+                    }
+                    return customVoices[0];
+                }
+            }
             // Filter English voices
             const englishVoices = targetVoices.filter(v => 
                 v.lang.startsWith("en-") || v.lang === "en" || v.lang.startsWith("en")
@@ -633,7 +705,10 @@ class MunjateMaqbool extends React.Component {
                 {
                     this.state.showComponent === "settings" &&
                     <Settings showComponent={this.showComponent} lang={this.state.lang}
-                              onLangChange={this.langSelected}/>
+                              onLangChange={this.langSelected}
+                              customLanguages={this.state.customLanguages}
+                              onAddLanguage={this.addLanguage}
+                              onRemoveLanguage={this.removeLanguage}/>
                 }
                 {
                     this.state.showComponent === "help" &&

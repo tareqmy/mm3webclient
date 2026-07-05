@@ -2,6 +2,7 @@ import React from 'react';
 import './khutbah.css';
 import {get} from "superagent";
 import {API_BASE} from "./config";
+import TranslatedText from './TranslatedText';
 
 class Khutbah extends React.Component {
 
@@ -105,11 +106,20 @@ class Khutbah extends React.Component {
                 </div>
                 <hr></hr>
                 {
-                    this.props.lang === "english" &&
+                    this.props.lang !== "bengali" &&
                     <div className="english">
-                        <div className="header">{this.state.title.english}</div>
-                        <div className="start">{this.state.start.english}</div>
-                        {this.state.khutbah.english}
+                        <div className="header">
+                            <TranslatedText text={this.state.title.english} toLang={this.props.lang} />
+                        </div>
+                        <div className="start">
+                            <TranslatedText text={this.state.start.english} toLang={this.props.lang} />
+                        </div>
+                        <TranslatedText text={this.state.khutbah.english} toLang={this.props.lang} />
+                        {this.props.lang !== "english" && (
+                            <div className="translation-notice">
+                                This translation was automatically generated from English using Google Translate.
+                            </div>
+                        )}
                     </div>
                 }
                 {

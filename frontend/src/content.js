@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactTooltip from 'react-tooltip';
 import './content.css';
+import TranslatedText from './TranslatedText';
 
 function Bookit(props) {
     return (
@@ -168,9 +169,14 @@ class Content extends React.Component {
                         </div>
                         <hr></hr>
                         {
-                            this.props.lang === "english" &&
+                            this.props.lang !== "bengali" &&
                             <div className="english">
-                                {this.props.prayer.english}
+                                <TranslatedText text={this.props.prayer.english} toLang={this.props.lang} />
+                                {this.props.lang !== "english" && (
+                                    <div className="translation-notice">
+                                        This translation was automatically generated from English using Google Translate.
+                                    </div>
+                                )}
                             </div>
                         }
                         {
