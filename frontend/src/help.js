@@ -32,6 +32,9 @@ class Help extends React.Component {
                         Press 'l' to go to next day.<br/>
                         Press 'h' to go to previous day.<br/>
                         <br/>
+                        Press 'p' to play/pause the prayer audio.<br/>
+                        Press 's' to stop the prayer audio.<br/>
+                        <br/>
                         Press 'b' to toggle bookmark this prayer.<br/>
                         Press 'ctrl + b' to go to bookmarks.<br/>
                         Press 'n' to go to next bookmarked prayer.<br/>

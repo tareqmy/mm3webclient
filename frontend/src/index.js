@@ -79,7 +79,11 @@ class MunjateMaqbool extends React.Component {
                 english: "",
                 bengali: "",
                 id: 2,
-            }
+            },
+            speakingState: 'stopped',
+            audioRate: 1.0,
+            audioTarget: 'translation',
+            voices: []
         };
         this.fetch(this.state.prayer.id);
     }
@@ -168,6 +172,7 @@ class MunjateMaqbool extends React.Component {
     }
 
     update(prayer) {
+        this.stopSpeech();
         localStorage.setItem('prayer', JSON.stringify(prayer));
         this.setState({
             prayer: prayer,
@@ -266,6 +271,7 @@ class MunjateMaqbool extends React.Component {
     }
 
     langSelected = (lang) => {
+        this.stopSpeech();
         localStorage.setItem('lang', lang);
         this.setState({
             lang: lang,
@@ -300,6 +306,7 @@ class MunjateMaqbool extends React.Component {
     }
 
     showComponent = (component) => {
+        this.stopSpeech();
         this.setState({
             showComponent: component
         });
@@ -339,6 +346,14 @@ class MunjateMaqbool extends React.Component {
                 }
             } else if (event.key === 'v') {
                 this.previousBookmark();
+            } else if (event.key === 'p') {
+                if (this.state.speakingState === 'playing') {
+                    this.pauseSpeech();
+                } else {
+                    this.playSpeech();
+                }
+            } else if (event.key === 's') {
+                this.stopSpeech();
             }
         }
     }
@@ -370,6 +385,10 @@ class MunjateMaqbool extends React.Component {
         window.addEventListener('resize', this.handleWindowSizeChange);
         window.addEventListener('popstate', this.handlePopState);
         this.fetchTitle();
+        this.loadVoices();
+        if (typeof window !== 'undefined' && window.speechSynthesis) {
+            window.speechSynthesis.onvoiceschanged = this.loadVoices;
+        }
 
         if (this.state.showComponent !== "content") {
             const capitalized = this.state.showComponent.charAt(0).toUpperCase() + this.state.showComponent.slice(1);
@@ -399,6 +418,10 @@ class MunjateMaqbool extends React.Component {
         document.removeEventListener("keydown", this.handleKeyPress);
         window.removeEventListener('resize', this.handleWindowSizeChange);
         window.removeEventListener('popstate', this.handlePopState);
+        this.stopSpeech();
+        if (typeof window !== 'undefined' && window.speechSynthesis) {
+            window.speechSynthesis.onvoiceschanged = null;
+        }
     }
 
     handleWindowSizeChange = () => {
@@ -413,6 +436,122 @@ class MunjateMaqbool extends React.Component {
 
     getMobileClass = () => {
         return this.isMobile() ? "mobile" : "";
+    }
+
+    loadVoices = () => {
+        if (typeof window !== 'undefined' && window.speechSynthesis) {
+            this.setState({
+                voices: window.speechSynthesis.getVoices()
+            });
+        }
+    }
+
+    getSpeechText() {
+        const { prayer, lang, audioTarget } = this.state;
+        if (audioTarget === 'arabic') {
+            return prayer.arabic;
+        } else {
+            return lang === 'bengali' ? prayer.bengali : prayer.english;
+        }
+    }
+
+    getVoice() {
+        const { lang, audioTarget, voices } = this.state;
+        if (!voices || voices.length === 0) return null;
+
+        if (audioTarget === 'arabic') {
+            return voices.find(v => v.lang === "ar-SA") || 
+                   voices.find(v => v.lang === "ar-AE") || 
+                   voices.find(v => v.lang.startsWith("ar-")) || 
+                   voices.find(v => v.lang.startsWith("ar"));
+        } else if (lang === 'bengali') {
+            return voices.find(v => v.lang === "bn-BD") || 
+                   voices.find(v => v.lang === "bn-IN") || 
+                   voices.find(v => v.lang.startsWith("bn-")) || 
+                   voices.find(v => v.lang.startsWith("bn"));
+        } else {
+            return voices.find(v => v.lang === "en-US") || 
+                   voices.find(v => v.lang === "en-GB") || 
+                   voices.find(v => v.lang.startsWith("en-")) || 
+                   voices.find(v => v.lang.startsWith("en"));
+        }
+    }
+
+    playSpeech = () => {
+        if (typeof window === 'undefined' || !window.speechSynthesis) return;
+
+        if (this.state.speakingState === 'paused') {
+            window.speechSynthesis.resume();
+            this.setState({ speakingState: 'playing' });
+            return;
+        }
+
+        window.speechSynthesis.cancel();
+
+        const text = this.getSpeechText();
+        if (!text) return;
+
+        const utterance = new SpeechSynthesisUtterance(text);
+        
+        const voice = this.getVoice();
+        if (voice) {
+            utterance.voice = voice;
+        }
+        
+        const { lang, audioTarget } = this.state;
+        if (audioTarget === 'arabic') {
+            utterance.lang = 'ar-SA';
+        } else if (lang === 'bengali') {
+            utterance.lang = 'bn-BD';
+        } else {
+            utterance.lang = 'en-US';
+        }
+
+        utterance.rate = this.state.audioRate;
+
+        utterance.onstart = () => {
+            this.setState({ speakingState: 'playing' });
+        };
+
+        utterance.onend = () => {
+            this.setState({ speakingState: 'stopped' });
+        };
+
+        utterance.onerror = (e) => {
+            console.error("Speech Synthesis Error:", e);
+            this.setState({ speakingState: 'stopped' });
+        };
+
+        window.speechSynthesis.speak(utterance);
+        this.setState({ speakingState: 'playing' });
+    }
+
+    pauseSpeech = () => {
+        if (typeof window === 'undefined' || !window.speechSynthesis) return;
+        window.speechSynthesis.pause();
+        this.setState({ speakingState: 'paused' });
+    }
+
+    stopSpeech = () => {
+        if (typeof window === 'undefined' || !window.speechSynthesis) return;
+        window.speechSynthesis.cancel();
+        this.setState({ speakingState: 'stopped' });
+    }
+
+    changeAudioRate = (rate) => {
+        this.setState({ audioRate: rate }, () => {
+            if (this.state.speakingState === 'playing') {
+                this.playSpeech();
+            }
+        });
+    }
+
+    changeAudioTarget = (target) => {
+        this.setState({ audioTarget: target }, () => {
+            if (this.state.speakingState === 'playing') {
+                this.playSpeech();
+            }
+        });
     }
 
     render() {
@@ -436,7 +575,15 @@ class MunjateMaqbool extends React.Component {
                              next={this.next} previous={this.previous}
                              nextBookmark={this.nextBookmark} previousBookmark={this.previousBookmark}
                              bookmarks={this.state.bookmarks} toggleBookmark={this.toggleBookmark}
-                             isMobile={this.state.isMobile}/>
+                             isMobile={this.state.isMobile}
+                             speakingState={this.state.speakingState}
+                             audioRate={this.state.audioRate}
+                             audioTarget={this.state.audioTarget}
+                             playSpeech={this.playSpeech}
+                             pauseSpeech={this.pauseSpeech}
+                             stopSpeech={this.stopSpeech}
+                             changeAudioRate={this.changeAudioRate}
+                             changeAudioTarget={this.changeAudioTarget}/>
                 }
                 {
                     this.state.showComponent === "bookmarks" &&
