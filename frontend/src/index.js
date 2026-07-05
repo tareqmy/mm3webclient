@@ -64,12 +64,13 @@ class MunjateMaqbool extends React.Component {
             initComponent = route.showComponent;
         }
 
+        const initialLang = this.getLang(defaultLang);
         this.state = {
             isMobile: this.isMobile(),
             size: size,
             first: first,
             last: last,
-            lang: this.getLang(defaultLang),
+            lang: initialLang,
             bookmarks: this.getBookmarks(),
             showComponent: initComponent,
             prayer: this.initPrayer(first, defaultDay, route ? route.prayerId : null),
@@ -82,7 +83,7 @@ class MunjateMaqbool extends React.Component {
             },
             speakingState: 'stopped',
             audioRate: 1.0,
-            audioTarget: 'translation',
+            audioTarget: initialLang === 'bengali' ? 'arabic' : 'translation',
             voices: []
         };
         this.fetch(this.state.prayer.id);
@@ -275,6 +276,7 @@ class MunjateMaqbool extends React.Component {
         localStorage.setItem('lang', lang);
         this.setState({
             lang: lang,
+            audioTarget: lang === 'bengali' ? 'arabic' : this.state.audioTarget
         });
     }
 
@@ -448,10 +450,10 @@ class MunjateMaqbool extends React.Component {
 
     getSpeechText() {
         const { prayer, lang, audioTarget } = this.state;
-        if (audioTarget === 'arabic') {
+        if (audioTarget === 'arabic' || lang === 'bengali') {
             return prayer.arabic;
         } else {
-            return lang === 'bengali' ? prayer.bengali : prayer.english;
+            return prayer.english;
         }
     }
 
@@ -459,21 +461,56 @@ class MunjateMaqbool extends React.Component {
         const { lang, audioTarget, voices } = this.state;
         if (!voices || voices.length === 0) return null;
 
-        if (audioTarget === 'arabic') {
-            return voices.find(v => v.lang === "ar-SA") || 
-                   voices.find(v => v.lang === "ar-AE") || 
-                   voices.find(v => v.lang.startsWith("ar-")) || 
-                   voices.find(v => v.lang.startsWith("ar"));
-        } else if (lang === 'bengali') {
-            return voices.find(v => v.lang === "bn-BD") || 
-                   voices.find(v => v.lang === "bn-IN") || 
-                   voices.find(v => v.lang.startsWith("bn-")) || 
-                   voices.find(v => v.lang.startsWith("bn"));
+        // Filter out macOS/Windows novelty/toy/robotic voices that can sound weird or creepy
+        const cleanVoices = voices.filter(v => {
+            const nameLower = v.name.toLowerCase();
+            const noveltyVoices = [
+                "albert", "bad news", "bahh", "bells", "boing", "bubbles", 
+                "cellos", "deranged", "good news", "hysterical", "pipe organ", 
+                "trinoids", "whisper", "zarvox", "junior", "organ", "whisperer"
+            ];
+            return !noveltyVoices.some(nv => nameLower.includes(nv));
+        });
+
+        const targetVoices = cleanVoices.length > 0 ? cleanVoices : voices;
+
+        if (audioTarget === 'arabic' || lang === 'bengali') {
+            const arabicVoices = targetVoices.filter(v => 
+                v.lang.startsWith("ar-") || v.lang === "ar" || v.lang.startsWith("ar")
+            );
+            
+            // Prioritize premium/high-quality Arabic voices by name:
+            // - "google" (Google Cloud/Neural voices in Chrome/Android)
+            // - "maged", "laila", "tarik", "mariam" (macOS/iOS premium voices)
+            // - "hoda", "naayf" (Microsoft Windows voices)
+            const preferredArabic = ["google", "maged", "laila", "tarik", "mariam", "hoda", "naayf"];
+            for (const pref of preferredArabic) {
+                const found = arabicVoices.find(v => v.name.toLowerCase().includes(pref));
+                if (found) return found;
+            }
+            
+            // Fallback order: prefer ar-SA, then ar-AE, then any
+            return arabicVoices.find(v => v.lang === "ar-SA") || 
+                   arabicVoices.find(v => v.lang === "ar-AE") || 
+                   arabicVoices[0] || null;
         } else {
-            return voices.find(v => v.lang === "en-US") || 
-                   voices.find(v => v.lang === "en-GB") || 
-                   voices.find(v => v.lang.startsWith("en-")) || 
-                   voices.find(v => v.lang.startsWith("en"));
+            // Filter English voices
+            const englishVoices = targetVoices.filter(v => 
+                v.lang.startsWith("en-") || v.lang === "en" || v.lang.startsWith("en")
+            );
+            
+            // Prioritize standard high-quality natural voice names
+            const preferredNames = [
+                "google", "samantha", "alex", "daniel", "zira", 
+                "david", "hazel", "karen", "moira", "tessa", "veena", "fiona"
+            ];
+            
+            for (const pref of preferredNames) {
+                const found = englishVoices.find(v => v.name.toLowerCase().includes(pref));
+                if (found) return found;
+            }
+            
+            return englishVoices[0] || null;
         }
     }
 
@@ -499,15 +536,15 @@ class MunjateMaqbool extends React.Component {
         }
         
         const { lang, audioTarget } = this.state;
-        if (audioTarget === 'arabic') {
+        if (audioTarget === 'arabic' || lang === 'bengali') {
             utterance.lang = 'ar-SA';
-        } else if (lang === 'bengali') {
-            utterance.lang = 'bn-BD';
         } else {
             utterance.lang = 'en-US';
         }
 
         utterance.rate = this.state.audioRate;
+        utterance.pitch = 1.0;  // Explicitly reset pitch to normal (1.0)
+        utterance.volume = 1.0; // Explicitly reset volume to maximum (1.0)
 
         utterance.onstart = () => {
             this.setState({ speakingState: 'playing' });

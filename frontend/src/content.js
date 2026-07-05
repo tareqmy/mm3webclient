@@ -123,20 +123,22 @@ class Content extends React.Component {
                                         <i className="fas fa-stop"></i>
                                     </button>
                                     
-                                    <div className="audio-source-toggle" data-tip="Select audio content">
-                                        <button 
-                                            className={`audio-source-btn ${audioTarget === 'arabic' ? 'active' : ''}`}
-                                            onClick={() => changeAudioTarget('arabic')}
-                                        >
-                                            Arabic
-                                        </button>
-                                        <button 
-                                            className={`audio-source-btn ${audioTarget === 'translation' ? 'active' : ''}`}
-                                            onClick={() => changeAudioTarget('translation')}
-                                        >
-                                            Translation
-                                        </button>
-                                    </div>
+                                    {this.props.lang !== 'bengali' && (
+                                        <div className="audio-source-toggle" data-tip="Select audio content">
+                                            <button 
+                                                className={`audio-source-btn ${audioTarget === 'arabic' ? 'active' : ''}`}
+                                                onClick={() => changeAudioTarget('arabic')}
+                                            >
+                                                Arabic
+                                            </button>
+                                            <button 
+                                                className={`audio-source-btn ${audioTarget === 'translation' ? 'active' : ''}`}
+                                                onClick={() => changeAudioTarget('translation')}
+                                            >
+                                                Translation
+                                            </button>
+                                        </div>
+                                    )}
                                 </div>
 
                                 <div className="audio-meta">
