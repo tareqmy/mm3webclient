@@ -38,7 +38,9 @@ class Help extends React.Component {
                         Press 'b' to toggle bookmark this prayer.<br/>
                         Press 'ctrl + b' to go to bookmarks.<br/>
                         Press 'n' to go to next bookmarked prayer.<br/>
-                        Press 'v' to go to previous bookmarked prayer.
+                        Press 'v' to go to previous bookmarked prayer.<br/>
+                        <br/>
+                        Press 't' to toggle between English and Bengali translations.
                     </div>
                     <hr></hr>
                     <div className="para">

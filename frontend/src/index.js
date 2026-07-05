@@ -356,6 +356,9 @@ class MunjateMaqbool extends React.Component {
                 }
             } else if (event.key === 's') {
                 this.stopSpeech();
+            } else if (event.key === 't') {
+                const nextLang = this.state.lang === 'english' ? 'bengali' : 'english';
+                this.langSelected(nextLang);
             }
         }
     }
