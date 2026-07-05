@@ -11,6 +11,7 @@
 The application supports:
 - 196 duas organized across 7 days of the week
 - Trilingual display: Arabic, English, Bengali
+- **Dynamic Google Translation**: Add custom languages (e.g., Urdu, Hindi, Spanish, French, Indonesian) dynamically from Settings with automatic client-side translation and caching
 - **Modern Premium Design**: Sleek Emerald & Gold spiritual theme with a warm paper/parchment background and smooth transitions
 - Bookmarking duas with localStorage persistence
 - Keyboard navigation for power users
@@ -167,6 +168,7 @@ mm3webclient/
 │   │   ├── khutbah.js / .css   # Khutbah page
 │   │   ├── bookmarks.js / .css # Bookmarks list
 │   │   ├── settings.js / .css  # Language settings
+│   │   ├── TranslatedText.js   # Dynamic Google Translate wrapper & cache
 │   │   ├── help.js / .css      # About & keyboard shortcuts
 │   │   ├── fonts.css           # @font-face declarations
 │   │   ├── datum/
@@ -212,9 +214,12 @@ The app persists state to `localStorage`:
 |-----------------|------------------------------------|
 | `prayer`        | Current dua object (JSON)          |
 | `prayer.tags`   | Current day string (e.g. saturday) |
-| `lang`          | Selected language (english/bengali)|
+| `lang`          | Selected language (english/bengali/custom)|
 | `bookmarks`     | Map of bookmarked dua objects      |
 | `init`          | Last active view (intro/khutbah/content) |
+| `customLanguages`| List of user-added custom languages |
+| `customTranslations` | Cached whole-dua custom translations |
+| `trans_{lang}_{hash}` | Cached text elements translations mapped by text hash |
 
 ---
 

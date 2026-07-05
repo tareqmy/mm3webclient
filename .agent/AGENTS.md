@@ -51,6 +51,7 @@ MunjateMaqbool (index.js)  ← root, owns all state
 ├── Khutbah (khutbah.js)   ← shown after intro; fetches /misc/4,5,6
 ├── Bookmarks (bookmarks.js)← list of saved prayers; all from localStorage
 ├── Settings (settings.js) ← language switch (english/bengali)
+├── TranslatedText (TranslatedText.js) ← handles on-demand translation and caching
 └── Help (help.js)          ← about page; no API calls
 ```
 
@@ -90,13 +91,16 @@ All errors are shown via `sweetalert` modal: `swal("Oops!", "Something went wron
 
 ## LocalStorage Keys
 
-| Key           | Type   | Description                                    |
-|---------------|--------|------------------------------------------------|
-| `prayer`      | JSON   | Current dua object                             |
-| `prayer.tags` | string | Current day tag (`saturday`, `sunday`, etc.)   |
-| `lang`        | string | Translation language (`english` or `bengali`)  |
-| `bookmarks`   | JSON   | `{ [id]: prayerObject }` map                   |
-| `init`        | string | Last active component name                     |
+| Key                  | Type   | Description                                                     |
+|----------------------|--------|-----------------------------------------------------------------|
+| `prayer`             | JSON   | Current dua object                                              |
+| `prayer.tags`        | string | Current day tag (`saturday`, `sunday`, etc.)                     |
+| `lang`               | string | Translation language (`english`, `bengali`, or a custom code)   |
+| `bookmarks`          | JSON   | `{ [id]: prayerObject }` map                                     |
+| `init`               | string | Last active component name                                      |
+| `customLanguages`    | JSON   | `[{ code, name }]` list of added languages                      |
+| `customTranslations` | JSON   | `{ [langCode]: { [duaId]: text } }` cached dua translations     |
+| `trans_{lang}_{hash}`| string | Cached individual text translations mapped by lang and content |
 
 ---
 
