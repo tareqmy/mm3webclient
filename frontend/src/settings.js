@@ -2,7 +2,6 @@ import React from 'react';
 import './settings.css';
 
 const SUPPORTED_LANGUAGES = [
-    { code: 'ar', name: 'Arabic (العربية)' },
     { code: 'ur', name: 'Urdu (اردو)' },
     { code: 'hi', name: 'Hindi (हिन्दी)' },
     { code: 'es', name: 'Spanish (Español)' },
@@ -19,12 +18,7 @@ const SUPPORTED_LANGUAGES = [
     { code: 'ko', name: 'Korean (한국어)' },
     { code: 'it', name: 'Italian (Italiano)' },
     { code: 'nl', name: 'Dutch (Nederlands)' },
-    { code: 'sw', name: 'Swahili (Kiswahili)' },
-    { code: 'ta', name: 'Tamil (தமிழ்)' },
-    { code: 'te', name: 'Telugu (తెలుగు)' },
-    { code: 'ml', name: 'Malayalam (മലയാളം)' },
-    { code: 'so', name: 'Somali (Soomaali)' },
-    { code: 'ha', name: 'Hausa' }
+    { code: 'so', name: 'Somali (Soomaali)' }
 ];
 
 class Settings extends React.Component {
