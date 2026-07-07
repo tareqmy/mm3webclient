@@ -3,6 +3,18 @@
 .content {
     margin: auto;
     min-height: 330px;
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .mobile .content {
@@ -12,26 +24,93 @@
 .content .prayerholder {
     color: #2d3748;
     text-align: center;
-    padding: 40px 50px;
+    padding: 30px 40px;
     display: flex;
     flex-direction: column;
-    gap: 30px;
-    background: linear-gradient(180deg, #ffffff 0%, #fdfcf9 100%);
+    gap: 25px;
+    background: transparent;
 }
 
 .mobile .content .prayerholder {
-    padding: 25px 20px;
+    padding: 20px 12px;
     gap: 20px;
+}
+
+/* Arabic Card styling with classic double-border look */
+.arabic-card {
+    position: relative;
+    background: #fdfaf5;
+    border: 1px solid rgba(212, 175, 55, 0.35);
+    border-radius: 16px;
+    padding: 35px 45px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.01);
+    transition: all 0.3s ease;
+}
+
+.arabic-card:before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+    border: 1px dashed rgba(212, 175, 55, 0.25);
+    border-radius: 12px;
+    pointer-events: none;
+}
+
+.arabic-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.08);
+    border-color: rgba(212, 175, 55, 0.6);
+}
+
+.mobile .arabic-card {
+    padding: 25px 20px;
+}
+
+.mobile .arabic-card:before {
+    top: 6px;
+    left: 6px;
+    right: 6px;
+    bottom: 6px;
+    border-radius: 10px;
 }
 
 .content .arabic {
     font: 30px "Noto", "Scheherazade", sans-serif;
     text-align: center;
-    line-height: 2.0;
+    line-height: 2.2;
     color: #0f4c3a;
     direction: rtl;
     padding: 10px 0;
     text-shadow: 0 1px 1px rgba(0,0,0,0.01);
+}
+
+.mobile .content .arabic {
+    font-size: 24px;
+    line-height: 1.8;
+}
+
+/* Translation Card styling */
+.translation-card {
+    position: relative;
+    background: #ffffff;
+    border: 1px solid rgba(15, 76, 58, 0.08);
+    border-radius: 16px;
+    padding: 35px 45px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.01);
+    transition: all 0.3s ease;
+}
+
+.translation-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(15, 76, 58, 0.06);
+    border-color: rgba(15, 76, 58, 0.2);
+}
+
+.mobile .translation-card {
+    padding: 25px 20px;
 }
 
 .content .english {
@@ -42,12 +121,34 @@
     padding: 10px 0;
 }
 
+.mobile .content .english {
+    font-size: 15px;
+    line-height: 1.6;
+}
+
 .content .bengali {
     font: 20px "Saboj Charulota", "Shadhin Bangla", sans-serif;
     text-align: center;
     line-height: 1.8;
     color: #2c5282;
     padding: 10px 0;
+}
+
+.mobile .content .bengali {
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.translation-notice {
+    background-color: #f7fafc;
+    border-left: 3px solid #d4af37;
+    border-radius: 4px;
+    padding: 10px 15px;
+    font-size: 12.5px;
+    color: #718096;
+    margin-top: 20px;
+    text-align: center;
+    font-style: italic;
 }
 
 .bookit {
@@ -85,13 +186,15 @@
     color: #a0aec0;
 }
 
+/* Navigation control deck */
 .navigation {
     padding: 12px 16px;
     background-color: #faf8f2;
-    border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+    border-bottom: 2px solid rgba(212, 175, 55, 0.12);
     display: flex;
     justify-content: center;
     align-items: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
 }
 
 .navigation .left {
@@ -104,7 +207,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 12px;
     flex-wrap: wrap;
     width: 100%;
 }
@@ -127,8 +230,8 @@
 
 .navigation button:hover {
     color: #0f4c3a;
-    background-color: rgba(15, 76, 58, 0.05);
-    transform: scale(1.05);
+    background-color: rgba(15, 76, 58, 0.06);
+    transform: scale(1.08);
 }
 
 .navigation button:active {
@@ -145,7 +248,7 @@
     font-weight: 600;
     color: #0f4c3a;
     background: #ffffff;
-    border: 1px solid rgba(212, 175, 55, 0.3);
+    border: 1px solid rgba(15, 76, 58, 0.25);
     border-radius: 20px;
     padding: 6px 30px 6px 12px;
     cursor: pointer;
@@ -172,34 +275,27 @@
     box-shadow: 0 0 0 3px rgba(15, 76, 58, 0.1);
 }
 
+/* Bottom Meta Badge */
 .meta {
     font: 14px "Georgia", serif;
     color: #718096;
-    padding: 10px;
+    padding: 15px 10px;
     margin: auto;
-    border-top: 1px solid rgba(212, 175, 55, 0.15);
+    border-top: 1.5px solid rgba(212, 175, 55, 0.15);
     background-color: #faf8f2;
-    border-bottom: none;
-    border-left: none;
-    border-right: none;
+    text-align: center;
 }
 
-.mobile .content .arabic {
-    font-size: 24px;
-    line-height: 1.8;
-    padding: 5px 0;
-}
-
-.mobile .content .english {
-    font-size: 15px;
-    line-height: 1.6;
-    padding: 5px 0;
-}
-
-.mobile .content .bengali {
-    font-size: 18px;
-    line-height: 1.6;
-    padding: 5px 0;
+.meta label {
+    display: inline-block;
+    background: #0f4c3a;
+    color: #d4af37;
+    font-family: "Georgia", serif;
+    font-size: 13px;
+    font-weight: bold;
+    border-radius: 8px;
+    padding: 6px 16px;
+    box-shadow: 0 2px 6px rgba(15, 76, 58, 0.15);
 }
 
 .mobile .navigation {
@@ -223,6 +319,7 @@
     background-size: 10px 10px;
 }
 
+/* Mobile Nav Overlay controls */
 .mobile-nav-overlays {
     position: fixed;
     bottom: 25px;

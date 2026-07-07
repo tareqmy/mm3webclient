@@ -164,25 +164,30 @@ class Content extends React.Component {
                                 </div>
                             </div>
                         )}
-                        <div className="arabic">
-                            {this.props.prayer.arabic}
+                        <div className="arabic-card">
+                            <div className="arabic">
+                                {this.props.prayer.arabic}
+                            </div>
                         </div>
-                        <hr></hr>
                         {
                             this.props.lang !== "bengali" &&
-                            <div className="english">
-                                <TranslatedText text={this.props.prayer.english} toLang={this.props.lang} />
-                                {this.props.lang !== "english" && (
-                                    <div className="translation-notice">
-                                        This translation was automatically generated from English using Google Translate.
-                                    </div>
-                                )}
+                            <div className="translation-card">
+                                <div className="english">
+                                    <TranslatedText text={this.props.prayer.english} toLang={this.props.lang} />
+                                    {this.props.lang !== "english" && (
+                                        <div className="translation-notice">
+                                            This translation was automatically generated from English using Google Translate.
+                                        </div>
+                                    )}
+                                </div>
                             </div>
                         }
                         {
                             this.props.lang === "bengali" &&
-                            <div className="bengali">
-                                {this.props.prayer.bengali}
+                            <div className="translation-card">
+                                <div className="bengali">
+                                    {this.props.prayer.bengali}
+                                </div>
                             </div>
                         }
                     </div>
