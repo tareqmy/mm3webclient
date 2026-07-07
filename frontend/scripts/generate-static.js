@@ -155,7 +155,7 @@ async function run() {
             path: 'help',
             title: 'About & Help - Munajat E Maqbool',
             description: 'About Munajat-e-Maqbool application, compiled by Hakimul Ummah Maulana Ashraf Ali Thanwi. Help on keyboard shortcuts.',
-            content: '<h1>About Munajat E Maqbool</h1><p>Compiled by Hakimul Ummah Maulana Ashraf Ali Thanwi (R). Bengali Translation - Allama Shamsul Haque Faridpuri (R) and Allama Azizul Haque (R). English Translation - Maulana Muhammed Mahomedy.</p>'
+            content: '<h1>About Munajat E Maqbool</h1><p><strong>Compilation:</strong> Compiled by Hakimul Ummah Maulana Ashraf Ali Thanvi (R). Bengali Translation - Allama Shamsul Haque Faridpuri (R) and Allama Azizul Haque (R). English Translation - Maulana Muhammed Mahomedy.</p><h2>Keyboard Shortcuts</h2><ul><li><strong>Next Prayer:</strong> k / &rarr;</li><li><strong>Previous Prayer:</strong> j / &larr;</li><li><strong>Next Day:</strong> l / &uarr;</li><li><strong>Previous Day:</strong> h / &darr;</li><li><strong>Play / Pause Audio:</strong> p</li><li><strong>Stop Audio:</strong> s</li><li><strong>Toggle Bookmark:</strong> b</li><li><strong>Go to Bookmarks:</strong> Ctrl + b</li><li><strong>Next Bookmark:</strong> n</li><li><strong>Previous Bookmark:</strong> v</li><li><strong>Toggle Language:</strong> t</li></ul>'
         },
         {
             path: 'settings',
