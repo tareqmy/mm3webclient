@@ -77,39 +77,51 @@ class Intro extends React.Component {
     render() {
         return (
             <div className="intro">
-                <div className="arabic">
-                    <div className="header">{this.props.title.arabic}</div>
-                    <div className="start">{this.state.start.arabic}</div>
-                    {this.state.intro.arabic}
+                <div className="intro-panel arabic-panel">
+                    <div className="panel-body">
+                        <div className="arabic">
+                            <div className="header">{this.props.title.arabic}</div>
+                            <div className="start">{this.state.start.arabic}</div>
+                            {this.state.intro.arabic}
+                        </div>
+                    </div>
                 </div>
-                <hr></hr>
                 {
                     this.props.lang !== "bengali" &&
-                    <div className="english">
-                        <div className="header">
-                            <TranslatedText text={this.props.title.english} toLang={this.props.lang} />
-                        </div>
-                        <div className="start">
-                            <TranslatedText text={this.state.start.english} toLang={this.props.lang} />
-                        </div>
-                        <TranslatedText text={this.state.intro.english} toLang={this.props.lang} />
-                        {this.props.lang !== "english" && (
-                            <div className="translation-notice">
-                                This translation was automatically generated from English using Google Translate.
+                    <div className="intro-panel translation-panel">
+                        <div className="panel-body">
+                            <div className="english">
+                                <div className="header">
+                                    <TranslatedText text={this.props.title.english} toLang={this.props.lang} />
+                                </div>
+                                <div className="start">
+                                    <TranslatedText text={this.state.start.english} toLang={this.props.lang} />
+                                </div>
+                                <TranslatedText text={this.state.intro.english} toLang={this.props.lang} />
+                                {this.props.lang !== "english" && (
+                                    <div className="translation-notice">
+                                        This translation was automatically generated from English using Google Translate.
+                                    </div>
+                                )}
                             </div>
-                        )}
+                        </div>
                     </div>
                 }
                 {
                     this.props.lang === "bengali" &&
-                    <div className="bengali">
-                        <div className="header">{this.props.title.bengali}</div>
-                        <div className="start">{this.state.start.bengali}</div>
-                        {this.state.intro.bengali}
+                    <div className="intro-panel translation-panel">
+                        <div className="panel-body">
+                            <div className="bengali">
+                                <div className="header">{this.props.title.bengali}</div>
+                                <div className="start">{this.state.start.bengali}</div>
+                                {this.state.intro.bengali}
+                            </div>
+                        </div>
                     </div>
                 }
-                <br/>
-                <button onClick={this.done}>OK</button>
+                <button onClick={this.done}>
+                    <i className="fas fa-check"></i> OK
+                </button>
             </div>
         );
     }

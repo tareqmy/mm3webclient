@@ -2,107 +2,216 @@
 
 .intro {
     margin: auto;
+    max-width: 850px;
     color: #2d3748;
     text-align: center;
     padding: 40px 50px;
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 30px;
     background: linear-gradient(180deg, #ffffff 0%, #fdfcf9 100%);
+    border-radius: 16px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .mobile .intro {
-    padding: 25px 20px;
+    padding: 25px 15px;
+    margin: 10px;
+    border-radius: 12px;
+    gap: 20px;
 }
 
+/* Card panels */
+.intro-panel {
+    background: #ffffff;
+    border: 1px solid rgba(15, 76, 58, 0.08);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.01);
+    overflow: hidden;
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.intro-panel:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(15, 76, 58, 0.06);
+}
+
+.intro-panel.arabic-panel {
+    background-color: #fdfaf5;
+    border: 1px solid rgba(212, 175, 55, 0.25);
+    text-align: center;
+}
+
+.intro-panel.translation-panel {
+    border-color: rgba(15, 76, 58, 0.12);
+}
+
+/* Body content */
+.intro-panel .panel-body {
+    padding: 25px 30px;
+    line-height: 1.8;
+}
+
+.mobile .intro-panel .panel-body {
+    padding: 20px 15px;
+}
+
+/* Arabic styles */
+.intro .arabic {
+    font-family: "Noto", "Scheherazade", serif;
+    font-size: 28px;
+    line-height: 2.2;
+    color: #0f4c3a;
+    direction: rtl;
+}
+
+.mobile .intro .arabic {
+    font-size: 23px;
+    line-height: 1.8;
+}
+
+.intro .arabic .header {
+    font-family: "Diwani Letter", "Traditional Arabic", serif;
+    font-size: 38px;
+    color: #0f4c3a;
+    margin-bottom: 15px;
+    line-height: 1.4;
+    border: none;
+    padding: 0;
+    text-align: center;
+}
+
+.mobile .intro .arabic .header {
+    font-size: 30px;
+}
+
+.intro .arabic .start {
+    font-size: 24px;
+    font-style: italic;
+    color: #d4af37;
+    margin-bottom: 25px;
+    line-height: 1.5;
+}
+
+.mobile .intro .arabic .start {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+/* Translation styles */
+.intro .english {
+    font-family: "Georgia", serif;
+    font-size: 15px;
+    color: #4a5568;
+    text-align: justify;
+}
+
+.mobile .intro .english {
+    font-size: 14px;
+}
+
+.intro .english .header {
+    font-family: "Metamorphous", "Georgia", serif;
+    font-size: 18px;
+    color: #0f4c3a;
+    border-left: 3px solid #d4af37;
+    padding-left: 10px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    text-align: left;
+}
+
+.intro .english .start {
+    font-size: 15.5px;
+    font-style: italic;
+    color: #5a6578;
+    margin-bottom: 15px;
+    border-left: 3px solid rgba(15, 76, 58, 0.2);
+    padding-left: 10px;
+    text-align: left;
+}
+
+.intro .bengali {
+    font-family: "Saboj Charulota", "Georgia", serif;
+    font-size: 18.5px;
+    color: #2c5282;
+    text-align: justify;
+}
+
+.mobile .intro .bengali {
+    font-size: 16px;
+}
+
+.intro .bengali .header {
+    font-family: "Metamorphous", "Georgia", serif;
+    font-size: 20px;
+    color: #0f4c3a;
+    border-left: 3px solid #d4af37;
+    padding-left: 10px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    text-align: left;
+}
+
+.intro .bengali .start {
+    font-size: 18px;
+    font-style: italic;
+    color: #5a6578;
+    margin-bottom: 15px;
+    border-left: 3px solid rgba(15, 76, 58, 0.2);
+    padding-left: 10px;
+    text-align: left;
+}
+
+.translation-notice {
+    background-color: #f7fafc;
+    border-left: 3px solid #d4af37;
+    border-radius: 4px;
+    padding: 10px 15px;
+    font-size: 12.5px;
+    color: #718096;
+    margin-top: 20px;
+    text-align: left;
+    font-style: italic;
+}
+
+/* Button */
 .intro button {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
     font-family: "Georgia", serif;
     font-size: 14px;
     font-weight: bold;
     color: #ffffff;
     background: linear-gradient(135deg, #0f4c3a 0%, #1c6d54 100%);
     border: none;
-    border-radius: 20px;
-    padding: 10px 24px;
-    margin: 20px auto;
+    border-radius: 24px;
+    padding: 12px 36px;
+    margin: 15px auto;
     cursor: pointer;
     box-shadow: 0 4px 12px rgba(15, 76, 58, 0.15);
     transition: all 0.3s ease;
     outline: none;
-    width: 120px;
+    width: auto;
 }
 
 .intro button:hover {
     background: linear-gradient(135deg, #175e49 0%, #238567 100%);
-    box-shadow: 0 6px 16px rgba(15, 76, 58, 0.25);
+    box-shadow: 0 6px 18px rgba(15, 76, 58, 0.25);
     transform: translateY(-2px);
-}
-
-.intro button:active {
-    transform: translateY(0);
-    box-shadow: 0 3px 8px rgba(15, 76, 58, 0.15);
-}
-
-.intro .header {
-    display: block;
-    font-size: 24px;
-    font-family: "Metamorphous", "Georgia", serif;
-    color: #0f4c3a;
-    margin-bottom: 10px;
-}
-
-.intro .start {
-    font-size: 18px;
-    font-style: italic;
-    color: #718096;
-    margin-bottom: 15px;
-}
-
-.intro .english {
-    font: 16px Metamorphous, "Georgia", sans-serif;
-    text-align: justify;
-    line-height: 1.8;
-    color: #4a5568;
-    padding: 5px;
-}
-
-.intro .bengali {
-    font: 18px "Saboj Charulota", sans-serif;
-    text-align: justify;
-    line-height: 1.8;
-    color: #2c5282;
-    padding: 5px;
-}
-
-.intro .arabic {
-    font: 26px "Noto", "Scheherazade", sans-serif;
-    text-align: center;
-    line-height: 2.0;
-    color: #0f4c3a;
-    direction: rtl;
-    padding: 5px;
-}
-
-.mobile .intro .arabic {
-    font-size: 22px;
-    line-height: 1.8;
-}
-
-.mobile .intro .english {
-    font-size: 14px;
-    line-height: 1.6;
-}
-
-.mobile .intro .bengali {
-    font-size: 16px;
-    line-height: 1.6;
-}
-
-.mobile .intro .header {
-    font-size: 20px;
-}
-
-.mobile .intro .start {
-    font-size: 15px;
 }
