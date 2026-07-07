@@ -49,12 +49,18 @@ function cleanHtmlText(text) {
     return text.replace(/<[^>]*>/g, '').replace(/"/g, '&quot;').trim();
 }
 
+function stripHtmlTags(text) {
+    if (!text) return '';
+    return text.replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim();
+}
+
 async function run() {
     if (!fs.existsSync(TEMPLATE_PATH)) {
         console.error("Template not found: " + TEMPLATE_PATH);
         process.exit(1);
     }
     const template = fs.readFileSync(TEMPLATE_PATH, 'utf8');
+    const seoRegex = /(?:<!-- SEO-TAGS-START -->)?[\s\S]*?<title>Munajat E Maqbool<\/title>[\s\S]*?"@type":\s*"Book"[\s\S]*?<\/script>(?:\s*<!-- SEO-TAGS-END -->)?/;
 
     // 1. Pre-render 196 Duas
     console.log("Pre-rendering Duas 1 to 196...");
@@ -65,14 +71,57 @@ async function run() {
             const descriptionStr = cleanHtmlText(dua.english || dua.bengali).substring(0, 155) + "...";
             const urlStr = `https://munajatemaqbool.com/dua/${id}/`;
             
-            const metaTags = `
+            const schemaJson = {
+                "@context": "https://schema.org",
+                "@type": "WebPage",
+                "@id": `${urlStr}#webpage`,
+                "url": urlStr,
+                "name": titleStr,
+                "description": descriptionStr,
+                "mainEntity": {
+                    "@type": "CreativeWork",
+                    "name": `Dua ${id}`,
+                    "author": {
+                        "@type": "Person",
+                        "name": "Maulana Ashraf Ali Thanvi"
+                    },
+                    "text": stripHtmlTags(dua.arabic),
+                    "inLanguage": "ar",
+                    "translation": [
+                        {
+                            "@type": "CreativeWork",
+                            "inLanguage": "en",
+                            "text": stripHtmlTags(dua.english)
+                        },
+                        {
+                            "@type": "CreativeWork",
+                            "inLanguage": "bn",
+                            "text": stripHtmlTags(dua.bengali)
+                        }
+                    ]
+                }
+            };
+
+            const metaTags = `<!-- SEO-TAGS-START -->
   <title>${titleStr}</title>
   <meta name="description" content="${descriptionStr}">
+  <meta name="keywords" content="Dua ${id}, ${dua.tags}, Munajat E Maqbool, Islamic Prayers, Daily Duas, Ashraf Ali Thanvi, Arabic Dua, Dua with English Translation, Bengali Dua">
+  <meta name="author" content="Maulana Ashraf Ali Thanvi">
+  <link rel="canonical" href="${urlStr}">
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="${urlStr}">
   <meta property="og:title" content="${titleStr}">
   <meta property="og:description" content="${descriptionStr}">
-  <meta property="og:url" content="${urlStr}">
-  <meta property="og:type" content="article">
-  <link rel="canonical" href="${urlStr}">`;
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary">
+  <meta property="twitter:url" content="${urlStr}">
+  <meta property="twitter:title" content="${titleStr}">
+  <meta property="twitter:description" content="${descriptionStr}">
+  <script type="application/ld+json">
+  ${JSON.stringify(schemaJson, null, 2)}
+  </script>
+  <!-- SEO-TAGS-END -->`;
 
             const noscriptContent = `
   <noscript>
@@ -86,7 +135,7 @@ async function run() {
   </noscript>`;
 
             let pageHtml = template
-                .replace('<title>Munajat E Maqbool</title>', metaTags)
+                .replace(seoRegex, metaTags)
                 .replace('<div id="react"></div>', `<div id="react"></div>${noscriptContent}`);
 
             const dir = path.join(BUILD_DIR, 'dua', String(id));
@@ -131,14 +180,33 @@ async function run() {
     console.log("Pre-rendering Static Pages...");
     for (const page of pages) {
         const urlStr = `https://munajatemaqbool.com/${page.path}/`;
-        const metaTags = `
+        const metaTags = `<!-- SEO-TAGS-START -->
   <title>${page.title}</title>
   <meta name="description" content="${page.description}">
+  <meta name="keywords" content="${page.path}, Munajat E Maqbool, Islamic Prayers, Daily Duas, Ashraf Ali Thanvi">
+  <meta name="author" content="Maulana Ashraf Ali Thanvi">
+  <link rel="canonical" href="${urlStr}">
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="${urlStr}">
   <meta property="og:title" content="${page.title}">
   <meta property="og:description" content="${page.description}">
-  <meta property="og:url" content="${urlStr}">
-  <meta property="og:type" content="website">
-  <link rel="canonical" href="${urlStr}">`;
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary">
+  <meta property="twitter:url" content="${urlStr}">
+  <meta property="twitter:title" content="${page.title}">
+  <meta property="twitter:description" content="${page.description}">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": "${urlStr}#webpage",
+    "url": "${urlStr}",
+    "name": "${page.title}",
+    "description": "${page.description}"
+  }
+  </script>
+  <!-- SEO-TAGS-END -->`;
 
         const noscriptContent = `
   <noscript>
@@ -148,7 +216,7 @@ async function run() {
   </noscript>`;
 
         let pageHtml = template
-            .replace('<title>Munajat E Maqbool</title>', metaTags)
+            .replace(seoRegex, metaTags)
             .replace('<div id="react"></div>', `<div id="react"></div>${noscriptContent}`);
 
         const dir = path.join(BUILD_DIR, page.path);

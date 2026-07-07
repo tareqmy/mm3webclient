@@ -49,6 +49,77 @@ class MunjateMaqbool extends React.Component {
         }
     }
 
+    updateSEO(title, description, path) {
+        document.title = title;
+
+        const setMeta = (name, value, isProperty = false) => {
+            const attr = isProperty ? "property" : "name";
+            let element = document.querySelector(`meta[${attr}="${name}"]`);
+            if (!element) {
+                element = document.createElement('meta');
+                element.setAttribute(attr, name);
+                document.head.appendChild(element);
+            }
+            element.setAttribute('content', value);
+        };
+
+        const setLink = (rel, href) => {
+            let element = document.querySelector(`link[rel="${rel}"]`);
+            if (!element) {
+                element = document.createElement('link');
+                element.setAttribute('rel', rel);
+                document.head.appendChild(element);
+            }
+            element.setAttribute('href', href);
+        };
+
+        if (description) {
+            setMeta('description', description);
+            setMeta('og:description', description, true);
+            setMeta('twitter:description', description);
+        }
+
+        setMeta('og:title', title, true);
+        setMeta('twitter:title', title);
+
+        const fullUrl = window.location.origin + path;
+        setMeta('og:url', fullUrl, true);
+        setMeta('twitter:url', fullUrl);
+        setLink('canonical', fullUrl);
+    }
+
+    updatePageSEO(component, prayer) {
+        if (component === "content" && prayer) {
+            this.updateUrlPath("content", prayer.id);
+            const cleanEnglish = prayer.english ? prayer.english.replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim() : "";
+            const cleanBengali = prayer.bengali ? prayer.bengali.replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim() : "";
+            const translationText = cleanEnglish || cleanBengali;
+            const snippet = translationText ? (translationText.length > 150 ? translationText.substring(0, 150) + "..." : translationText) : "";
+            const title = `Dua ${prayer.id} (${prayer.tags}) - Munajat E Maqbool`;
+            const description = `Dua ${prayer.id} (${prayer.tags}) - Munajat E Maqbool daily Islamic prayer. ${snippet}`;
+            this.updateSEO(title, description, `/dua/${prayer.id}/`);
+        } else {
+            this.updateUrlPath(component);
+            const capitalized = component.charAt(0).toUpperCase() + component.slice(1);
+            const title = `${capitalized} - Munajat E Maqbool`;
+            let description = "";
+            let path = `/${component}/`;
+            if (component === "intro") {
+                description = "Munajat-e-Maqbool (مناجاة مقبول) is a compilation of daily Islamic prayers (duas) from the Quran and Hadith compiled by Maulana Ashraf Ali Thanvi.";
+                path = "/";
+            } else if (component === "khutbah") {
+                description = "Read the Friday Sermon (Khutbah) and introductory supplications of Munajat-e-Maqbool.";
+            } else if (component === "bookmarks") {
+                description = "Your saved favorite prayers and duas from Munajat-e-Maqbool.";
+            } else if (component === "settings") {
+                description = "Configure language translation and voice options for reading Munajat-e-Maqbool.";
+            } else if (component === "help") {
+                description = "Help, credits, and keyboard shortcuts information for Munajat-e-Maqbool.";
+            }
+            this.updateSEO(title, description, path);
+        }
+    }
+
     constructor(props) {
         super(props);
 
@@ -233,8 +304,7 @@ class MunjateMaqbool extends React.Component {
             prayer: prayer,
         });
         if (this.state.showComponent === "content") {
-            this.updateUrlPath("content", prayer.id);
-            document.title = `Dua ${prayer.id} (${prayer.tags}) - Munajat E Maqbool`;
+            this.updatePageSEO("content", prayer);
         }
     }
 
@@ -366,16 +436,7 @@ class MunjateMaqbool extends React.Component {
         this.setState({
             showComponent: component
         });
-        if (component !== "content") {
-            this.updateUrlPath(component);
-            const capitalized = component.charAt(0).toUpperCase() + component.slice(1);
-            document.title = `${capitalized} - Munajat E Maqbool`;
-        } else {
-            this.updateUrlPath("content", this.state.prayer.id);
-            const prayer = this.state.prayer;
-            const dayTag = prayer.tags || "";
-            document.title = `Dua ${prayer.id} (${dayTag}) - Munajat E Maqbool`;
-        }
+        this.updatePageSEO(component, this.state.prayer);
     }
 
     handleKeyPress = (event) => {
@@ -430,12 +491,10 @@ class MunjateMaqbool extends React.Component {
             if (prayerId && Number(this.state.prayer.id) !== prayerId) {
                 this.fetch(prayerId);
             } else {
-                const prayer = this.state.prayer;
-                document.title = `Dua ${prayer.id} (${prayer.tags}) - Munajat E Maqbool`;
+                this.updatePageSEO("content", this.state.prayer);
             }
         } else {
-            const capitalized = showComponent.charAt(0).toUpperCase() + showComponent.slice(1);
-            document.title = `${capitalized} - Munajat E Maqbool`;
+            this.updatePageSEO(showComponent, null);
         }
     }
 
@@ -449,10 +508,7 @@ class MunjateMaqbool extends React.Component {
             window.speechSynthesis.onvoiceschanged = this.loadVoices;
         }
 
-        if (this.state.showComponent !== "content") {
-            const capitalized = this.state.showComponent.charAt(0).toUpperCase() + this.state.showComponent.slice(1);
-            document.title = `${capitalized} - Munajat E Maqbool`;
-        }
+        this.updatePageSEO(this.state.showComponent, this.state.prayer);
     }
 
     fetchTitle() {

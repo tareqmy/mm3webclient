@@ -20,13 +20,13 @@ class Title extends React.Component {
                     {
                         this.props.lang !== "bengali" &&
                         <td className="titleenglish">
-                            <TranslatedText text={this.props.title.english} toLang={this.props.lang} />
+                            <h1><TranslatedText text={this.props.title.english} toLang={this.props.lang} /></h1>
                         </td>
                     }
                     {
                         this.bengali() &&
                         <td className="titlebengali">
-                            {this.props.title.bengali}
+                            <h1>{this.props.title.bengali}</h1>
                         </td>
                     }
                     {
