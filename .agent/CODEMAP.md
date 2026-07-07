@@ -199,10 +199,8 @@ Each component has a paired `.css` file imported in the component's `.js`:
 | `docker-compose.yml` | Maps port 3000, volume-mounts `src/` and `public/` for hot reload |
 | `buildspec.yml` | AWS CodeBuild: install → build → artifact `frontend/build/**/*` |
 | `entrypoint.sh` | If `APP_ENV=production`: build + serve with `http-server`; else: `npm start` |
-| `image.sh` | Build Docker image; prune dangling `<none>` images |
-| `rebuild.sh` | `docker rm -f` → `image.sh` → `docker-compose up -d` |
-| `shell.sh` | `docker exec -it {container} /bin/sh` |
-| `.env` | `CLIENT_APP=memappclient` (used by shell scripts and docker-compose) |
+| `Makefile` | Handles Docker image builds (`make image`), environment rebuilds (`make rebuild`), and interactive shell access (`make shell`) |
+| `.env` | `CLIENT_APP=memappclient` (used by Makefile and docker-compose) |
 
 ---
 

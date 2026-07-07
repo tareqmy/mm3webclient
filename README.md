@@ -120,19 +120,19 @@ npm start
 
 ```bash
 # Build image and start container
-sh rebuild.sh
+make rebuild
 
 # App runs at http://localhost:3000
 # Source files are volume-mounted for hot reload
 ```
 
-Helper scripts at project root:
+Makefile targets at project root:
 
-| Script        | Purpose                                          |
-|---------------|--------------------------------------------------|
-| `image.sh`    | Build Docker image, clean up dangling images     |
-| `rebuild.sh`  | Stop container → rebuild image → start container |
-| `shell.sh`    | Open shell inside running container              |
+| Command        | Purpose                                          |
+|----------------|--------------------------------------------------|
+| `make image`   | Build Docker image, clean up dangling images     |
+| `make rebuild` | Stop container → rebuild image → start container |
+| `make shell`   | Open shell inside running container              |
 
 ---
 
@@ -180,9 +180,7 @@ mm3webclient/
 ├── Dockerfile                  # Node 22 Alpine image
 ├── docker-compose.yml          # Local dev compose config
 ├── buildspec.yml               # AWS CodeBuild spec
-├── image.sh                    # Build & clean Docker image
-├── rebuild.sh                  # Full container rebuild
-├── shell.sh                    # Exec into running container
+├── Makefile                    # Makefile for local development (image, rebuild, shell)
 ├── .env                        # Local env (CLIENT_APP name)
 └── .gitignore
 ```

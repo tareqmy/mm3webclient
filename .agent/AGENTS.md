@@ -156,16 +156,16 @@ Push to the CodeBuild-connected repository. The `buildspec.yml` handles:
 
 ```bash
 # First time
-sh image.sh
+make image
 
 # Start
 docker-compose up -d
 
 # Rebuild after Dockerfile or package.json changes
-sh rebuild.sh
+make rebuild
 
 # Shell access
-sh shell.sh
+make shell
 ```
 
 ---
