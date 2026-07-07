@@ -72,56 +72,81 @@ class Settings extends React.Component {
 
         return (
             <div className="settings">
-                <div className="english">
-                    <div className="header">Settings</div>
-                    
-                    <div className="para">
-                        <label>Translation: </label>
-                        <select onChange={this.langSelected} value={this.props.lang}>
-                            <option value="english">English</option>
-                            <option value="bengali">বাংলা</option>
-                            {(this.props.customLanguages || []).map(l => (
-                                <option value={l.code} key={l.code}>{l.name}</option>
-                            ))}
-                        </select>
-                    </div>
+                <div className="settings-header">
+                    <h2>Settings</h2>
+                    <p className="subtitle">Customize translation and language preferences</p>
+                </div>
 
-                    <div className="settings-section">
-                        <div className="section-title">Add Language (Google Translate)</div>
-                        {available.length > 0 ? (
-                            <div className="add-lang-row">
-                                <select 
-                                    value={activeNewLangCode} 
-                                    onChange={(e) => this.setState({ selectedNewLanguage: e.target.value })}
-                                >
-                                    {available.map(l => (
+                <div className="settings-content">
+                    {/* Section 1: Active Language Select */}
+                    <div className="settings-card">
+                        <h3><i className="fas fa-language"></i> Display Language</h3>
+                        <div className="card-body">
+                            <p className="card-desc">Choose the main translation language for reading the supplications:</p>
+                            <div className="select-wrapper">
+                                <select onChange={this.langSelected} value={this.props.lang}>
+                                    <option value="english">English</option>
+                                    <option value="bengali">বাংলা (Bengali)</option>
+                                    {(this.props.customLanguages || []).map(l => (
                                         <option value={l.code} key={l.code}>{l.name}</option>
                                     ))}
                                 </select>
-                                <button className="add-btn" onClick={this.handleAdd}>Add</button>
                             </div>
-                        ) : (
-                            <div className="info-text">All supported languages added.</div>
-                        )}
+                        </div>
                     </div>
 
-                    {(this.props.customLanguages || []).length > 0 && (
-                        <div className="settings-section">
-                            <div className="section-title">Your Custom Languages</div>
-                            <div className="custom-langs-list">
-                                {this.props.customLanguages.map(l => (
-                                    <div className="custom-lang-item" key={l.code}>
-                                        <span className="lang-name">{l.name}</span>
-                                        <button className="remove-btn" onClick={() => this.props.onRemoveLanguage(l.code)}>
-                                            <i className="fas fa-trash-alt"></i> Remove
-                                        </button>
+                    {/* Section 2: Add Custom Languages */}
+                    <div className="settings-card add-language-section">
+                        <h3><i className="fas fa-plus-circle"></i> Add Translation Language</h3>
+                        <div className="card-body">
+                            <p className="card-desc">Add other languages to automatically translate the text using Google Translate:</p>
+                            {available.length > 0 ? (
+                                <div className="add-lang-row">
+                                    <div className="select-wrapper">
+                                        <select 
+                                            value={activeNewLangCode} 
+                                            onChange={(e) => this.setState({ selectedNewLanguage: e.target.value })}
+                                        >
+                                            {available.map(l => (
+                                                <option value={l.code} key={l.code}>{l.name}</option>
+                                            ))}
+                                        </select>
                                     </div>
-                                ))}
+                                    <button className="add-btn" onClick={this.handleAdd}>
+                                        <i className="fas fa-plus"></i> Add
+                                    </button>
+                                </div>
+                            ) : (
+                                <div className="info-text">All supported languages have been added.</div>
+                            )}
+                        </div>
+                    </div>
+
+                    {/* Section 3: Custom Languages List */}
+                    {(this.props.customLanguages || []).length > 0 && (
+                        <div className="settings-card custom-languages-card">
+                            <h3><i className="fas fa-list-ul"></i> Added Languages</h3>
+                            <div className="card-body">
+                                <div className="custom-langs-list">
+                                    {this.props.customLanguages.map(l => (
+                                        <div className="custom-lang-item" key={l.code}>
+                                            <span className="lang-name">{l.name}</span>
+                                            <button className="remove-btn" onClick={() => this.props.onRemoveLanguage(l.code)}>
+                                                <i className="fas fa-trash-alt"></i> Remove
+                                            </button>
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
                         </div>
                     )}
                 </div>
-                <button onClick={() => this.props.showComponent("content")}>OK</button>
+
+                <div className="settings-footer">
+                    <button className="back-btn" onClick={() => this.props.showComponent("content")}>
+                        <i className="fas fa-check"></i> OK
+                    </button>
+                </div>
             </div>
         );
     }

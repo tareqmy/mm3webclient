@@ -1,17 +1,28 @@
 import React from 'react';
 import './bookmarks.css';
 
-//instead of class Bookmark extends React.Component we are using "functional component"
-//because we only need the render method and constructor and state management is not necessary
+// functional component to represent an individual bookmark item card
 function Bookmark(props) {
+    const getPreviewText = () => {
+        if (props.lang === "bengali" && props.value.bengali) {
+            // Strip HTML tags for clean preview
+            return props.value.bengali.replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim();
+        }
+        return props.value.english ? props.value.english.replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim() : "";
+    };
+
     return (
-        <div className="bookmark">
+        <div className="bookmark-item-card">
             <div className="left" onClick={props.onGoto}>
-                <p>{props.value.id}. {props.value.english}</p>
+                <div className="bookmark-id-badge">#{props.value.id}</div>
+                <div className="bookmark-details">
+                    <span className="bookmark-day-tag">{props.value.tags}</span>
+                    <p className="bookmark-preview">{getPreviewText()}</p>
+                </div>
             </div>
             <div className="right">
-                <button onClick={props.unBookmark}>
-                    <i className="fas fa-star"></i>
+                <button className="unbookmark-btn" onClick={props.unBookmark} title="Remove Bookmark">
+                    <i className="fas fa-trash-alt"></i>
                 </button>
             </div>
         </div>
@@ -28,28 +39,39 @@ class Bookmarks extends React.Component {
     getBookmarks() {
         var keys = Object.keys(this.props.bookmarks);
         if (keys.length === 0) {
-            return <label>You have no bookmarks yet!</label>;
+            return (
+                <div className="empty-bookmarks-box">
+                    <i className="far fa-star empty-icon"></i>
+                    <p className="empty-title">No Bookmarks Saved</p>
+                    <p className="empty-desc">Tap the star icon on any prayer while reading to save it here for quick access.</p>
+                </div>
+            );
         }
 
         const options = Object.entries(this.props.bookmarks).map(([key, value]) => {
             return <Bookmark key={key} value={value} lang={this.props.lang}
                              onGoto={() => this.goAndFetch(key)} unBookmark={() => this.props.unBookmark(key)}/>
         })
-        return options;
+        return <div className="bookmarks-list-container">{options}</div>;
     }
 
     render() {
         return (
             <div className="bookmarks">
-                <div className="english">
-                    <div className="header">Bookmarks</div>
-                    <div className="para">
-                        {
-                            this.getBookmarks()
-                        }
-                    </div>
+                <div className="bookmarks-header">
+                    <h2>Bookmarks</h2>
+                    <p className="subtitle">Your saved prayers and daily supplications</p>
                 </div>
-                <button onClick={() => this.props.showComponent("content")}>OK</button>
+
+                <div className="bookmarks-content">
+                    {this.getBookmarks()}
+                </div>
+
+                <div className="bookmarks-footer">
+                    <button className="back-btn" onClick={() => this.props.showComponent("content")}>
+                        <i className="fas fa-check"></i> OK
+                    </button>
+                </div>
             </div>
         );
     }

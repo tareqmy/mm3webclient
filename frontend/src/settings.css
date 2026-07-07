@@ -2,80 +2,128 @@
 
 .settings {
     margin: auto;
+    max-width: 600px;
     color: #2d3748;
     text-align: center;
     padding: 40px 50px;
     background: linear-gradient(180deg, #ffffff 0%, #fdfcf9 100%);
+    border-radius: 16px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .mobile .settings {
-    padding: 25px 20px;
+    padding: 25px 15px;
+    margin: 10px;
+    border-radius: 12px;
 }
 
-.settings button {
-    display: inline-block;
-    font-family: "Georgia", serif;
-    font-size: 14px;
-    font-weight: bold;
-    color: #ffffff;
-    background: linear-gradient(135deg, #0f4c3a 0%, #1c6d54 100%);
-    border: none;
-    border-radius: 20px;
-    padding: 10px 24px;
-    margin: 20px auto;
-    cursor: pointer;
-    box-shadow: 0 4px 12px rgba(15, 76, 58, 0.15);
-    transition: all 0.3s ease;
-    outline: none;
-    width: 120px;
+/* Header section */
+.settings-header {
+    margin-bottom: 30px;
+    border-bottom: 2px solid rgba(15, 76, 58, 0.1);
+    padding-bottom: 20px;
 }
 
-.settings button:hover {
-    background: linear-gradient(135deg, #175e49 0%, #238567 100%);
-    box-shadow: 0 6px 16px rgba(15, 76, 58, 0.25);
-    transform: translateY(-2px);
-}
-
-.settings button:active {
-    transform: translateY(0);
-    box-shadow: 0 3px 8px rgba(15, 76, 58, 0.15);
-}
-
-.settings .english {
-    font: 18px "Georgia", sans-serif;
-    text-align: justify;
-    padding: 5px;
-}
-
-.settings .header {
-    font-size: 24px;
+.settings-header h2 {
     font-family: "Metamorphous", "Georgia", serif;
     color: #0f4c3a;
-    margin-bottom: 25px;
+    font-size: 28px;
+    margin: 0 0 8px 0;
 }
 
-.settings .para {
-    font-size: 16px;
-    color: #4a5568;
-    margin: 20px 0;
+.settings-header .subtitle {
+    font-family: "Georgia", serif;
+    font-size: 14px;
+    color: #d4af37;
+    font-style: italic;
+    margin: 0;
+}
+
+/* Content layout */
+.settings-content {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    gap: 25px;
+    margin-bottom: 35px;
+}
+
+/* Card Design */
+.settings-card {
+    background: #ffffff;
+    border: 1px solid rgba(15, 76, 58, 0.08);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+    text-align: left;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.settings-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(15, 76, 58, 0.06);
+}
+
+.settings-card h3 {
+    background: linear-gradient(90deg, rgba(15, 76, 58, 0.05) 0%, rgba(15, 76, 58, 0.01) 100%);
+    border-bottom: 1.5px solid #d4af37;
+    margin: 0;
+    padding: 14px 20px;
+    font-family: "Metamorphous", "Georgia", serif;
+    color: #0f4c3a;
+    font-size: 16px;
+    display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
+}
+
+.settings-card h3 i {
+    color: #d4af37;
+}
+
+.settings-card .card-body {
+    padding: 20px;
+    font-family: "Georgia", serif;
+}
+
+.settings-card .card-desc {
+    font-size: 13.5px;
+    color: #718096;
+    margin: 0 0 15px 0;
+    line-height: 1.5;
+}
+
+/* Custom Select styling */
+.select-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
 }
 
 .settings select {
     font-family: "Georgia", serif;
-    font-size: 15px;
+    font-size: 14.5px;
     font-weight: 600;
     color: #0f4c3a;
     background: #ffffff;
-    border: 1px solid rgba(212, 175, 55, 0.3);
-    border-radius: 20px;
-    padding: 8px 36px 8px 16px;
+    border: 1px solid rgba(15, 76, 58, 0.2);
+    border-radius: 8px;
+    padding: 10px 40px 10px 16px;
     cursor: pointer;
     outline: none;
-    width: 150px;
+    width: 100%;
+    box-sizing: border-box;
     transition: all 0.3s ease;
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -83,88 +131,139 @@
     background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230f4c3a' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 14px center;
-    background-size: 12px 12px;
+    background-size: 14px 14px;
 }
 
-.settings select:hover {
+.settings select:hover, .settings select:focus {
     border-color: #d4af37;
     background-color: #fffdf9;
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
 }
 
-.settings-section {
-    border-top: 1px solid rgba(212, 175, 55, 0.2);
-    margin-top: 25px;
-    padding-top: 20px;
-    text-align: center;
-}
-
-.section-title {
-    font-family: "Georgia", serif;
-    font-size: 16px;
-    font-weight: bold;
-    color: #0f4c3a;
-    margin-bottom: 15px;
-}
-
+/* Add Language layout */
 .add-lang-row {
     display: flex;
-    justify-content: center;
+    gap: 15px;
     align-items: center;
-    gap: 12px;
-    margin-bottom: 15px;
 }
 
-.settings .add-btn {
-    width: 80px;
+.add-lang-row .select-wrapper {
+    flex: 1;
+}
+
+.settings button.add-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    width: auto;
     margin: 0;
-    padding: 8px 16px;
-    font-size: 13px;
-    border-radius: 20px;
+    padding: 10px 24px;
+    font-family: "Georgia", serif;
+    font-size: 14px;
+    font-weight: bold;
+    color: #ffffff;
+    background: linear-gradient(135deg, #0f4c3a 0%, #1c6d54 100%);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(15, 76, 58, 0.15);
+    transition: all 0.2s ease;
 }
 
+.settings button.add-btn:hover {
+    background: linear-gradient(135deg, #175e49 0%, #238567 100%);
+    box-shadow: 0 6px 14px rgba(15, 76, 58, 0.25);
+    transform: translateY(-1px);
+}
+
+/* Custom Added Languages list */
 .custom-langs-list {
-    max-width: 320px;
-    margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    text-align: left;
+    gap: 10px;
+    width: 100%;
 }
 
 .custom-lang-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(245, 240, 230, 0.4);
-    padding: 6px 12px;
+    background: #fdfaf5;
+    padding: 10px 16px;
     border-radius: 8px;
-    border: 1px solid rgba(212, 175, 55, 0.15);
+    border: 1px solid rgba(212, 175, 55, 0.2);
 }
 
 .custom-lang-item .lang-name {
-    font-size: 14px;
+    font-size: 14.5px;
     color: #2d3748;
     font-weight: 500;
 }
 
-.settings .remove-btn {
+.settings button.remove-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
     width: auto;
     margin: 0;
-    padding: 4px 10px;
-    font-size: 11px;
+    padding: 6px 12px;
+    font-family: "Georgia", serif;
+    font-size: 12px;
+    font-weight: bold;
+    color: #ffffff;
     background: linear-gradient(135deg, #c53030 0%, #e53e3e 100%);
-    border-radius: 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
     box-shadow: 0 2px 6px rgba(197, 48, 48, 0.15);
+    transition: all 0.2s ease;
 }
 
-.settings .remove-btn:hover {
+.settings button.remove-btn:hover {
     background: linear-gradient(135deg, #9b2c2c 0%, #c53030 100%);
     box-shadow: 0 4px 10px rgba(197, 48, 48, 0.25);
+    transform: translateY(-1px);
 }
 
 .info-text {
-    font-size: 13px;
+    font-size: 13.5px;
     color: #718096;
     font-style: italic;
+    text-align: center;
+    padding: 10px 0;
 }
 
+/* Footer & Back Button */
+.settings-footer {
+    border-top: 2px solid rgba(15, 76, 58, 0.1);
+    padding-top: 25px;
+    margin-top: 10px;
+}
+
+.settings-footer button.back-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: "Georgia", serif;
+    font-size: 14px;
+    font-weight: bold;
+    color: #ffffff;
+    background: linear-gradient(135deg, #0f4c3a 0%, #1c6d54 100%);
+    border: none;
+    border-radius: 24px;
+    padding: 12px 36px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(15, 76, 58, 0.15);
+    transition: all 0.3s ease;
+    outline: none;
+    width: auto;
+}
+
+.settings-footer button.back-btn:hover {
+    background: linear-gradient(135deg, #175e49 0%, #238567 100%);
+    box-shadow: 0 6px 18px rgba(15, 76, 58, 0.25);
+    transform: translateY(-2px);
+}
