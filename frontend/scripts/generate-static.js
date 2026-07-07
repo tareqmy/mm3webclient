@@ -60,7 +60,7 @@ async function run() {
         process.exit(1);
     }
     const template = fs.readFileSync(TEMPLATE_PATH, 'utf8');
-    const seoRegex = /(?:<!-- SEO-TAGS-START -->)?[\s\S]*?<title>Munajat E Maqbool<\/title>[\s\S]*?"@type":\s*"Book"[\s\S]*?<\/script>(?:\s*<!-- SEO-TAGS-END -->)?/;
+    const seoRegex = /<title>Munajat E Maqbool<\/title>[\s\S]*?"@type":\s*"Book"[\s\S]*?<\/script>/;
 
     // 1. Pre-render 196 Duas
     console.log("Pre-rendering Duas 1 to 196...");
