@@ -3,6 +3,8 @@
 > A digital rendering of the classical Islamic supplication book *Munajat-e-Maqbool* by Hakimul Ummah Maulana Ashraf Ali Thanwi (R), with English and Bengali translations.
 
 ---
+![Munajate Maqbool Showcase](media/screenshot.png)
+---
 
 ## Overview
 
