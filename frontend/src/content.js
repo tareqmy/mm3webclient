@@ -28,7 +28,63 @@ class Content extends React.Component {
         super(props);
         this.daySelected = this.daySelected.bind(this);
         this.prayerSelected = this.prayerSelected.bind(this);
+        
+        // Touch tracking variables for swipe gestures
+        this.touchStartX = null;
+        this.touchStartY = null;
+        this.touchEndX = null;
+        this.touchEndY = null;
     }
+
+    handleTouchStart = (e) => {
+        const touch = e.touches[0];
+        this.touchStartX = touch.clientX;
+        this.touchStartY = touch.clientY;
+        this.touchEndX = touch.clientX;
+        this.touchEndY = touch.clientY;
+    };
+
+    handleTouchMove = (e) => {
+        const touch = e.touches[0];
+        this.touchEndX = touch.clientX;
+        this.touchEndY = touch.clientY;
+    };
+
+    handleTouchEnd = () => {
+        if (this.touchStartX === null || this.touchStartY === null) {
+            return;
+        }
+
+        const diffX = this.touchEndX - this.touchStartX;
+        const diffY = this.touchEndY - this.touchStartY;
+
+        // Threshold parameters
+        const minSwipeDistance = 50; // px
+        const maxVerticalDeviation = 100; // px, don't trigger if swiped too vertically
+
+        if (Math.abs(diffX) > minSwipeDistance && Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffY) < maxVerticalDeviation) {
+            if (diffX > 0) {
+                // Swiped right (left-to-right) -> previous dua
+                this.props.previous();
+            } else {
+                // Swiped left (right-to-left) -> next dua
+                this.props.next();
+            }
+        }
+
+        this.touchStartX = null;
+        this.touchStartY = null;
+        this.touchEndX = null;
+        this.touchEndY = null;
+    };
+
+    handleTouchCancel = () => {
+        this.touchStartX = null;
+        this.touchStartY = null;
+        this.touchEndX = null;
+        this.touchEndY = null;
+    };
+
 
     getDaysOptions() {
         const options = Object.keys(this.props.days).map(key => {
@@ -102,7 +158,13 @@ class Content extends React.Component {
                             className="fas fa-angle-double-right"></i></button>
                     </div>
                 </div>
-                <div className="content">
+                <div 
+                    className="content"
+                    onTouchStart={this.handleTouchStart}
+                    onTouchMove={this.handleTouchMove}
+                    onTouchEnd={this.handleTouchEnd}
+                    onTouchCancel={this.handleTouchCancel}
+                >
                     <div className="prayerholder">
                         {isSpeechSupported && (
                             <div className="audio-player">

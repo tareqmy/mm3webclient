@@ -4,6 +4,7 @@
     margin: auto;
     min-height: 330px;
     animation: fadeIn 0.5s ease-out;
+    touch-action: pan-y;
 }
 
 @keyframes fadeIn {
