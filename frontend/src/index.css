@@ -69,3 +69,43 @@ hr {
     100% { opacity: 0.6; }
 }
 
+/* Arabic Font Custom Overrides */
+.arabic-font-scheherazade .content .arabic,
+.arabic-font-scheherazade .intro .arabic,
+.arabic-font-scheherazade .khutbah .arabic {
+    font-family: "Scheherazade", serif;
+}
+
+.arabic-font-noto .content .arabic,
+.arabic-font-noto .intro .arabic,
+.arabic-font-noto .khutbah .arabic {
+    font-family: "Noto", sans-serif;
+}
+
+/* Arabic Font Size Overrides */
+/* Small */
+.arabic-size-small .content .arabic { font-size: 24px; }
+.arabic-size-small.mobile .content .arabic { font-size: 20px; }
+.arabic-size-small .intro .arabic,
+.arabic-size-small .khutbah .arabic { font-size: 22px; }
+.arabic-size-small.mobile .intro .arabic,
+.arabic-size-small.mobile .khutbah .arabic { font-size: 18px; }
+
+/* Large */
+.arabic-size-large .content .arabic { font-size: 36px; }
+.arabic-size-large.mobile .content .arabic { font-size: 30px; }
+.arabic-size-large .intro .arabic,
+.arabic-size-large .khutbah .arabic { font-size: 34px; }
+.arabic-size-large.mobile .intro .arabic,
+.arabic-size-large.mobile .khutbah .arabic { font-size: 28px; }
+
+/* Extra Large */
+.arabic-size-xlarge .content .arabic { font-size: 42px; }
+.arabic-size-xlarge.mobile .content .arabic { font-size: 36px; }
+.arabic-size-xlarge .intro .arabic,
+.arabic-size-xlarge .khutbah .arabic { font-size: 40px; }
+.arabic-size-xlarge.mobile .intro .arabic,
+.arabic-size-xlarge.mobile .khutbah .arabic { font-size: 33px; }
+
+
+

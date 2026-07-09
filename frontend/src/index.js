@@ -128,6 +128,8 @@ class MunjateMaqbool extends React.Component {
         var size = 1;
         var defaultLang = "english";
         var defaultDay = "saturday";
+        var defaultArabicFont = "noto";
+        var defaultArabicSize = "medium";
 
         const route = this.parsePath();
         let initComponent = this.initComponent();
@@ -136,12 +138,16 @@ class MunjateMaqbool extends React.Component {
         }
 
         const initialLang = this.getLang(defaultLang);
+        const initialArabicFont = this.getArabicFont(defaultArabicFont);
+        const initialArabicSize = this.getArabicSize(defaultArabicSize);
         this.state = {
             isMobile: this.isMobile(),
             size: size,
             first: first,
             last: last,
             lang: initialLang,
+            arabicFont: initialArabicFont,
+            arabicSize: initialArabicSize,
             customLanguages: this.getCustomLanguages(),
             bookmarks: this.getBookmarks(),
             showComponent: initComponent,
@@ -218,6 +224,36 @@ class MunjateMaqbool extends React.Component {
             lang = defaultLang;
         }
         return lang;
+    }
+
+    getArabicFont(defaultArabicFont) {
+        var font = localStorage.getItem('arabicFont');
+        if (font === null) {
+            font = defaultArabicFont;
+        }
+        return font;
+    }
+
+    arabicFontSelected = (font) => {
+        localStorage.setItem('arabicFont', font);
+        this.setState({
+            arabicFont: font
+        });
+    }
+
+    getArabicSize(defaultArabicSize) {
+        var size = localStorage.getItem('arabicSize');
+        if (size === null) {
+            size = defaultArabicSize;
+        }
+        return size;
+    }
+
+    arabicSizeSelected = (size) => {
+        localStorage.setItem('arabicSize', size);
+        this.setState({
+            arabicSize: size
+        });
     }
 
     getCustomLanguages() {
@@ -724,7 +760,7 @@ class MunjateMaqbool extends React.Component {
 
     render() {
         return (
-            <div className={"container " + this.getMobileClass()}>
+            <div className={`container ${this.getMobileClass()} arabic-font-${this.state.arabicFont} arabic-size-${this.state.arabicSize}`}>
                 <Title lang={this.state.lang} isMobile={this.state.isMobile} title={this.state.title}/>
                 <Menu prayer={this.state.prayer} component={this.state.showComponent}
                       showComponent={this.showComponent}/>
@@ -761,10 +797,14 @@ class MunjateMaqbool extends React.Component {
                 {
                     this.state.showComponent === "settings" &&
                     <Settings showComponent={this.showComponent} lang={this.state.lang}
-                              onLangChange={this.langSelected}
-                              customLanguages={this.state.customLanguages}
-                              onAddLanguage={this.addLanguage}
-                              onRemoveLanguage={this.removeLanguage}/>
+                               onLangChange={this.langSelected}
+                               customLanguages={this.state.customLanguages}
+                               onAddLanguage={this.addLanguage}
+                               onRemoveLanguage={this.removeLanguage}
+                               arabicFont={this.state.arabicFont}
+                               onArabicFontChange={this.arabicFontSelected}
+                               arabicSize={this.state.arabicSize}
+                               onArabicSizeChange={this.arabicSizeSelected}/>
                 }
                 {
                     this.state.showComponent === "help" &&

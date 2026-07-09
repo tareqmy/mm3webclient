@@ -34,9 +34,61 @@ describe('Component Smoke Tests', () => {
     it('renders Settings without crashing', () => {
         const div = document.createElement('div');
         ReactDOM.render(
-            <Settings lang="english" showComponent={() => {}} onLangChange={() => {}} />,
+            <Settings 
+                lang="english" 
+                showComponent={() => {}} 
+                onLangChange={() => {}} 
+                arabicFont="noto"
+                onArabicFontChange={() => {}}
+                arabicSize="medium"
+                onArabicSizeChange={() => {}}
+            />,
             div
         );
+        ReactDOM.unmountComponentAtNode(div);
+    });
+
+    it('triggers onArabicFontChange when font selection changes in Settings', () => {
+        const div = document.createElement('div');
+        const fontChangeMock = jest.fn();
+        const settingsInstance = ReactDOM.render(
+            <Settings 
+                lang="english" 
+                showComponent={() => {}} 
+                onLangChange={() => {}} 
+                arabicFont="noto"
+                onArabicFontChange={fontChangeMock}
+                arabicSize="medium"
+                onArabicSizeChange={() => {}}
+            />,
+            div
+        );
+
+        settingsInstance.arabicFontChanged({ target: { value: 'scheherazade' } });
+
+        expect(fontChangeMock).toHaveBeenCalledWith('scheherazade');
+        ReactDOM.unmountComponentAtNode(div);
+    });
+
+    it('triggers onArabicSizeChange when font size selection changes in Settings', () => {
+        const div = document.createElement('div');
+        const sizeChangeMock = jest.fn();
+        const settingsInstance = ReactDOM.render(
+            <Settings 
+                lang="english" 
+                showComponent={() => {}} 
+                onLangChange={() => {}} 
+                arabicFont="noto"
+                onArabicFontChange={() => {}}
+                arabicSize="medium"
+                onArabicSizeChange={sizeChangeMock}
+            />,
+            div
+        );
+
+        settingsInstance.arabicSizeChanged({ target: { value: 'large' } });
+
+        expect(sizeChangeMock).toHaveBeenCalledWith('large');
         ReactDOM.unmountComponentAtNode(div);
     });
 

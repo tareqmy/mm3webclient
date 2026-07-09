@@ -45,6 +45,14 @@ class Settings extends React.Component {
         this.props.onLangChange(event.target.value);
     }
 
+    arabicFontChanged = (event) => {
+        this.props.onArabicFontChange(event.target.value);
+    }
+
+    arabicSizeChanged = (event) => {
+        this.props.onArabicSizeChange(event.target.value);
+    }
+
     handleAdd() {
         const available = this.getAvailableLanguages();
         if (available.length === 0) return;
@@ -90,6 +98,42 @@ class Settings extends React.Component {
                                     {(this.props.customLanguages || []).map(l => (
                                         <option value={l.code} key={l.code}>{l.name}</option>
                                     ))}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Section 1b: Arabic Font Select */}
+                    <div className="settings-card">
+                        <h3><i className="fas fa-font"></i> Arabic Font</h3>
+                        <div className="card-body">
+                            <p className="card-desc">Choose the font style for reading Arabic text:</p>
+                            <div className="select-wrapper">
+                                <select 
+                                    onChange={this.arabicFontChanged} 
+                                    value={this.props.arabicFont}
+                                >
+                                    <option value="noto">Noto Sans Arabic (Default)</option>
+                                    <option value="scheherazade">Scheherazade</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Section 1c: Arabic Font Size Select */}
+                    <div className="settings-card">
+                        <h3><i className="fas fa-text-height"></i> Arabic Font Size</h3>
+                        <div className="card-body">
+                            <p className="card-desc">Choose the font size for reading Arabic text:</p>
+                            <div className="select-wrapper">
+                                <select 
+                                    onChange={this.arabicSizeChanged} 
+                                    value={this.props.arabicSize}
+                                >
+                                    <option value="small">Small</option>
+                                    <option value="medium">Medium (Default)</option>
+                                    <option value="large">Large</option>
+                                    <option value="xlarge">Extra Large</option>
                                 </select>
                             </div>
                         </div>
