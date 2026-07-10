@@ -85,6 +85,27 @@ class Content extends React.Component {
         this.touchEndY = null;
     };
 
+    handleContentClick = (e) => {
+        if (!this.props.isMobile) {
+            return;
+        }
+
+        // Ignore clicks on interactive elements or audio player
+        if (e.target.closest('button, select, a, input, textarea') || e.target.closest('.audio-player')) {
+            return;
+        }
+
+        // Calculate click position relative to the content element
+        const rect = e.currentTarget.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+
+        if (x > rect.width / 2) {
+            this.props.next();
+        } else {
+            this.props.previous();
+        }
+    };
+
 
     getDaysOptions() {
         const options = Object.keys(this.props.days).map(key => {
@@ -164,6 +185,7 @@ class Content extends React.Component {
                     onTouchMove={this.handleTouchMove}
                     onTouchEnd={this.handleTouchEnd}
                     onTouchCancel={this.handleTouchCancel}
+                    onClick={this.handleContentClick}
                 >
                     <div className="prayerholder">
                         {isSpeechSupported && (

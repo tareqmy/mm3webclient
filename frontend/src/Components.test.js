@@ -209,4 +209,186 @@ describe('Component Smoke Tests', () => {
         expect(nextMock).not.toHaveBeenCalled();
         ReactDOM.unmountComponentAtNode(div);
     });
+
+    it('calls next when clicking the right half of the content on mobile', () => {
+        const div = document.createElement('div');
+        const mockPrayer = { id: 1, tags: 'saturday', arabic: 'a', english: 'e', bengali: 'b' };
+        const mockDays = { saturday: { previous: 'f', begin: 1, size: 48, value: 's', next: 'su' } };
+        const nextMock = jest.fn();
+        const prevMock = jest.fn();
+        const contentInstance = ReactDOM.render(
+            <Content
+                lang="english"
+                prayer={mockPrayer}
+                days={mockDays}
+                bookmarks={{}}
+                onDayChange={() => {}}
+                onFetch={() => {}}
+                next={nextMock}
+                previous={prevMock}
+                nextBookmark={() => {}}
+                previousBookmark={() => {}}
+                toggleBookmark={() => {}}
+                isMobile={true}
+            />,
+            div
+        );
+
+        const contentElement = div.querySelector('.content');
+        contentElement.getBoundingClientRect = () => ({
+            left: 10,
+            width: 400,
+            top: 0,
+            right: 410,
+            bottom: 600,
+            height: 600
+        });
+
+        // Click right half: clientX = 250 (which is > left + width/2 = 10 + 200 = 210)
+        const event = {
+            clientX: 250,
+            currentTarget: contentElement,
+            target: contentElement
+        };
+        contentInstance.handleContentClick(event);
+
+        expect(nextMock).toHaveBeenCalledTimes(1);
+        expect(prevMock).not.toHaveBeenCalled();
+        ReactDOM.unmountComponentAtNode(div);
+    });
+
+    it('calls previous when clicking the left half of the content on mobile', () => {
+        const div = document.createElement('div');
+        const mockPrayer = { id: 1, tags: 'saturday', arabic: 'a', english: 'e', bengali: 'b' };
+        const mockDays = { saturday: { previous: 'f', begin: 1, size: 48, value: 's', next: 'su' } };
+        const nextMock = jest.fn();
+        const prevMock = jest.fn();
+        const contentInstance = ReactDOM.render(
+            <Content
+                lang="english"
+                prayer={mockPrayer}
+                days={mockDays}
+                bookmarks={{}}
+                onDayChange={() => {}}
+                onFetch={() => {}}
+                next={nextMock}
+                previous={prevMock}
+                nextBookmark={() => {}}
+                previousBookmark={() => {}}
+                toggleBookmark={() => {}}
+                isMobile={true}
+            />,
+            div
+        );
+
+        const contentElement = div.querySelector('.content');
+        contentElement.getBoundingClientRect = () => ({
+            left: 10,
+            width: 400,
+            top: 0,
+            right: 410,
+            bottom: 600,
+            height: 600
+        });
+
+        // Click left half: clientX = 150 (which is < left + width/2 = 210)
+        const event = {
+            clientX: 150,
+            currentTarget: contentElement,
+            target: contentElement
+        };
+        contentInstance.handleContentClick(event);
+
+        expect(prevMock).toHaveBeenCalledTimes(1);
+        expect(nextMock).not.toHaveBeenCalled();
+        ReactDOM.unmountComponentAtNode(div);
+    });
+
+    it('does not navigate when clicking on an interactive element (e.g. button) inside content', () => {
+        const div = document.createElement('div');
+        const mockPrayer = { id: 1, tags: 'saturday', arabic: 'a', english: 'e', bengali: 'b' };
+        const mockDays = { saturday: { previous: 'f', begin: 1, size: 48, value: 's', next: 'su' } };
+        const nextMock = jest.fn();
+        const prevMock = jest.fn();
+        const contentInstance = ReactDOM.render(
+            <Content
+                lang="english"
+                prayer={mockPrayer}
+                days={mockDays}
+                bookmarks={{}}
+                onDayChange={() => {}}
+                onFetch={() => {}}
+                next={nextMock}
+                previous={prevMock}
+                nextBookmark={() => {}}
+                previousBookmark={() => {}}
+                toggleBookmark={() => {}}
+                isMobile={true}
+            />,
+            div
+        );
+
+        const contentElement = div.querySelector('.content');
+        contentElement.getBoundingClientRect = () => ({
+            left: 10,
+            width: 400
+        });
+
+        const button = document.createElement('button');
+        contentElement.appendChild(button);
+
+        // Click right half but targeting the button
+        const event = {
+            clientX: 250,
+            currentTarget: contentElement,
+            target: button
+        };
+        contentInstance.handleContentClick(event);
+
+        expect(nextMock).not.toHaveBeenCalled();
+        expect(prevMock).not.toHaveBeenCalled();
+        ReactDOM.unmountComponentAtNode(div);
+    });
+
+    it('does not navigate when isMobile is false', () => {
+        const div = document.createElement('div');
+        const mockPrayer = { id: 1, tags: 'saturday', arabic: 'a', english: 'e', bengali: 'b' };
+        const mockDays = { saturday: { previous: 'f', begin: 1, size: 48, value: 's', next: 'su' } };
+        const nextMock = jest.fn();
+        const prevMock = jest.fn();
+        const contentInstance = ReactDOM.render(
+            <Content
+                lang="english"
+                prayer={mockPrayer}
+                days={mockDays}
+                bookmarks={{}}
+                onDayChange={() => {}}
+                onFetch={() => {}}
+                next={nextMock}
+                previous={prevMock}
+                nextBookmark={() => {}}
+                previousBookmark={() => {}}
+                toggleBookmark={() => {}}
+                isMobile={false}
+            />,
+            div
+        );
+
+        const contentElement = div.querySelector('.content');
+        contentElement.getBoundingClientRect = () => ({
+            left: 10,
+            width: 400
+        });
+
+        const event = {
+            clientX: 250,
+            currentTarget: contentElement,
+            target: contentElement
+        };
+        contentInstance.handleContentClick(event);
+
+        expect(nextMock).not.toHaveBeenCalled();
+        expect(prevMock).not.toHaveBeenCalled();
+        ReactDOM.unmountComponentAtNode(div);
+    });
 });

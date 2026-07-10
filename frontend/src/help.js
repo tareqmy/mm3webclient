@@ -108,18 +108,18 @@ class Help extends React.Component {
                         </div>
 
                         <div className="help-card gestures-card">
-                            <h3><i className="fas fa-mobile-alt"></i> Touch Gestures</h3>
+                            <h3><i className="fas fa-mobile-alt"></i> Touch & Tap Navigation</h3>
                             <div className="card-body">
                                 <div className="shortcut-item">
                                     <span className="shortcut-desc">Next Prayer</span>
                                     <span className="shortcut-keys">
-                                        Swipe Left <i className="fas fa-hand-point-left"></i>
+                                        Swipe Left / Tap Right Half
                                     </span>
                                 </div>
                                 <div className="shortcut-item">
                                     <span className="shortcut-desc">Previous Prayer</span>
                                     <span className="shortcut-keys">
-                                        Swipe Right <i className="fas fa-hand-point-right"></i>
+                                        Swipe Right / Tap Left Half
                                     </span>
                                 </div>
                             </div>
