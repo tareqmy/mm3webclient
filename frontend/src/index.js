@@ -12,8 +12,8 @@ import Settings from './settings';
 import Help from './help';
 import days from './datum/days';
 import swal from 'sweetalert';
-import {get} from "superagent";
-import {API_BASE} from "./config";
+import duas from './dua.json';
+import miscs from './misc.json';
 // end::vars[]
 
 // tag::app[]
@@ -140,6 +140,15 @@ class MunjateMaqbool extends React.Component {
         const initialLang = this.getLang(defaultLang);
         const initialArabicFont = this.getArabicFont(defaultArabicFont);
         const initialArabicSize = this.getArabicSize(defaultArabicSize);
+        const initialPrayer = this.initPrayer(first, defaultDay, route ? route.prayerId : null);
+        const initialTitle = miscs.find(m => Number(m.id) === 1) || {
+            type: "misc",
+            arabic: "",
+            english: "",
+            bengali: "",
+            id: 1,
+        };
+
         this.state = {
             isMobile: this.isMobile(),
             size: size,
@@ -151,55 +160,44 @@ class MunjateMaqbool extends React.Component {
             customLanguages: this.getCustomLanguages(),
             bookmarks: this.getBookmarks(),
             showComponent: initComponent,
-            prayer: this.initPrayer(first, defaultDay, route ? route.prayerId : null),
-            title: {
-                type: "intro",
-                arabic: "",
-                english: "",
-                bengali: "",
-                id: 2,
-            },
+            prayer: initialPrayer,
+            title: initialTitle,
             speakingState: 'stopped',
             audioRate: 1.0,
             audioTarget: initialLang === 'bengali' ? 'arabic' : 'translation',
             voices: []
         };
-        this.fetch(this.state.prayer.id);
     }
 
     initPrayer(first, defaultDay, routePrayerId = null) {
+        let targetId = first;
         if (routePrayerId !== null) {
+            targetId = routePrayerId;
+        } else {
             var stored = localStorage.getItem('prayer');
             if (stored !== null) {
-                var parsed = JSON.parse(stored);
-                if (Number(parsed.id) === Number(routePrayerId)) {
-                    return parsed;
-                }
+                try {
+                    var parsed = JSON.parse(stored);
+                    if (parsed && parsed.id) {
+                        targetId = parsed.id;
+                    }
+                } catch (e) {}
             }
-            return {
-                tags: this.getTags(defaultDay),
-                arabic: "",
-                english: "",
-                bengali: "",
-                number: routePrayerId,
-                id: routePrayerId,
-            };
         }
 
-        var prayer = localStorage.getItem('prayer');
-        if (prayer === null) {
-            prayer = {
-                tags: this.getTags(defaultDay),
-                arabic: "",
-                english: "",
-                bengali: "",
-                number: first,
-                id: first,
-            }
-        } else {
-            prayer = JSON.parse(prayer);
+        const dua = duas.find(d => Number(d.id) === Number(targetId));
+        if (dua) {
+            return dua;
         }
-        return prayer;
+
+        return {
+            tags: this.getTags(defaultDay),
+            arabic: "",
+            english: "",
+            bengali: "",
+            number: targetId,
+            id: targetId,
+        };
     }
 
     initComponent() {
@@ -320,17 +318,12 @@ class MunjateMaqbool extends React.Component {
     }
 
     fetch = (page) => {
-        var self = this;
-        var serverLocation = API_BASE + "/dua/" + page;
-
-        get(serverLocation)
-            .then(function (response) {
-                var json_result = JSON.parse(response.text);
-                self.update(json_result);
-            })
-            .catch(function (err) {
-                swal("Oops!", "Something went wrong!", "error");
-            });
+        const dua = duas.find(d => Number(d.id) === Number(page));
+        if (dua) {
+            this.update(dua);
+        } else {
+            console.error("Dua not found: " + page);
+        }
     }
 
     update(prayer) {
@@ -538,7 +531,6 @@ class MunjateMaqbool extends React.Component {
         document.addEventListener("keydown", this.handleKeyPress);
         window.addEventListener('resize', this.handleWindowSizeChange);
         window.addEventListener('popstate', this.handlePopState);
-        this.fetchTitle();
         this.loadVoices();
         if (typeof window !== 'undefined' && window.speechSynthesis) {
             window.speechSynthesis.onvoiceschanged = this.loadVoices;
@@ -548,19 +540,12 @@ class MunjateMaqbool extends React.Component {
     }
 
     fetchTitle() {
-        var self = this;
-        var serverLocation = API_BASE + "/misc/1";
-
-        get(serverLocation)
-            .then(function (response) {
-                var json_result = JSON.parse(response.text);
-                self.setState({
-                    title: json_result,
-                });
-            })
-            .catch(function (err) {
-                swal("Oops!", "Something went wrong!", "error");
+        const title = miscs.find(m => Number(m.id) === 1);
+        if (title) {
+            this.setState({
+                title: title,
             });
+        }
     }
 
     // make sure to remove the listeners

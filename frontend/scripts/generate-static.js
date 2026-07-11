@@ -1,48 +1,8 @@
 const fs = require('fs');
 const path = require('path');
-const https = require('https');
 
-const API_BASE = "https://api.munajatemaqbool.com";
 const BUILD_DIR = path.join(__dirname, '../build');
 const TEMPLATE_PATH = path.join(BUILD_DIR, 'index.html');
-
-const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
-
-// Helper to fetch JSON from API with retry on 429
-function fetchJsonWithRetry(url, retries = 5, delay = 1000) {
-    return new Promise((resolve, reject) => {
-        const attempt = (remainingRetries, currentDelay) => {
-            https.get(url, (res) => {
-                let data = '';
-                res.on('data', (chunk) => { data += chunk; });
-                res.on('end', async () => {
-                    if (res.statusCode === 200) {
-                        try {
-                            resolve(JSON.parse(data));
-                        } catch (e) {
-                            reject(e);
-                        }
-                    } else if (res.statusCode === 429 && remainingRetries > 0) {
-                        console.warn(`Rate limited (429) for ${url}. Retrying in ${currentDelay}ms... (${remainingRetries} retries left)`);
-                        await sleep(currentDelay);
-                        attempt(remainingRetries - 1, currentDelay * 2);
-                    } else {
-                        reject(new Error(`Failed to load URL ${url} with status: ${res.statusCode}`));
-                    }
-                });
-            }).on('error', async (err) => {
-                if (remainingRetries > 0) {
-                    console.warn(`Request error for ${url}: ${err.message}. Retrying in ${currentDelay}ms...`);
-                    await sleep(currentDelay);
-                    attempt(remainingRetries - 1, currentDelay * 2);
-                } else {
-                    reject(err);
-                }
-            });
-        };
-        attempt(retries, delay);
-    });
-}
 
 function cleanHtmlText(text) {
     if (!text) return '';
@@ -64,9 +24,13 @@ async function run() {
 
     // 1. Pre-render 196 Duas
     console.log("Pre-rendering Duas 1 to 196...");
+    const duas = JSON.parse(fs.readFileSync(path.join(__dirname, '../src/dua.json'), 'utf8'));
     for (let id = 1; id <= 196; id++) {
         try {
-            const dua = await fetchJsonWithRetry(`${API_BASE}/dua/${id}`);
+            const dua = duas.find(d => Number(d.id) === id);
+            if (!dua) {
+                throw new Error(`Dua ${id} not found in local JSON`);
+            }
             const titleStr = `Dua ${id} (${dua.tags}) - Munajat E Maqbool`;
             const descriptionStr = cleanHtmlText(dua.english || dua.bengali).substring(0, 155) + "...";
             const urlStr = `https://munajatemaqbool.com/dua/${id}/`;
@@ -141,9 +105,6 @@ async function run() {
             const dir = path.join(BUILD_DIR, 'dua', String(id));
             fs.mkdirSync(dir, { recursive: true });
             fs.writeFileSync(path.join(dir, 'index.html'), pageHtml);
-            
-            // Wait 100ms to avoid overloading the API and getting rate limited
-            await sleep(100);
         } catch (err) {
             console.error(`Error pre-rendering dua ${id}:`, err.message);
         }

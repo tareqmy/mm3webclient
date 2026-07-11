@@ -1,90 +1,38 @@
 import React from 'react';
 import './khutbah.css';
-import {get} from "superagent";
-import {API_BASE} from "./config";
+import miscs from './misc.json';
 import TranslatedText from './TranslatedText';
 
 class Khutbah extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            title: {
-                type: "khutbah",
-                arabic: "",
-                english: "",
-                bengali: "",
-                id: 4,
-            },
-            start: {
-                type: "khutbah",
-                arabic: "",
-                english: "",
-                bengali: "",
-                id: 5,
-            },
-            khutbah: {
-                type: "khutbah",
-                arabic: "",
-                english: "",
-                bengali: "",
-                id: 6,
-            },
+        const title = miscs.find(m => Number(m.id) === 4) || {
+            type: "khutbah",
+            arabic: "",
+            english: "",
+            bengali: "",
+            id: 4,
         };
-        this.fetchKhutbahTitle();
-        this.fetchKhutbahStart();
-        this.fetchKhutbah();
-    }
-
-    fetchKhutbahTitle() {
-        var self = this;
-        var serverLocation = API_BASE + "/misc/4";
-
-        get(serverLocation)
-            .then(function (response) {
-                var json_result = JSON.parse(response.text);
-                var title = json_result;
-                self.setState({
-                    title: title,
-                });
-            })
-            .catch(function (err) {
-                swal("Oops!", "Something went wrong!", "error");
-            });
-    }
-
-    fetchKhutbahStart() {
-        var self = this;
-        var serverLocation = API_BASE + "/misc/5";
-
-        get(serverLocation)
-            .then(function (response) {
-                var json_result = JSON.parse(response.text);
-                var start = json_result;
-                self.setState({
-                    start: start,
-                });
-            })
-            .catch(function (err) {
-                swal("Oops!", "Something went wrong!", "error");
-            });
-    }
-
-    fetchKhutbah() {
-        var self = this;
-        var serverLocation = API_BASE + "/misc/6";
-
-        get(serverLocation)
-            .then(function (response) {
-                var json_result = JSON.parse(response.text);
-                var khutbah = json_result;
-                self.setState({
-                    khutbah: khutbah,
-                });
-            })
-            .catch(function (err) {
-                swal("Oops!", "Something went wrong!", "error");
-            });
+        const start = miscs.find(m => Number(m.id) === 5) || {
+            type: "khutbah",
+            arabic: "",
+            english: "",
+            bengali: "",
+            id: 5,
+        };
+        const khutbah = miscs.find(m => Number(m.id) === 6) || {
+            type: "khutbah",
+            arabic: "",
+            english: "",
+            bengali: "",
+            id: 6,
+        };
+        this.state = {
+            title: title,
+            start: start,
+            khutbah: khutbah,
+        };
     }
 
     done = () => {

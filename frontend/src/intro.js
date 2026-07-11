@@ -1,68 +1,30 @@
 import React from 'react';
 import './intro.css';
-import {get} from "superagent";
-import {API_BASE} from "./config";
+import miscs from './misc.json';
 import TranslatedText from './TranslatedText';
 
 class Intro extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            start: {
-                type: "intro",
-                arabic: "",
-                english: "",
-                bengali: "",
-                id: 1,
-            },
-            intro: {
-                type: "intro",
-                arabic: "",
-                english: "",
-                bengali: "",
-                id: 3,
-            },
+        const start = miscs.find(m => Number(m.id) === 2) || {
+            type: "intro",
+            arabic: "",
+            english: "",
+            bengali: "",
+            id: 2,
         };
-        this.fetchIntro();
-        this.fetchIntroStart();
-    }
-
-
-
-    fetchIntroStart() {
-        var self = this;
-        var serverLocation = API_BASE + "/misc/2";
-
-        get(serverLocation)
-            .then(function (response) {
-                var json_result = JSON.parse(response.text);
-                var start = json_result;
-                self.setState({
-                    start: start,
-                });
-            })
-            .catch(function (err) {
-                swal("Oops!", "Something went wrong!", "error");
-            });
-    }
-
-
-    fetchIntro() {
-        var self = this;
-        var serverLocation = API_BASE + "/misc/3";
-
-        get(serverLocation)
-            .then(function (response) {
-                var json_result = JSON.parse(response.text);
-                var intro = json_result;
-                self.setState({
-                    intro: intro,
-                });
-            })
-            .catch(function (err) {
-                swal("Oops!", "Something went wrong!", "error");
-            });
+        const intro = miscs.find(m => Number(m.id) === 3) || {
+            type: "intro",
+            arabic: "",
+            english: "",
+            bengali: "",
+            id: 3,
+        };
+        this.state = {
+            start: start,
+            intro: intro,
+        };
     }
 
     done = () => {

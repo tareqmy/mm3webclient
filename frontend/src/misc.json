@@ -1,0 +1,56 @@
+[
+  {
+    "arabic": "مُنَاجَاتِ مَقْبُول",
+    "english": "Munajat e Maqbool",
+    "number": "1",
+    "type": "misc",
+    "tags": "intro",
+    "id": "1",
+    "bengali": "মুনাজাতে মকবূল"
+  },
+  {
+    "number": "2",
+    "english": "I commence in the name of Allah Who is extremely Beneficent, most Merciful.",
+    "bengali": "পরম দাতা দয়ালু আল্লাহ্'র নামে আরম্ভ করছি -",
+    "type": "misc",
+    "tags": "intro",
+    "id": "2",
+    "arabic": "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ"
+  },
+  {
+    "number": "3",
+    "english": "[All] praise is [due] to Allah, Lord of the worlds; peace and blessings on the leader of the prophets and on his progeny and companions.",
+    "bengali": "সমস্ত প্রশংসা আল্লাহ্'র জন্য এবং দুরূদ ও সালাম তাহার জন্য যিনি আল্লাহ্'র সমস্ত পয়গাম্বরগণের সর্দার এবং তাহার সমস্ত বংশধর ও সহচরদের জন্য।",
+    "arabic": "اَلْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ وَالصَّلَاةُ وَالسَّلَامُ عَلَى سَيِّدِ الْمُرْسَلِينَ وَعَلَى آلِهِ وَأَصْحَابِهِ أَجْمَعِينَ",
+    "tags": "intro",
+    "type": "misc",
+    "id": "3"
+  },
+  {
+    "number": "1",
+    "english": "KHUTBAH",
+    "bengali": "খুতবাহ",
+    "arabic": "خُطْبَهْ",
+    "tags": "khutbah",
+    "type": "misc",
+    "id": "4"
+  },
+  {
+    "number": "2",
+    "english": "I commence in the name of Allah Who is extremely Beneficent, most Merciful.",
+    "bengali": "পরম দাতা দয়ালু আল্লাহ্'র নামে আরম্ভ করছি -",
+    "arabic": "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ",
+    "tags": "khutbah",
+    "type": "misc",
+    "id": "5"
+  },
+  {
+    "number": "3",
+    "english": "We praise You, O the One who is the best upon whom hope could be placed, and most honourable of those who are beseeched. [We praise You] over the fact that You taught us accepted supplications. [These supplications] are a source of gaining proximity to Allah and receiving the du'as of Rasulullah (SAW). Send, then, total mercy upon him for as long as the western and southern winds blow and for as long as braches grow forth from the roots (i.e until the dao of resurrection). We now ask You for that which we shall say [in the forthcoming manzil]. It is our duty to ask [of You] and only You can to accept [our supplications].",
+    "bengali": "আমরা সকলে তোমারই প্রশংসা করি হে সর্বোত্তম আশা ভরসা স্থল ও ভিক্ষা প্রার্থীদের সর্বাধিক দাতা। তুমিই আমাদিগকে শিখাইয়েছ এমন দোয়াসমূহ যাহা তোমার দরবারে গৃহিত, যাহা (তুমি) আল্লাহ্'র নৈকট্যের বিশেষ মাধ্যম এবং উহা রসূল (সঃ) কর্তৃক গঠিত দোয়াসমূহ। হে আল্লাহ্! তাহার উপর রহমত বর্ষণ কর যাবত প্রবাহমান থাকে পূর্বের ও পশ্চিমের বাতাস এবং এই দোয়া ও দুরূদ পুরুষ-পরম্পরা চলিতে থাকিবে যাবত বিস্তার লাভ করে মূল হইতে শাখা-প্রশাখা। তারপর তোমার নিকট মঞ্জুরি ভিক্ষা চাই - ঐ সবের যে সমস্ত দোয়া আমি সম্মুখে পেশ করিব। আমাদের কাজই দরখাস্ত করা; আর একমাত্র তোমারই কাজ মঞ্জুর করা।",
+    "arabic": "نَحْمَدُكَ يَا خَيْرَ مَأْمُولٍ، وَأَكْرَمَ مَسْؤُولٍ، عَلَى مَا عَلَّمْتَنَا مِنَ الْمُنَاجَاةِ الْمَقْبُولَةِ، مِنْ قُرُبَاتٍ عِندَ اللَّهِ وَصَلَوَاتِ الرَّسُولِ، فَصَلِّ عَلَيْهِ مَا اخْتَلَفَ الدَّبُورُ وَالْقَبُولُ، وَانْشَعَبَتِ الْفُرُوعُ مِنَ الْأُصُولِ، ثُمَّ نَسْأَلُكَ بِمَا سَنَقُولُ، وَمِنَّا السُّؤَالُ وَمِنْكَ الْقَبُولُ.",
+    "tags": "khutbah",
+    "type": "misc",
+    "id": "6"
+  }
+]
