@@ -282,20 +282,20 @@ class Content extends React.Component {
                 {
                     this.props.isMobile &&
                     <div className="mobile-nav-overlays">
-                        <div className="mobile-nav-row bookmark-row">
-                            <button className="mobile-nav-btn bookmark-btn prev" onClick={this.props.previousBookmark} data-tip="Previous Bookmark">
-                                <i className="fas fa-angle-double-left"></i>
-                            </button>
-                            <button className="mobile-nav-btn bookmark-btn next" onClick={this.props.nextBookmark} data-tip="Next Bookmark">
-                                <i className="fas fa-angle-double-right"></i>
-                            </button>
-                        </div>
                         <div className="mobile-nav-row standard-row">
                             <button className="mobile-nav-btn prev" onClick={this.props.previous} data-tip="Previous">
                                 <i className="fas fa-chevron-left"></i>
                             </button>
                             <button className="mobile-nav-btn next" onClick={this.props.next} data-tip="Next">
                                 <i className="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                        <div className="mobile-nav-row bookmark-row">
+                            <button className="mobile-nav-btn bookmark-btn prev" onClick={this.props.previousBookmark} data-tip="Previous Bookmark">
+                                <i className="fas fa-angle-double-left"></i>
+                            </button>
+                            <button className="mobile-nav-btn bookmark-btn next" onClick={this.props.nextBookmark} data-tip="Next Bookmark">
+                                <i className="fas fa-angle-double-right"></i>
                             </button>
                         </div>
                     </div>
