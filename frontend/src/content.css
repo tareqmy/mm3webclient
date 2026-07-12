@@ -79,7 +79,7 @@
 }
 
 .content .arabic {
-    font: 30px "Noto", "Scheherazade", sans-serif;
+    font: 30px "Noto Naskh Arabic", "Noto Sans Arabic", "Noto", "Scheherazade", sans-serif;
     text-align: center;
     line-height: 2.2;
     color: #0f4c3a;

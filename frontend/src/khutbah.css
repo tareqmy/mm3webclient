@@ -71,7 +71,7 @@
 
 /* Arabic styles */
 .khutbah .arabic {
-    font-family: "Noto", "Scheherazade", serif;
+    font-family: "Noto Naskh Arabic", "Noto Sans Arabic", "Noto", "Scheherazade", sans-serif;
     font-size: 28px;
     line-height: 2.2;
     color: #0f4c3a;

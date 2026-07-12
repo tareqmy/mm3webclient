@@ -76,10 +76,16 @@ hr {
     font-family: "Scheherazade", serif;
 }
 
+.arabic-font-noto-naskh .content .arabic,
+.arabic-font-noto-naskh .intro .arabic,
+.arabic-font-noto-naskh .khutbah .arabic {
+    font-family: "Noto Naskh Arabic", serif;
+}
+
 .arabic-font-noto .content .arabic,
 .arabic-font-noto .intro .arabic,
 .arabic-font-noto .khutbah .arabic {
-    font-family: "Noto", sans-serif;
+    font-family: "Noto Naskh Arabic", "Noto Sans Arabic", "Noto", "Scheherazade", sans-serif;
 }
 
 /* Arabic Font Size Overrides */

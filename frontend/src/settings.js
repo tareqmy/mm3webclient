@@ -113,6 +113,7 @@ class Settings extends React.Component {
                                     onChange={this.arabicFontChanged} 
                                     value={this.props.arabicFont}
                                 >
+                                    <option value="noto-naskh">Noto Naskh Arabic</option>
                                     <option value="noto">Noto Sans Arabic (Default)</option>
                                     <option value="scheherazade">Scheherazade</option>
                                 </select>
