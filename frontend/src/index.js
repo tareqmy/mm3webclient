@@ -161,11 +161,7 @@ class MunjateMaqbool extends React.Component {
             bookmarks: this.getBookmarks(),
             showComponent: initComponent,
             prayer: initialPrayer,
-            title: initialTitle,
-            speakingState: 'stopped',
-            audioRate: 1.0,
-            audioTarget: initialLang === 'bengali' ? 'arabic' : 'translation',
-            voices: []
+            title: initialTitle
         };
     }
 
@@ -327,7 +323,6 @@ class MunjateMaqbool extends React.Component {
     }
 
     update(prayer) {
-        this.stopSpeech();
         localStorage.setItem('prayer', JSON.stringify(prayer));
         this.setState({
             prayer: prayer,
@@ -425,11 +420,9 @@ class MunjateMaqbool extends React.Component {
     }
 
     langSelected = (lang) => {
-        this.stopSpeech();
         localStorage.setItem('lang', lang);
         this.setState({
-            lang: lang,
-            audioTarget: lang === 'bengali' ? 'arabic' : this.state.audioTarget
+            lang: lang
         });
     }
 
@@ -461,7 +454,6 @@ class MunjateMaqbool extends React.Component {
     }
 
     showComponent = (component) => {
-        this.stopSpeech();
         this.setState({
             showComponent: component
         });
@@ -492,14 +484,6 @@ class MunjateMaqbool extends React.Component {
                 }
             } else if (event.key === 'v') {
                 this.previousBookmark();
-            } else if (event.key === 'p') {
-                if (this.state.speakingState === 'playing') {
-                    this.pauseSpeech();
-                } else {
-                    this.playSpeech();
-                }
-            } else if (event.key === 's') {
-                this.stopSpeech();
             } else if (event.key === 't') {
                 const nextLang = this.state.lang === 'english' ? 'bengali' : 'english';
                 this.langSelected(nextLang);
@@ -531,11 +515,6 @@ class MunjateMaqbool extends React.Component {
         document.addEventListener("keydown", this.handleKeyPress);
         window.addEventListener('resize', this.handleWindowSizeChange);
         window.addEventListener('popstate', this.handlePopState);
-        this.loadVoices();
-        if (typeof window !== 'undefined' && window.speechSynthesis) {
-            window.speechSynthesis.onvoiceschanged = this.loadVoices;
-        }
-
         this.updatePageSEO(this.state.showComponent, this.state.prayer);
     }
 
@@ -554,10 +533,6 @@ class MunjateMaqbool extends React.Component {
         document.removeEventListener("keydown", this.handleKeyPress);
         window.removeEventListener('resize', this.handleWindowSizeChange);
         window.removeEventListener('popstate', this.handlePopState);
-        this.stopSpeech();
-        if (typeof window !== 'undefined' && window.speechSynthesis) {
-            window.speechSynthesis.onvoiceschanged = null;
-        }
     }
 
     handleWindowSizeChange = () => {
@@ -574,174 +549,7 @@ class MunjateMaqbool extends React.Component {
         return this.isMobile() ? "mobile" : "";
     }
 
-    loadVoices = () => {
-        if (typeof window !== 'undefined' && window.speechSynthesis) {
-            this.setState({
-                voices: window.speechSynthesis.getVoices()
-            });
-        }
-    }
 
-    getSpeechText() {
-        const { prayer, lang, audioTarget } = this.state;
-        if (audioTarget === 'arabic' || lang === 'bengali') {
-            return prayer.arabic;
-        } else {
-            if (lang !== 'english') {
-                const cached = this.getCachedTranslation(prayer.english, lang);
-                if (cached) return cached;
-            }
-            return prayer.english;
-        }
-    }
-
-    getVoice() {
-        const { lang, audioTarget, voices } = this.state;
-        if (!voices || voices.length === 0) return null;
-
-        // Filter out macOS/Windows novelty/toy/robotic voices that can sound weird or creepy
-        const cleanVoices = voices.filter(v => {
-            const nameLower = v.name.toLowerCase();
-            const noveltyVoices = [
-                "albert", "bad news", "bahh", "bells", "boing", "bubbles", 
-                "cellos", "deranged", "good news", "hysterical", "pipe organ", 
-                "trinoids", "whisper", "zarvox", "junior", "organ", "whisperer"
-            ];
-            return !noveltyVoices.some(nv => nameLower.includes(nv));
-        });
-
-        const targetVoices = cleanVoices.length > 0 ? cleanVoices : voices;
-
-        if (audioTarget === 'arabic' || lang === 'bengali') {
-            const arabicVoices = targetVoices.filter(v => 
-                v.lang.startsWith("ar-") || v.lang === "ar" || v.lang.startsWith("ar")
-            );
-            
-            // Prioritize premium/high-quality Arabic voices by name:
-            // - "google" (Google Cloud/Neural voices in Chrome/Android)
-            // - "maged", "laila", "tarik", "mariam" (macOS/iOS premium voices)
-            // - "hoda", "naayf" (Microsoft Windows voices)
-            const preferredArabic = ["google", "maged", "laila", "tarik", "mariam", "hoda", "naayf"];
-            for (const pref of preferredArabic) {
-                const found = arabicVoices.find(v => v.name.toLowerCase().includes(pref));
-                if (found) return found;
-            }
-            
-            // Fallback order: prefer ar-SA, then ar-AE, then any
-            return arabicVoices.find(v => v.lang === "ar-SA") || 
-                   arabicVoices.find(v => v.lang === "ar-AE") || 
-                   arabicVoices[0] || null;
-        } else {
-            // Check if it's a custom language (i.e. not english)
-            if (lang !== 'english') {
-                const customVoices = targetVoices.filter(v => 
-                    v.lang.toLowerCase().startsWith(lang.toLowerCase())
-                );
-                if (customVoices.length > 0) {
-                    const preferredNames = ["google", "premium", "neural", "natural"];
-                    for (const pref of preferredNames) {
-                        const found = customVoices.find(v => v.name.toLowerCase().includes(pref));
-                        if (found) return found;
-                    }
-                    return customVoices[0];
-                }
-            }
-            // Filter English voices
-            const englishVoices = targetVoices.filter(v => 
-                v.lang.startsWith("en-") || v.lang === "en" || v.lang.startsWith("en")
-            );
-            
-            // Prioritize standard high-quality natural voice names
-            const preferredNames = [
-                "google", "samantha", "alex", "daniel", "zira", 
-                "david", "hazel", "karen", "moira", "tessa", "veena", "fiona"
-            ];
-            
-            for (const pref of preferredNames) {
-                const found = englishVoices.find(v => v.name.toLowerCase().includes(pref));
-                if (found) return found;
-            }
-            
-            return englishVoices[0] || null;
-        }
-    }
-
-    playSpeech = () => {
-        if (typeof window === 'undefined' || !window.speechSynthesis) return;
-
-        if (this.state.speakingState === 'paused') {
-            window.speechSynthesis.resume();
-            this.setState({ speakingState: 'playing' });
-            return;
-        }
-
-        window.speechSynthesis.cancel();
-
-        const text = this.getSpeechText();
-        if (!text) return;
-
-        const utterance = new SpeechSynthesisUtterance(text);
-        
-        const voice = this.getVoice();
-        if (voice) {
-            utterance.voice = voice;
-        }
-        
-        const { lang, audioTarget } = this.state;
-        if (audioTarget === 'arabic' || lang === 'bengali') {
-            utterance.lang = 'ar-SA';
-        } else {
-            utterance.lang = 'en-US';
-        }
-
-        utterance.rate = this.state.audioRate;
-        utterance.pitch = 1.0;  // Explicitly reset pitch to normal (1.0)
-        utterance.volume = 1.0; // Explicitly reset volume to maximum (1.0)
-
-        utterance.onstart = () => {
-            this.setState({ speakingState: 'playing' });
-        };
-
-        utterance.onend = () => {
-            this.setState({ speakingState: 'stopped' });
-        };
-
-        utterance.onerror = (e) => {
-            console.error("Speech Synthesis Error:", e);
-            this.setState({ speakingState: 'stopped' });
-        };
-
-        window.speechSynthesis.speak(utterance);
-        this.setState({ speakingState: 'playing' });
-    }
-
-    pauseSpeech = () => {
-        if (typeof window === 'undefined' || !window.speechSynthesis) return;
-        window.speechSynthesis.pause();
-        this.setState({ speakingState: 'paused' });
-    }
-
-    stopSpeech = () => {
-        if (typeof window === 'undefined' || !window.speechSynthesis) return;
-        window.speechSynthesis.cancel();
-        this.setState({ speakingState: 'stopped' });
-    }
-
-    changeAudioRate = (rate) => {
-        this.setState({ audioRate: rate }, () => {
-            if (this.state.speakingState === 'playing') {
-                this.playSpeech();
-            }
-        });
-    }
-
-    changeAudioTarget = (target) => {
-        this.setState({ audioTarget: target }, () => {
-            if (this.state.speakingState === 'playing') {
-                this.playSpeech();
-            }
-        });
-    }
 
     render() {
         return (
@@ -764,15 +572,7 @@ class MunjateMaqbool extends React.Component {
                              next={this.next} previous={this.previous}
                              nextBookmark={this.nextBookmark} previousBookmark={this.previousBookmark}
                              bookmarks={this.state.bookmarks} toggleBookmark={this.toggleBookmark}
-                             isMobile={this.state.isMobile}
-                             speakingState={this.state.speakingState}
-                             audioRate={this.state.audioRate}
-                             audioTarget={this.state.audioTarget}
-                             playSpeech={this.playSpeech}
-                             pauseSpeech={this.pauseSpeech}
-                             stopSpeech={this.stopSpeech}
-                             changeAudioRate={this.changeAudioRate}
-                             changeAudioTarget={this.changeAudioTarget}/>
+                             isMobile={this.state.isMobile}/>
                 }
                 {
                     this.state.showComponent === "bookmarks" &&

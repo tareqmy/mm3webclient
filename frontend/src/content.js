@@ -90,8 +90,8 @@ class Content extends React.Component {
             return;
         }
 
-        // Ignore clicks on interactive elements or audio player
-        if (e.target.closest('button, select, a, input, textarea') || e.target.closest('.audio-player')) {
+        // Ignore clicks on interactive elements
+        if (e.target.closest('button, select, a, input, textarea')) {
             return;
         }
 
@@ -139,17 +139,6 @@ class Content extends React.Component {
     }
 
     render() {
-        const speakingState = this.props.speakingState || 'stopped';
-        const audioRate = this.props.audioRate || 1.0;
-        const audioTarget = this.props.audioTarget || 'translation';
-        const playSpeech = this.props.playSpeech || (() => {});
-        const pauseSpeech = this.props.pauseSpeech || (() => {});
-        const stopSpeech = this.props.stopSpeech || (() => {});
-        const changeAudioRate = this.props.changeAudioRate || (() => {});
-        const changeAudioTarget = this.props.changeAudioTarget || (() => {});
-        
-        const isSpeechSupported = typeof window !== 'undefined' && !!window.speechSynthesis;
-
         return (
             <div>
                 <ReactTooltip/>
@@ -188,66 +177,6 @@ class Content extends React.Component {
                     onClick={this.handleContentClick}
                 >
                     <div className="prayerholder">
-                        {isSpeechSupported && (
-                            <div className="audio-player">
-                                <div className="audio-controls">
-                                    <button 
-                                        className="audio-btn" 
-                                        onClick={speakingState === 'playing' ? pauseSpeech : playSpeech}
-                                        data-tip={speakingState === 'playing' ? "Pause" : "Play Audio"}
-                                    >
-                                        {speakingState === 'playing' ? <i className="fas fa-pause"></i> : <i className="fas fa-play"></i>}
-                                    </button>
-                                    <button 
-                                        className="audio-btn" 
-                                        onClick={stopSpeech}
-                                        disabled={speakingState === 'stopped'}
-                                        data-tip="Stop Audio"
-                                        style={{ opacity: speakingState === 'stopped' ? 0.5 : 1 }}
-                                    >
-                                        <i className="fas fa-stop"></i>
-                                    </button>
-                                    
-                                    {this.props.lang !== 'bengali' && (
-                                        <div className="audio-source-toggle" data-tip="Select audio content">
-                                            <button 
-                                                className={`audio-source-btn ${audioTarget === 'arabic' ? 'active' : ''}`}
-                                                onClick={() => changeAudioTarget('arabic')}
-                                            >
-                                                Arabic
-                                            </button>
-                                            <button 
-                                                className={`audio-source-btn ${audioTarget === 'translation' ? 'active' : ''}`}
-                                                onClick={() => changeAudioTarget('translation')}
-                                            >
-                                                Translation
-                                            </button>
-                                        </div>
-                                    )}
-                                </div>
-
-                                <div className="audio-meta">
-                                    <div className={`sound-wave ${speakingState}`} data-tip={speakingState === 'playing' ? "Playing audio..." : speakingState === 'paused' ? "Paused" : "Stopped"}>
-                                        <div className="bar"></div>
-                                        <div className="bar"></div>
-                                        <div className="bar"></div>
-                                        <div className="bar"></div>
-                                    </div>
-                                    
-                                    <select 
-                                        className="audio-speed-select" 
-                                        value={audioRate} 
-                                        onChange={(e) => changeAudioRate(parseFloat(e.target.value))}
-                                        data-tip="Playback Speed"
-                                    >
-                                        <option value="0.75">0.75x</option>
-                                        <option value="1">1.0x</option>
-                                        <option value="1.25">1.25x</option>
-                                        <option value="1.5">1.5x</option>
-                                    </select>
-                                </div>
-                            </div>
-                        )}
                         <div className="arabic-card">
                             <div className="arabic">
                                 {this.props.prayer.arabic}
