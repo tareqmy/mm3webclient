@@ -23,7 +23,8 @@
   },
   "overrides": {
     "websocket-driver": "^0.7.5",
-    "form-data": "^4.0.6"
+    "form-data": "^4.0.6",
+    "shell-quote": "^1.8.4"
   },
   "scripts": {
     "start": "react-scripts start",
