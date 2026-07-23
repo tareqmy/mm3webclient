@@ -131,6 +131,9 @@ class Help extends React.Component {
                     <div className="author-info">
                         Created with love by <a href="https://tareqmy.com/" target="_blank" rel="noopener noreferrer">tareqmy.com</a>
                     </div>
+                    <div className="more-from-creator">
+                        More from the creator: <a href="https://kalimacards.com/" target="_blank" rel="noopener noreferrer">https://kalimacards.com/</a>
+                    </div>
                     <div className="contact-info">
                         For suggestions or support: <a href="mailto:tareq.y+mm3@gmail.com?Subject=Munajat%20E%20Maqbool%20Feedback"><i className="fas fa-envelope"></i> tareq.y+mm3@gmail.com</a>
                     </div>

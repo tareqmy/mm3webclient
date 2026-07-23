@@ -246,6 +246,11 @@ kbd {
     color: #4a5568;
 }
 
+.help-footer .more-from-creator {
+    margin-bottom: 8px;
+    color: #4a5568;
+}
+
 .help-footer .contact-info {
     margin-bottom: 25px;
 }
