@@ -1,6 +1,7 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Munajat E Maqbool",
+  "name": "Munajat-e-Maqbool (مناجاة مقبول)",
+  "description": "Daily Islamic prayers (duas) from Quran and Hadith compiled by Maulana Ashraf Ali Thanvi.",
   "icons": [
     {
       "src": "favicon.ico",
@@ -10,6 +11,6 @@
   ],
   "start_url": "./index.html",
   "display": "standalone",
-  "theme_color": "#000000",
+  "theme_color": "#0f4c3a",
   "background_color": "#ffffff"
 }

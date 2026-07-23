@@ -49,7 +49,7 @@ class MunjateMaqbool extends React.Component {
         }
     }
 
-    updateSEO(title, description, path) {
+    updateSEO(title, description, path, schemaData) {
         document.title = title;
 
         const setMeta = (name, value, isProperty = false) => {
@@ -86,6 +86,17 @@ class MunjateMaqbool extends React.Component {
         setMeta('og:url', fullUrl, true);
         setMeta('twitter:url', fullUrl);
         setLink('canonical', fullUrl);
+
+        if (schemaData) {
+            let script = document.getElementById('dynamic-seo-schema');
+            if (!script) {
+                script = document.createElement('script');
+                script.id = 'dynamic-seo-schema';
+                script.type = 'application/ld+json';
+                document.head.appendChild(script);
+            }
+            script.textContent = JSON.stringify(schemaData);
+        }
     }
 
     updatePageSEO(component, prayer) {
@@ -97,7 +108,24 @@ class MunjateMaqbool extends React.Component {
             const snippet = translationText ? (translationText.length > 150 ? translationText.substring(0, 150) + "..." : translationText) : "";
             const title = `Dua ${prayer.id} (${prayer.tags}) - Munajat E Maqbool`;
             const description = `Dua ${prayer.id} (${prayer.tags}) - Munajat E Maqbool daily Islamic prayer. ${snippet}`;
-            this.updateSEO(title, description, `/dua/${prayer.id}/`);
+            const path = `/dua/${prayer.id}/`;
+            const schemaData = {
+                "@context": "https://schema.org",
+                "@type": "Article",
+                "headline": title,
+                "description": description,
+                "mainEntityOfPage": window.location.origin + path,
+                "author": {
+                    "@type": "Person",
+                    "name": "Maulana Ashraf Ali Thanvi"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Munajat E Maqbool"
+                },
+                "inLanguage": ["ar", "en", "bn"]
+            };
+            this.updateSEO(title, description, path, schemaData);
         } else {
             this.updateUrlPath(component);
             const capitalized = component.charAt(0).toUpperCase() + component.slice(1);
@@ -116,7 +144,14 @@ class MunjateMaqbool extends React.Component {
             } else if (component === "help") {
                 description = "Help, credits, and keyboard shortcuts information for Munajat-e-Maqbool.";
             }
-            this.updateSEO(title, description, path);
+            const schemaData = {
+                "@context": "https://schema.org",
+                "@type": "WebPage",
+                "name": title,
+                "description": description,
+                "url": window.location.origin + path
+            };
+            this.updateSEO(title, description, path, schemaData);
         }
     }
 
