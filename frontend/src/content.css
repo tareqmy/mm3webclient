@@ -5,6 +5,7 @@
     min-height: 330px;
     animation: fadeIn 0.5s ease-out;
     touch-action: pan-y;
+    overflow-x: hidden;
 }
 
 @keyframes fadeIn {
@@ -15,6 +16,44 @@
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+/* Next and Previous Dua Slide Animations */
+.prayerholder.slide-next {
+    animation: slideNext 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.prayerholder.slide-prev {
+    animation: slidePrev 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideNext {
+    0% {
+        opacity: 0;
+        transform: translateX(45px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slidePrev {
+    0% {
+        opacity: 0;
+        transform: translateX(-45px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .prayerholder.slide-next,
+    .prayerholder.slide-prev {
+        animation: fadeIn 0.2s ease-out forwards;
     }
 }
 

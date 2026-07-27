@@ -6,13 +6,32 @@ endif
 
 .DEFAULT_GOAL := help
 
-.PHONY: help image rebuild shell
+.PHONY: help dev start up stop down image rebuild shell
 
 help:
 	@echo "Available commands:"
+	@echo "  make dev     - Run React web client dev server locally (npm start)"
+	@echo "  make start   - Start local container environment (docker-compose up -d)"
+	@echo "  make stop    - Stop local container environment (docker-compose down)"
 	@echo "  make image   - Build the Docker image and clean up dangling images"
 	@echo "  make rebuild - Stop/remove the container, rebuild the image, and start it again"
 	@echo "  make shell   - Open an interactive shell inside the running container"
+
+# Run React dev server locally without Docker
+dev:
+	cd frontend && npm start
+
+# Start local environment using docker-compose
+start: up
+
+up:
+	docker-compose up -d
+
+# Stop local environment
+stop: down
+
+down:
+	docker-compose down
 
 # Build the docker image and clean up orphaned images
 image:

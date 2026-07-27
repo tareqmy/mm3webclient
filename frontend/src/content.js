@@ -34,6 +34,39 @@ class Content extends React.Component {
         this.touchStartY = null;
         this.touchEndX = null;
         this.touchEndY = null;
+
+        this.state = {
+            prevDuaId: props.prayer ? props.prayer.id : null,
+            animDirection: 'slide-next'
+        };
+    }
+
+    static getDerivedStateFromProps(nextProps, prevState) {
+        if (!nextProps.prayer) return null;
+        const currId = Number(nextProps.prayer.id);
+
+        if (prevState.prevDuaId === null) {
+            return {
+                prevDuaId: currId,
+                animDirection: 'slide-next'
+            };
+        }
+
+        if (currId !== prevState.prevDuaId) {
+            const prevId = Number(prevState.prevDuaId);
+            let direction = 'slide-next';
+
+            if ((prevId === 1 && currId === 196) || (currId < prevId && !(prevId === 196 && currId === 1))) {
+                direction = 'slide-prev';
+            }
+
+            return {
+                prevDuaId: currId,
+                animDirection: direction
+            };
+        }
+
+        return null;
     }
 
     handleTouchStart = (e) => {
@@ -176,7 +209,7 @@ class Content extends React.Component {
                     onTouchCancel={this.handleTouchCancel}
                     onClick={this.handleContentClick}
                 >
-                    <div className="prayerholder">
+                    <div key={this.props.prayer.id} className={`prayerholder ${this.state.animDirection}`}>
                         <div className="arabic-card">
                             <div className="arabic">
                                 {this.props.prayer.arabic}
