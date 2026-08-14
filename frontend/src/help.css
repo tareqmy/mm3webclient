@@ -32,13 +32,13 @@
 /* Header section */
 .help-header {
     margin-bottom: 35px;
-    border-bottom: 2px solid rgba(15, 76, 58, 0.1);
+    border-bottom: 2px solid rgba(27, 67, 50, 0.1);
     padding-bottom: 20px;
 }
 
 .help-header h2 {
     font-family: "Metamorphous", "Georgia", serif;
-    color: #0f4c3a;
+    color: var(--emerald-dark);
     font-size: 28px;
     margin: 0 0 8px 0;
 }
@@ -73,7 +73,7 @@
 /* Card Design */
 .help-card {
     background: #ffffff;
-    border: 1px solid rgba(15, 76, 58, 0.08);
+    border: 1px solid rgba(27, 67, 50, 0.08);
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
     text-align: left;
@@ -83,16 +83,16 @@
 
 .help-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(15, 76, 58, 0.06);
+    box-shadow: 0 8px 25px rgba(27, 67, 50, 0.06);
 }
 
 .help-card h3 {
-    background: linear-gradient(90deg, rgba(15, 76, 58, 0.05) 0%, rgba(15, 76, 58, 0.01) 100%);
+    background: linear-gradient(90deg, rgba(27, 67, 50, 0.05) 0%, rgba(27, 67, 50, 0.01) 100%);
     border-bottom: 1.5px solid #d4af37;
     margin: 0;
     padding: 15px 20px;
     font-family: "Metamorphous", "Georgia", serif;
-    color: #0f4c3a;
+    color: var(--emerald-dark);
     font-size: 17px;
     display: flex;
     align-items: center;
@@ -125,7 +125,7 @@
 
 /* Special styles inside cards */
 .dev-note {
-    border-left: 3px solid rgba(15, 76, 58, 0.3);
+    border-left: 3px solid rgba(27, 67, 50, 0.3);
     padding-left: 15px;
     color: #5a6578;
     font-size: 13.5px;
@@ -145,7 +145,7 @@
     font-family: "Diwani Letter", "Traditional Arabic", serif;
     font-size: 22px;
     line-height: 1.8;
-    color: #0f4c3a;
+    color: var(--emerald-dark);
     margin: 5px 0 !important;
     direction: rtl;
 }
@@ -220,7 +220,7 @@ kbd {
 
 /* Footer Section */
 .help-footer {
-    border-top: 2px solid rgba(15, 76, 58, 0.1);
+    border-top: 2px solid rgba(27, 67, 50, 0.1);
     padding-top: 25px;
     margin-top: 30px;
     font-family: "Georgia", serif;
@@ -229,10 +229,10 @@ kbd {
 }
 
 .help-footer a {
-    color: #0f4c3a;
+    color: var(--emerald-dark);
     text-decoration: none;
     font-weight: bold;
-    border-bottom: 1px dashed rgba(15, 76, 58, 0.4);
+    border-bottom: 1px dashed rgba(27, 67, 50, 0.4);
     transition: all 0.2s ease;
 }
 
@@ -270,23 +270,23 @@ kbd {
     font-size: 14px;
     font-weight: bold;
     color: #ffffff;
-    background: linear-gradient(135deg, #0f4c3a 0%, #1c6d54 100%);
+    background: linear-gradient(135deg, var(--emerald-dark) 0%, var(--emerald-mid) 100%);
     border: none;
     border-radius: 24px;
     padding: 12px 36px;
     cursor: pointer;
-    box-shadow: 0 4px 12px rgba(15, 76, 58, 0.15);
+    box-shadow: 0 4px 12px rgba(27, 67, 50, 0.15);
     transition: all 0.3s ease;
     outline: none;
 }
 
 .help-footer button.back-btn:hover {
-    background: linear-gradient(135deg, #175e49 0%, #238567 100%);
-    box-shadow: 0 6px 18px rgba(15, 76, 58, 0.25);
+    background: linear-gradient(135deg, var(--emerald-mid) 0%, var(--emerald-light) 100%);
+    box-shadow: 0 6px 18px rgba(27, 67, 50, 0.25);
     transform: translateY(-2px);
 }
 
 .help-footer button.back-btn:active {
     transform: translateY(0);
-    box-shadow: 0 3px 8px rgba(15, 76, 58, 0.15);
+    box-shadow: 0 3px 8px rgba(27, 67, 50, 0.15);
 }

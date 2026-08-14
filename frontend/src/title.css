@@ -1,7 +1,7 @@
 @import url("fonts.css");
 
 .title {
-    background: linear-gradient(90deg, #0f4c3a 0%, #175e49 100%);
+    background: linear-gradient(90deg, var(--emerald-dark) 0%, var(--emerald-mid) 100%);
     color: #f7f4eb;
     width: 100%;
     border-collapse: collapse;

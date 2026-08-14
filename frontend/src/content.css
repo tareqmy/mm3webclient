@@ -121,7 +121,7 @@
     font: 30px "Noto Naskh Arabic", "Noto Sans Arabic", "Noto", "Scheherazade", sans-serif;
     text-align: center;
     line-height: 2.2;
-    color: #0f4c3a;
+    color: var(--emerald-dark);
     direction: rtl;
     padding: 10px 0;
     text-shadow: 0 1px 1px rgba(0,0,0,0.01);
@@ -136,7 +136,7 @@
 .translation-card {
     position: relative;
     background: #ffffff;
-    border: 1px solid rgba(15, 76, 58, 0.08);
+    border: 1px solid rgba(27, 67, 50, 0.08);
     border-radius: 16px;
     padding: 35px 45px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.01);
@@ -145,8 +145,8 @@
 
 .translation-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(15, 76, 58, 0.06);
-    border-color: rgba(15, 76, 58, 0.2);
+    box-shadow: 0 8px 25px rgba(27, 67, 50, 0.06);
+    border-color: rgba(27, 67, 50, 0.2);
 }
 
 .mobile .translation-card {
@@ -269,8 +269,8 @@
 }
 
 .navigation button:hover {
-    color: #0f4c3a;
-    background-color: rgba(15, 76, 58, 0.06);
+    color: var(--emerald-dark);
+    background-color: rgba(27, 67, 50, 0.06);
     transform: scale(1.08);
 }
 
@@ -286,9 +286,9 @@
     font-family: "Georgia", serif;
     font-size: 13px;
     font-weight: 600;
-    color: #0f4c3a;
+    color: var(--emerald-dark);
     background: #ffffff;
-    border: 1px solid rgba(15, 76, 58, 0.25);
+    border: 1px solid rgba(27, 67, 50, 0.25);
     border-radius: 20px;
     padding: 6px 30px 6px 12px;
     cursor: pointer;
@@ -298,7 +298,7 @@
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230f4c3a' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231B4332' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 12px center;
     background-size: 12px 12px;
@@ -307,12 +307,12 @@
 .navigation select:hover {
     border-color: #d4af37;
     background-color: #fffdf9;
-    box-shadow: 0 2px 6px rgba(15, 76, 58, 0.05);
+    box-shadow: 0 2px 6px rgba(27, 67, 50, 0.05);
 }
 
 .navigation select:focus {
-    border-color: #0f4c3a;
-    box-shadow: 0 0 0 3px rgba(15, 76, 58, 0.1);
+    border-color: var(--emerald-dark);
+    box-shadow: 0 0 0 3px rgba(27, 67, 50, 0.1);
 }
 
 /* Bottom Meta Badge */
@@ -328,14 +328,14 @@
 
 .meta label {
     display: inline-block;
-    background: #0f4c3a;
+    background: var(--emerald-dark);
     color: #d4af37;
     font-family: "Georgia", serif;
     font-size: 13px;
     font-weight: bold;
     border-radius: 8px;
     padding: 6px 16px;
-    box-shadow: 0 2px 6px rgba(15, 76, 58, 0.15);
+    box-shadow: 0 2px 6px rgba(27, 67, 50, 0.15);
 }
 
 .mobile .navigation {
@@ -382,7 +382,7 @@
 
 .mobile-nav-btn {
     pointer-events: auto;
-    background: rgba(15, 76, 58, 0.85);
+    background: rgba(27, 67, 50, 0.85);
     border: 1px solid rgba(212, 175, 55, 0.4);
     color: #ffffff;
     width: 48px;
@@ -401,8 +401,8 @@
 
 .mobile-nav-btn.bookmark-btn {
     background: rgba(212, 175, 55, 0.85);
-    border-color: rgba(15, 76, 58, 0.3);
-    color: #0f4c3a;
+    border-color: rgba(27, 67, 50, 0.3);
+    color: var(--emerald-dark);
     width: 42px;
     height: 42px;
     font-size: 16px;
@@ -410,7 +410,7 @@
 
 .mobile-nav-btn:active {
     transform: scale(0.85);
-    background: rgba(15, 76, 58, 1);
+    background: rgba(27, 67, 50, 1);
 }
 
 .mobile-nav-btn.bookmark-btn:active {

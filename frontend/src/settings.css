@@ -32,13 +32,13 @@
 /* Header section */
 .settings-header {
     margin-bottom: 30px;
-    border-bottom: 2px solid rgba(15, 76, 58, 0.1);
+    border-bottom: 2px solid rgba(27, 67, 50, 0.1);
     padding-bottom: 20px;
 }
 
 .settings-header h2 {
     font-family: "Metamorphous", "Georgia", serif;
-    color: #0f4c3a;
+    color: var(--emerald-dark);
     font-size: 28px;
     margin: 0 0 8px 0;
 }
@@ -62,7 +62,7 @@
 /* Card Design */
 .settings-card {
     background: #ffffff;
-    border: 1px solid rgba(15, 76, 58, 0.08);
+    border: 1px solid rgba(27, 67, 50, 0.08);
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
     text-align: left;
@@ -72,16 +72,16 @@
 
 .settings-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(15, 76, 58, 0.06);
+    box-shadow: 0 8px 25px rgba(27, 67, 50, 0.06);
 }
 
 .settings-card h3 {
-    background: linear-gradient(90deg, rgba(15, 76, 58, 0.05) 0%, rgba(15, 76, 58, 0.01) 100%);
+    background: linear-gradient(90deg, rgba(27, 67, 50, 0.05) 0%, rgba(27, 67, 50, 0.01) 100%);
     border-bottom: 1.5px solid #d4af37;
     margin: 0;
     padding: 14px 20px;
     font-family: "Metamorphous", "Georgia", serif;
-    color: #0f4c3a;
+    color: var(--emerald-dark);
     font-size: 16px;
     display: flex;
     align-items: center;
@@ -115,9 +115,9 @@
     font-family: "Georgia", serif;
     font-size: 14.5px;
     font-weight: 600;
-    color: #0f4c3a;
+    color: var(--emerald-dark);
     background: #ffffff;
-    border: 1px solid rgba(15, 76, 58, 0.2);
+    border: 1px solid rgba(27, 67, 50, 0.2);
     border-radius: 8px;
     padding: 10px 40px 10px 16px;
     cursor: pointer;
@@ -128,7 +128,7 @@
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230f4c3a' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231B4332' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 14px center;
     background-size: 14px 14px;
@@ -163,17 +163,17 @@
     font-size: 14px;
     font-weight: bold;
     color: #ffffff;
-    background: linear-gradient(135deg, #0f4c3a 0%, #1c6d54 100%);
+    background: linear-gradient(135deg, var(--emerald-dark) 0%, var(--emerald-mid) 100%);
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    box-shadow: 0 4px 10px rgba(15, 76, 58, 0.15);
+    box-shadow: 0 4px 10px rgba(27, 67, 50, 0.15);
     transition: all 0.2s ease;
 }
 
 .settings button.add-btn:hover {
-    background: linear-gradient(135deg, #175e49 0%, #238567 100%);
-    box-shadow: 0 6px 14px rgba(15, 76, 58, 0.25);
+    background: linear-gradient(135deg, var(--emerald-mid) 0%, var(--emerald-light) 100%);
+    box-shadow: 0 6px 14px rgba(27, 67, 50, 0.25);
     transform: translateY(-1px);
 }
 
@@ -237,7 +237,7 @@
 
 /* Footer & Back Button */
 .settings-footer {
-    border-top: 2px solid rgba(15, 76, 58, 0.1);
+    border-top: 2px solid rgba(27, 67, 50, 0.1);
     padding-top: 25px;
     margin-top: 10px;
 }
@@ -251,19 +251,19 @@
     font-size: 14px;
     font-weight: bold;
     color: #ffffff;
-    background: linear-gradient(135deg, #0f4c3a 0%, #1c6d54 100%);
+    background: linear-gradient(135deg, var(--emerald-dark) 0%, var(--emerald-mid) 100%);
     border: none;
     border-radius: 24px;
     padding: 12px 36px;
     cursor: pointer;
-    box-shadow: 0 4px 12px rgba(15, 76, 58, 0.15);
+    box-shadow: 0 4px 12px rgba(27, 67, 50, 0.15);
     transition: all 0.3s ease;
     outline: none;
     width: auto;
 }
 
 .settings-footer button.back-btn:hover {
-    background: linear-gradient(135deg, #175e49 0%, #238567 100%);
-    box-shadow: 0 6px 18px rgba(15, 76, 58, 0.25);
+    background: linear-gradient(135deg, var(--emerald-mid) 0%, var(--emerald-light) 100%);
+    box-shadow: 0 6px 18px rgba(27, 67, 50, 0.25);
     transform: translateY(-2px);
 }
