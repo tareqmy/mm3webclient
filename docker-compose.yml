@@ -11,5 +11,7 @@ services:
     volumes:
       - ./frontend/public:/frontend/public
       - ./frontend/src:/frontend/src
+      - ./frontend/index.html:/frontend/index.html
+      - ./frontend/vite.config.js:/frontend/vite.config.js
     ports:
       - "3000:3000"

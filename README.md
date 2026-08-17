@@ -30,7 +30,7 @@ The application supports:
 Browser → CloudFront CDN → S3 (static React build)
 ```
 
-- Built with **React 16** (Create React App)
+- Built with **React 18** (Vite)
 - Static assets served via **AWS CloudFront + S3**
 - No server-side rendering — pure SPA
 

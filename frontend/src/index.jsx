@@ -1,6 +1,6 @@
 // tag::vars[]
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import './index.css';
 import Title from './title';
 import Menu from './menu';
@@ -638,5 +638,5 @@ class MunjateMaqbool extends React.Component {
 // end::app[]
 
 // tag::render[]
-ReactDOM.render(<MunjateMaqbool/>, document.getElementById('react'));
+createRoot(document.getElementById('react')).render(<MunjateMaqbool/>);
 // end::render[]

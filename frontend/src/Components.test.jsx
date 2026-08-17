@@ -50,7 +50,7 @@ describe('Component Smoke Tests', () => {
 
     it('triggers onArabicFontChange when font selection changes in Settings', () => {
         const div = document.createElement('div');
-        const fontChangeMock = jest.fn();
+        const fontChangeMock = vi.fn();
         const settingsInstance = ReactDOM.render(
             <Settings 
                 lang="english" 
@@ -72,7 +72,7 @@ describe('Component Smoke Tests', () => {
 
     it('triggers onArabicSizeChange when font size selection changes in Settings', () => {
         const div = document.createElement('div');
-        const sizeChangeMock = jest.fn();
+        const sizeChangeMock = vi.fn();
         const settingsInstance = ReactDOM.render(
             <Settings 
                 lang="english" 
@@ -148,8 +148,8 @@ describe('Component Smoke Tests', () => {
         const div = document.createElement('div');
         const mockPrayer = { id: 1, tags: 'saturday', arabic: 'a', english: 'e', bengali: 'b' };
         const mockDays = { saturday: { previous: 'f', begin: 1, size: 48, value: 's', next: 'su' } };
-        const nextMock = jest.fn();
-        const prevMock = jest.fn();
+        const nextMock = vi.fn();
+        const prevMock = vi.fn();
         const contentInstance = ReactDOM.render(
             <Content
                 lang="english"
@@ -181,8 +181,8 @@ describe('Component Smoke Tests', () => {
         const div = document.createElement('div');
         const mockPrayer = { id: 1, tags: 'saturday', arabic: 'a', english: 'e', bengali: 'b' };
         const mockDays = { saturday: { previous: 'f', begin: 1, size: 48, value: 's', next: 'su' } };
-        const nextMock = jest.fn();
-        const prevMock = jest.fn();
+        const nextMock = vi.fn();
+        const prevMock = vi.fn();
         const contentInstance = ReactDOM.render(
             <Content
                 lang="english"
@@ -214,8 +214,8 @@ describe('Component Smoke Tests', () => {
         const div = document.createElement('div');
         const mockPrayer = { id: 1, tags: 'saturday', arabic: 'a', english: 'e', bengali: 'b' };
         const mockDays = { saturday: { previous: 'f', begin: 1, size: 48, value: 's', next: 'su' } };
-        const nextMock = jest.fn();
-        const prevMock = jest.fn();
+        const nextMock = vi.fn();
+        const prevMock = vi.fn();
         const contentInstance = ReactDOM.render(
             <Content
                 lang="english"
@@ -261,8 +261,8 @@ describe('Component Smoke Tests', () => {
         const div = document.createElement('div');
         const mockPrayer = { id: 1, tags: 'saturday', arabic: 'a', english: 'e', bengali: 'b' };
         const mockDays = { saturday: { previous: 'f', begin: 1, size: 48, value: 's', next: 'su' } };
-        const nextMock = jest.fn();
-        const prevMock = jest.fn();
+        const nextMock = vi.fn();
+        const prevMock = vi.fn();
         const contentInstance = ReactDOM.render(
             <Content
                 lang="english"
@@ -308,8 +308,8 @@ describe('Component Smoke Tests', () => {
         const div = document.createElement('div');
         const mockPrayer = { id: 1, tags: 'saturday', arabic: 'a', english: 'e', bengali: 'b' };
         const mockDays = { saturday: { previous: 'f', begin: 1, size: 48, value: 's', next: 'su' } };
-        const nextMock = jest.fn();
-        const prevMock = jest.fn();
+        const nextMock = vi.fn();
+        const prevMock = vi.fn();
         const contentInstance = ReactDOM.render(
             <Content
                 lang="english"
@@ -354,8 +354,8 @@ describe('Component Smoke Tests', () => {
         const div = document.createElement('div');
         const mockPrayer = { id: 1, tags: 'saturday', arabic: 'a', english: 'e', bengali: 'b' };
         const mockDays = { saturday: { previous: 'f', begin: 1, size: 48, value: 's', next: 'su' } };
-        const nextMock = jest.fn();
-        const prevMock = jest.fn();
+        const nextMock = vi.fn();
+        const prevMock = vi.fn();
         const contentInstance = ReactDOM.render(
             <Content
                 lang="english"

@@ -8,9 +8,9 @@ ENV APP_ENV=$app_env
 
 RUN mkdir -p /frontend
 WORKDIR /frontend
-COPY ./frontend/package.json ./
+COPY ./frontend/package.json ./frontend/package-lock.json ./
 
-RUN npm install
+RUN npm ci
 
 COPY ./frontend ./
 RUN chmod +x /frontend/entrypoint.sh

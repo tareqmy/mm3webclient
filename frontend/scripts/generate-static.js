@@ -20,7 +20,11 @@ async function run() {
         process.exit(1);
     }
     const template = fs.readFileSync(TEMPLATE_PATH, 'utf8');
-    const seoRegex = /<title>Munajat E Maqbool<\/title>[\s\S]*?"@type":\s*"Book"[\s\S]*?<\/script>/;
+    const seoRegex = /<!-- SEO-TAGS-START -->[\s\S]*?<!-- SEO-TAGS-END -->/;
+    if (!seoRegex.test(template)) {
+        console.error("SEO marker comments not found in build/index.html; aborting.");
+        process.exit(1);
+    }
 
     // 1. Pre-render 196 Duas
     console.log("Pre-rendering Duas 1 to 196...");

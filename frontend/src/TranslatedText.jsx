@@ -1,5 +1,4 @@
 import React from 'react';
-import { get } from 'superagent';
 
 class TranslatedText extends React.Component {
     constructor(props) {
@@ -41,10 +40,10 @@ class TranslatedText extends React.Component {
 
         this.setState({ loading: true, translation: '' });
         const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=${toLang}&dt=t&q=${encodeURIComponent(text)}`;
-        get(url)
-            .then(response => {
+        fetch(url)
+            .then(response => response.json())
+            .then(json => {
                 try {
-                    const json = JSON.parse(response.text);
                     if (json && json[0]) {
                         const translatedText = json[0].map(item => item[0]).join('');
                         localStorage.setItem(cacheKey, translatedText);
